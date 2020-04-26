@@ -16,7 +16,7 @@ typedef struct {//B_vector的基本数据
 	char* _elem;
 } B_vector;
 B_vector* B_vectorCreat(size_t esize);//创建B_vector,成功返回指针，失败返回NULL;
-void vectorcpy(B_vector* vector, char* _Dst, Rank _Dstr, char* _Src, Rank _Srcr);//将_Src的元素拷贝到_Dst上
+void vectorcpyRank(B_vector* vector, char* _Dst, Rank _Dstr, char* _Src, Rank _Srcr);//将_Src的元素拷贝到_Dst上
 int B_vectorExpand(B_vector* vector);//有必要时扩容，返回值1表示运行正常（无需扩容或已成功扩容），0表示需要扩容但扩容失败
 int B_vectorInsert(B_vector* vector, const void* ve, Rank r);//将新元素作为秩为r元素插入，成功返回位置，失败返回-1；
 int B_vectorPushBack(B_vector* vector, const void* ve);//将新元素作为末尾元素插入，成功返回位置，失败返回-1；
