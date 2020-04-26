@@ -14,9 +14,6 @@ B_vector* B_vectorCreat(size_t esize) {//创建B_vector,成功返回指针，失
 	vector->_capicity = B_Vector_DEFAULT_CAPACITY;
 	return vector;
 }
-void vectorcpyInterval(B_vector* vector, char* _Dst, Rank _Dstr, char* _Src, Rank _Srcr, size_t num){
-	memcpy(_Dst + _Dstr * vector->_esize, _Src + _Srcr * vector->_esize, vector->_esize*num);
-}
 void vectorcpyRank(B_vector* vector, char* _Dst, Rank _Dstr, char* _Src, Rank _Srcr) {//将_Src的元素拷贝到_Dst上
 	memcpy(_Dst + _Dstr * vector->_esize, _Src + _Srcr * vector->_esize, vector->_esize);
 }
@@ -31,17 +28,17 @@ int B_vectorExpand(B_vector* vector) {//有必要时扩容，返回值1表示运
 		vector->_capicity = oldcapicity;
 		return 0;
 	}
-	if(oldElem!=NULL)//capacity==0的时候的扩容不需要复制
-	for (int i = 0; i < vector->_size; i++)
-		vectorcpyRank(vector, vector->_elem, i, oldElem, i);
+	if (oldElem != NULL)//capacity==0的时候的扩容不需要复制
+		for (int i = 0; i < vector->_size; i++)
+			vectorcpyRank(vector, vector->_elem, i, oldElem, i);
 	free(oldElem);
 	return 1;
 }
 int B_vectorInsert(B_vector* vector, const void* ve, Rank r) {//将新元素作为秩为r元素插入，成功返回位置，失败返回-1；
 	char* e = (char*)ve;
 	if (!B_vectorExpand(vector)) return -1;//扩容检测异常，插入失败；
-	//for (int i = vector->_size; i > r; i--)
-		vectorcpyInterval(vector, vector->_elem, r+1, vector->_elem,r,vector->_size-r);
+	for (int i = vector->_size; i > r; i--)
+		vectorcpyRank(vector, vector->_elem, i, vector->_elem, i-1);
 	vectorcpyRank(vector, vector->_elem, r, e, 0);
 	vector->_size++;
 	return r;
