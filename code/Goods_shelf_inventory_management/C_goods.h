@@ -1,5 +1,5 @@
 #pragma once
-#include"Date.h"
+#include"B_time.h"
 #define C_NUM_LEN    19//编码长度
 #define C_NAME_LEN   100//名称最大长度
 typedef struct{//商品信息
@@ -12,6 +12,4 @@ typedef struct{//商品信息
 	Date C_entryDate;//入库日期
 	Date C_rotDate;//过期日期
 } C_Goods ;
-int C_Goods_LessThan(C_Goods AGoods, C_Goods BGoods) {//比较较商品过期日期的大小
-
-}
+int C_Goods_LessThan(C_Goods AGoods, C_Goods BGoods);//比较较商品过期日期的大小
