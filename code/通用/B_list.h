@@ -18,10 +18,10 @@ struct B_tlistNode{//B_vector的基本数据
 	char* _elem;
 };
 typedef struct {//B_vector的基本数据
-	size_t _esize;
-	size_t _size;
-	B_listNode* header ;
-	B_listNode* trailer;
+	size_t _esize;//存储数据大小
+	size_t _size;//存储数据数量
+	B_listNode* header ;//头哨兵
+	B_listNode* trailer;//尾哨兵
 } B_list;
 //public
 B_list* B_listCreat(size_t esize);//创建B_list，需指定元素内存大小
