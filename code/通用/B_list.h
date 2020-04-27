@@ -23,15 +23,18 @@ typedef struct {//B_vector的基本数据
 	B_listNode* header ;
 	B_listNode* trailer;
 } B_list;
+//public
 B_list* B_listCreat(size_t esize);//创建B_list，需指定元素内存大小
-void B_listInit(B_list* list);//初始化B_list
 void B_listClear(B_list* list);//清空列表
+void B_listInit(B_list* list);//初始化B_list
 void B_listPushBack(B_list* list, const void* ve);//插入元素到列表尾部
 void B_listPushFirst(B_list* list, const void* ve);//插入元素到列表头部
 void B_listRemoveFirst(B_list* list);//删除首元素
-void B_listGetFirst(B_list* list);//获取首元素
-void B_listGetBack(B_list* list);//获取尾元素
-B_listNode* B_listGetNodeRank(B_list* list, Rank r);//得到指定位置的元素对应的节点，速度较慢
-char* B_listGetRank(B_list* list, Rank r);////得到指定位置的元素，速度较慢
-void B_listRemoveInterval(B_list* list, Rank lo, Rank hi);//删除[lo,hi)的元素
+void B_listRemoveBack(B_list* list);//删除尾元素,原理与首元素相同
 void B_listRemoveRank(B_list* list, Rank r);//删除指定位置的元素
+void B_listRemoveInterval(B_list* list, Rank lo, Rank hi);//删除[lo,hi)的元素
+char* B_listGetFirst(B_list* list);//获取首元素
+char* B_listGetBack(B_list* list);//获取尾元素
+char* B_listGetRank(B_list* list, Rank r);////得到指定位置的元素，速度较慢
+//private
+B_listNode* B_listGetNodeRank(B_list* list, Rank r);//得到指定位置的元素对应的节点，速度较慢
