@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: Charol
+ * @Date: 2020-04-27 15:44:29
+ * @LastEditors: 
+ * @LastEditTime: 2020-04-28 23:13:55
+ */
 #pragma once
 #include"B_time.h"
 #define C_NUM_LEN    19//编码长度
