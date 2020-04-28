@@ -7,7 +7,7 @@ typedef struct{//商品信息
 	int C_out;//标价（非实售价）
 	char name[C_NAME_LEN];//商品名
 	char num[C_NUM_LEN];//编码
-	Date C_shelfDate;//保质期
+	int C_shelfDate;//保质期
 	Date C_producedDate;//生产日期
 	Date C_entryDate;//入库日期
 	Date C_rotDate;//过期日期
