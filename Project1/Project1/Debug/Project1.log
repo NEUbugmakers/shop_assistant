@@ -1,4 +1,2 @@
-﻿  main_test.c
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\main_test.c(3): warning C4716: “mian”: 必须返回一个值
-MSVCRTD.lib(exe_main.obj) : error LNK2019: 无法解析的外部符号 _main，该符号在函数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 中被引用
+﻿MSVCRTD.lib(exe_main.obj) : error LNK2019: 无法解析的外部符号 _main，该符号在函数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 中被引用
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\Project1\Debug\Project1.exe : fatal error LNK1120: 1 个无法解析的外部命令

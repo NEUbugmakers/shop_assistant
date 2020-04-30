@@ -1,3 +1,3 @@
-int mian() {
+int main() {
 	//test
 }
