@@ -25,14 +25,14 @@ void SR_dataBTInit() {//初始化B-树
 	B_getSrc(file, &SR_dataBTRoot, sizeof(SR_dataBTNode));
 	SR_dataBTBuild(&SR_dataBTRoot, file);
 }
-void SR_dataBTBuild(SR_dataBTNode* x, FILE* file) {//根据文件建立B-树
+void SR_dataBTBuild(SR_dataBTNode* x, FILE* file) {//根据文件建立B-树(未完成）
 	if (x->childNum > 0) {//建立内部节点
 		x->child = B_vectorCreat(sizeof(SR_dataBTNode*));
 		x->childCode = B_vectorCreat(sizeof(SR_dataBTNode*));
 		x->goodsVector = NULL;
+		SR_dataBTNode t;//临时变量，用于vector扩容
 		for (int i = 0; i < x->childNum; i++) {
-			SR_dataBTNode* x = (SR_dataBTNode*)malloc(sizeof(SR_dataBTNode));
-			B_getSrc(file, x, sizeof(SR_dataBTNode));
+			vect===
 		}
 	}
 	else {//建立外部节点
@@ -40,8 +40,10 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file) {//根据文件建立B-树
 		x->childCode = NULL;
 		FILE* _file;
 		_file = fopen(x->fileName, "rb+");
-		x->goodsVector = B_vectorCreat(sizeof(C_Goods));
+		fseek(_file, 0, SEEK_END);
 		int flen = ftell(_file);
+		fseek(_file, 0, SEEK_SET);
+		x->goodsVector = B_vectorCreat(sizeof(C_Goods));
 		x->goodsVector->_capicity = flen / sizeof(C_Goods);
 		free(x->goodsVector->_elem);
 		x->goodsVector->_elem = (char*)malloc(flen);
