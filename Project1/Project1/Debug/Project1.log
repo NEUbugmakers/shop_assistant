@@ -1,2 +1,4 @@
 ﻿  main_test.c
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\main_test.c(16,1): warning C4133: “初始化”: 从“char *”到“test *”的类型不兼容
   Project1.vcxproj -> C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\Project1\Debug\Project1.exe
