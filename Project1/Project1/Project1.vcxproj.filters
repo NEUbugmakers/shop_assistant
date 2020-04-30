@@ -30,6 +30,9 @@
     <ClInclude Include="..\..\shop_assistant\src\c\B_getSrc.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\shop_assistant\src\c\SR_data.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\shop_assistant\src\c\B_vector.c">

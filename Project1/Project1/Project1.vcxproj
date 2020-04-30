@@ -143,6 +143,7 @@
     <ClInclude Include="..\..\shop_assistant\src\c\B_time.h" />
     <ClInclude Include="..\..\shop_assistant\src\c\B_vector.h" />
     <ClInclude Include="..\..\shop_assistant\src\c\C_goods.h" />
+    <ClInclude Include="..\..\shop_assistant\src\c\SR_data.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\shop_assistant\src\c\B_list.c" />
