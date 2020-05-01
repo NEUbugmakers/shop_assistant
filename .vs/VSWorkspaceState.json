@@ -1,10 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\.idea",
+    "\\Project1",
+    "\\Project1\\Project1",
+    "\\Project1\\Project1\\Debug",
     "\\shop_assistant",
+    "\\shop_assistant\\data",
+    "\\shop_assistant\\picture",
     "\\shop_assistant\\src",
-    "\\shop_assistant\\src\\c"
+    "\\shop_assistant\\src\\Qt",
+    "\\帮助文档"
   ],
-  "SelectedNode": "\\shop_assistant\\src\\c\\B_list.c",
   "PreviewInSolutionExplorer": false
 }
