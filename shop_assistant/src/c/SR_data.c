@@ -32,11 +32,11 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file) {//根据文件建立B-树,先序遍历
 		int flen = ftell(_file);
 		fseek(_file, 0, SEEK_SET);
 		x->goodsVector = B_vectorCreat(sizeof(C_Goods));
-		x->goodsVector->_capicity = flen / sizeof(C_Goods);
-		free(x->goodsVector->_elem);
-		x->goodsVector->_elem = (char*)malloc(flen);
-		B_getSrc(_file, x->goodsVector->_elem, flen);
-		x->goodsVector->_size = flen / sizeof(C_Goods);
+		x->goodsVector->vector->_capicity = flen / sizeof(C_Goods);
+		free(x->goodsVector->vector->_elem);
+		x->goodsVector->vector->_elem = (char*)malloc(flen);
+		B_getSrc(_file, x->goodsVector->vector->_elem, flen);
+		x->goodsVector->vector->_size = flen / sizeof(C_Goods);
 	}
 }
 SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort) {//在当前节点的子节点查找分类,失败返回NULL

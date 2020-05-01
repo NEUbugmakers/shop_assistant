@@ -18,7 +18,7 @@ struct SR_dataBTNodeT {//B-树节点
 	B_vector* child;
 	B_vector* childCode;
 	char fileName[10];
-	B_vector* goodsVector;
+	C_goodsVector* goodsVector;
 };
 SR_dataBTNode SR_dataBTRoot;//根节点
 void SR_dataBTInit();//初始化B-树
