@@ -12,7 +12,7 @@ typedef  int Rank;
 //不影响使用，但就是感觉有点丑
 struct B_tlistNode;
 typedef struct B_tlistNode B_listNode;
-struct B_tlistNode{//B_vector的基本数据
+struct B_tlistNode {//B_vector的基本数据
 	B_listNode* pred;
 	B_listNode* succ;
 	char* _elem;
@@ -20,7 +20,7 @@ struct B_tlistNode{//B_vector的基本数据
 typedef struct {//B_vector的基本数据
 	size_t _esize;//存储数据大小
 	size_t _size;//存储数据数量
-	B_listNode* header ;//头哨兵
+	B_listNode* header;//头哨兵
 	B_listNode* trailer;//尾哨兵
 } B_list;
 //public
@@ -36,5 +36,9 @@ void B_listRemoveInterval(B_list* list, Rank lo, Rank hi);//删除[lo,hi)的元�
 char* B_listGetFirst(B_list* list);//获取首元素
 char* B_listGetBack(B_list* list);//获取尾元素
 char* B_listGetRank(B_list* list, Rank r);////得到指定位置的元素，速度较慢
+B_listNode* B_listGetFirstNode(B_list* list);//获取首元素
+B_listNode* B_listNextNode(B_listNode* x);//获得当前节点的下一个节点，若为最后一个节点则返回NULL
+char* B_listGetFromNode(B_listNode* x);//获取当前节点的保存的数据
+void B_listInsertPre(B_list* list, const void* e, B_listNode* listNode);//插入元素到指定位置(需保证listNode为list下的节点）
 //private
 B_listNode* B_listGetNodeRank(B_list* list, Rank r);//得到指定位置的元素对应的节点，速度较慢

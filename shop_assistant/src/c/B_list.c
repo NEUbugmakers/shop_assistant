@@ -52,14 +52,15 @@ void B_listPushFirst(B_list* list, const void* ve) {//插入元素到列表头�
 	list->_size++;
 	return;
 }
-void B_listInsertRank(B_list* list,const void* e, Rank r) {//插入元素到指定位置
+void B_listInsertRank(B_list* list, const void* e, Rank r) {//插入元素到指定位置
 	B_listNode* x = malloc(sizeof(B_listNode));
 	B_listNode* dst = B_listGetNodeRank(list, r);//获取插入位置
-	memcpy(x->_elem, e, list->_size);
+	memcpy(x->_elem, e, list->_esize);
 	x->succ = dst;
 	x->pred = dst->pred;
 	x->pred->succ = x;
 	x->succ->pred = x;
+	list->_size++;
 }
 void B_listRemoveFirst(B_list* list) {//删除首元素
 	list->header->succ = list->header->succ->succ;//头哨兵的后继节点指向首节点的后继节点
@@ -109,9 +110,31 @@ void B_listRemoveInterval(B_list* list, Rank lo, Rank hi) {//删除[lo,hi)的元
 		x->succ = x->succ->succ;
 		free(x->succ->pred->_elem);
 		free(x->succ->pred);
-		x->succ -> pred = x;
+		x->succ->pred = x;
 	}
 }
 void B_listRemoveRank(B_list* list, Rank r) {//删除指定位置的元素
 	B_listRemoveInterval(list, r, r + 1);
+}
+B_listNode* B_listNextNode(B_listNode* x) {//获得当前节点的下一个节点，若为最后一个节点则返回NULL
+	if (x->succ->succ != NULL)//判断下一个节点是不是尾哨兵哨兵节点
+		return x->succ;
+	else
+		return NULL;
+}
+char* B_listGetFromNode(B_listNode* x) {//获取当前节点的保存的数据
+	return x->_elem;
+}
+B_listNode* B_listGetFirstNode(B_list* list) {//获取首元素
+	return list->header->succ;
+}
+void B_listInsertPre(B_list* list, const void* e, B_listNode* listNode) {//插入元素到指定位置(需保证listNode为list下的节点）
+	B_listNode* x = malloc(sizeof(B_listNode));
+	B_listNode* dst = listNode;
+	memcpy(x->_elem, e, list->_esize);
+	x->succ = dst;
+	x->pred = dst->pred;
+	x->pred->succ = x;
+	x->succ->pred = x;
+	list->_size++;
 }
