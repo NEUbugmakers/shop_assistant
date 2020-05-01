@@ -39,24 +39,22 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file) {//根据文件建立B-树,先序遍历
 		x->goodsVector->_size = flen / sizeof(C_Goods);
 	}
 }
-SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort) {//在当前节点的子节点查找分类
+SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort) {//在当前节点的子节点查找分类,失败返回NULL
 	if (pos->childNum < sort - 'A')
 		return B_vectorGet(pos->child, sort - 'A');
 	else
 		return NULL;
 }
 SR_dataBTNode* SR_dataGetSortFromNode(SR_dataBTNode* pos, char sort[]) {//从某一节点查找分类(递归)
-	if (isalpha(sort[0])) {
-		SR_dataGetSortFromNode(SR_dataGetSortFromChild(sort[0], pos), sort + 1);
-	}
-	else {
+	if (isalpha(sort[0]))
+		return SR_dataGetSortFromNode(SR_dataGetSortFromChild(sort[0], pos), sort + 1);
+	else
 		return pos;
-	}
 }
 SR_dataBTNode* SR_dataGetSort(char sort[]) {//从根节点开始查找分类
 	SR_dataGetSortFromNode(&SR_dataBTRoot, sort);
 }
-C_Goods* SR_dataGet(char code[]) {
-	SR_dataGetSort(code);
-
+C_Goods* SR_dataGet(char code[]) {//根据编码查找商品
+	SR_dataBTNode* pos = SR_dataGetSort(code);
+	C_goodsVectorFind_P(pos->goodsVector, code);
 }
