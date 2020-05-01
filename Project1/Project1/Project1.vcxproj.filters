@@ -33,6 +33,9 @@
     <ClInclude Include="..\..\shop_assistant\src\c\SR_data.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\shop_assistant\src\c\C_goodsvector.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\shop_assistant\src\c\B_vector.c">
@@ -42,6 +45,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="..\..\shop_assistant\src\c\main_test.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shop_assistant\src\c\SR_data.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\shop_assistant\src\c\C_goodsvector.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

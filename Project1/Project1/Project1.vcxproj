@@ -143,12 +143,15 @@
     <ClInclude Include="..\..\shop_assistant\src\c\B_time.h" />
     <ClInclude Include="..\..\shop_assistant\src\c\B_vector.h" />
     <ClInclude Include="..\..\shop_assistant\src\c\C_goods.h" />
+    <ClInclude Include="..\..\shop_assistant\src\c\C_goodsvector.h" />
     <ClInclude Include="..\..\shop_assistant\src\c\SR_data.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\shop_assistant\src\c\B_list.c" />
     <ClCompile Include="..\..\shop_assistant\src\c\B_vector.c" />
+    <ClCompile Include="..\..\shop_assistant\src\c\C_goodsvector.c" />
     <ClCompile Include="..\..\shop_assistant\src\c\main_test.c" />
+    <ClCompile Include="..\..\shop_assistant\src\c\SR_data.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
