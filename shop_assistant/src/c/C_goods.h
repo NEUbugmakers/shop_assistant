@@ -1,6 +1,7 @@
 //C_Goods goods=C_goodsCreat(100,"史莱姆","A00001");标价100元的史莱姆编号为A00001;
 #pragma once
 #include"B_time.h"
+#include"B_list.h"
 #include<string.h>
 #define C_CODE_LEN    30//编码长度
 #define C_NAME_LEN   100//名称最大长度
