@@ -3,6 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<ctype.h>
+#include<io.h>
 
 #include"C_goods.h"
 #include"B_list.h"
@@ -13,7 +14,7 @@ typedef struct SR_dataBTNodeT  SR_dataBTNode;
 struct SR_dataBTNodeT {//B-树节点
 	SR_dataBTNode* parent;
 	char name[SR_BTNODE_NAME_LEN];
-	char sort;
+	char sort;//分类标识符
 	int childNum;//子节点的数量
 	B_vector* child;
 	B_vector* childCode;

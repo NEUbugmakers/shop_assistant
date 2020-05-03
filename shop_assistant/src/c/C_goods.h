@@ -11,18 +11,23 @@ typedef struct {
 	Date C_rotDate;//过期日期
 	int C_in;//进价
 	int C_shelfDate;//保质期
+	int C_amount;//数量
 } C_goodsInfo;
 typedef struct {//商品信息
 	int C_out;//标价（非实售价）
 	char name[C_NAME_LEN];//商品名
 	char code[C_CODE_LEN];//编码
 	int C_shelfDate_Pre;//备选保质期，用于下次录入该商品信息时的自动填充
+	int C_shelfKinds;//货架上的现存的商品总批次,不必时时维护，尽在打开文件和保存文件的时候维护即可
+	int C_stockKinds;//库存中现存的商品总批次,不必时时维护，尽在打开文件和保存文件的时候维护即可
 	B_list* C_shelfInfo;
 	B_list* C_stockInfo;
 } C_Goods;
 C_Goods C_GoodsCreat(int out,char name[],char code[]){//创建C_Goods
 	C_Goods newGoods;
 	newGoods.C_out = out;
+	newGoods.C_shelfKinds = 0;
+	newGoods.C_stockKinds = 0;
 	strcpy(newGoods.name, name);
 	strcpy(newGoods.code, code);
 	newGoods.C_shelfInfo = B_listCreat(sizeof(C_goodsInfo));
