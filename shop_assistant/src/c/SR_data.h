@@ -1,3 +1,4 @@
+#pragma once
 #define _CRT_SECURE_MO_WARNINGS
 #define SR_BTNODE_NAME_LEN 50
 #include<stdio.h>
@@ -8,7 +9,6 @@
 #include"C_goods.h"
 #include"B_list.h"
 #include"B_vector.h"
-#include"B_getSrc.h"
 #include"C_goodsvector.h"
 typedef struct SR_dataBTNodeT  SR_dataBTNode;
 struct SR_dataBTNodeT {//B-树节点
@@ -29,3 +29,9 @@ SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort);//在当前节
 SR_dataBTNode* SR_dataGetSortFromNode(SR_dataBTNode* pos, char sort[]);//从某一节点查找分类(递归)
 SR_dataBTNode* SR_dataGetSort(char sort[]);//从根节点开始查找分类
 C_Goods* SR_dataGet(char code[]);//根据编码查找商品
+void SR_dataBTNodeInit(SR_dataBTNode* node);//对创建的节点初始化
+char SR_dataSelectSort(SR_dataBTNode* pos);//在当前节点挑选新增分类的分类标识符
+void SR_dataInsertSort(char dir[], char name[]);//插入分类
+void SR_dataSaveGoodsInfo(B_list* info, FILE* file);//保存shelfInfo和stockInfo
+void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root);//先序遍历保存节点（未完成）
+void SR_dataSave();//保存数据

@@ -27,16 +27,10 @@
     <ClInclude Include="..\..\shop_assistant\src\c\B_list.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\shop_assistant\src\c\B_getSrc.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\shop_assistant\src\c\SR_data.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\..\shop_assistant\src\c\C_goodsvector.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SR_C_command.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,8 +53,11 @@
     <ClCompile Include="..\..\shop_assistant\src\c\C_goods.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="SR_C_command.c">
+    <ClCompile Include="..\..\shop_assistant\src\c\B_time.c">
       <Filter>源文件</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

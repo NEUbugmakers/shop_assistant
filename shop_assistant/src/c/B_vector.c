@@ -1,3 +1,4 @@
+
 #include "B_vector.h"
 B_vector* B_vectorCreat(size_t esize) {//创建B_vector,成功返回指针，失败返回NULL;
 	B_vector* vector = (B_vector*)malloc(sizeof(B_vector));

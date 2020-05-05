@@ -1,3 +1,4 @@
+
 #include"C_goodsvector.h"
 C_goodsVector* C_goodsVectorCreat() {//´´½¨C_goodsVector
 	C_goodsVector* goodsVector = (C_goodsVector*)malloc(sizeof(C_goodsVector));

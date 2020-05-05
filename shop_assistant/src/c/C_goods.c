@@ -1,3 +1,4 @@
+
 #include"C_goods.h"
 C_Goods C_GoodsCreat(int out, char name[], char code[]) {//创建C_Goods
 	C_Goods newGoods;
@@ -22,13 +23,13 @@ void C_goodsListInit(C_Goods* goods) {//库存货架列表初始化
 }
 void C_goodsShelfAdd(C_Goods* goods, C_goodsInfo* info) {//向goodsShelf中添加新批次货物
 	B_listNode* x = B_listGetFirstNode(goods->C_shelfInfo);//指向goodsShelf的第一个节点
-	while (B_listNextNode(x) != NULL && B_dataIsSmall(((C_goodsInfo*)x->_elem)->C_rotDate,info->C_rotDate))//找到插入位置
+	while (B_listNextNode(x) != NULL && B_DateIsSmall(((C_goodsInfo*)x->_elem)->C_rotDate,info->C_rotDate))//找到插入位置
 		x = B_listNextNode(x);
 	B_listInsertPre(goods->C_shelfInfo, info, x);//插入
 }
 void C_goodsStockAdd(C_Goods* goods, C_goodsInfo* info) {//向goodsStock中添加新批次货物
 	B_listNode* x = B_listGetFirstNode(goods->C_stockInfo);//指向goodsStock的第一个节点
-	while (B_listNextNode(x) != NULL && B_dataIsSmall(((C_goodsInfo*)x->_elem)->C_rotDate, info->C_rotDate))//找到插入位置(过期时间相同则放在同时间批次的最后“同时间先进先卖”）
+	while (B_listNextNode(x) != NULL && B_DateIsSmall(((C_goodsInfo*)x->_elem)->C_rotDate, info->C_rotDate))//找到插入位置(过期时间相同则放在同时间批次的最后“同时间先进先卖”）
 		x = B_listNextNode(x);
 	B_listInsertPre(goods->C_stockInfo, info, x);//插入
 }

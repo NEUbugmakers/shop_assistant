@@ -1,7 +1,10 @@
+
+#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_NONSTDC_NO_DEPRECATE
 #include"SR_data.h"
 void SR_dataBTInit() {//初始化B-树
-	if (access("root", 0)) {//判断文件是否存在
-		FILE* file = fopen("root", "rb+");
+	FILE* file = fopen("root", "rb+");
+	if (file != NULL) {//判断文件是否存在
 		fread(&SR_dataBTRoot, sizeof(SR_dataBTNode), 1, file);
 		SR_dataBTBuild(&SR_dataBTRoot, file);
 		fclose(file);
@@ -32,9 +35,9 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file) {//根据文件建立B-树,先序遍历
 			for (int i = 0; i < x->goodsVector->vector->_size; i++) {//还原C_goodsInfo
 				C_goodsListInit((C_Goods*)B_vectorGet(x->goodsVector->vector, i));
 				C_goodsInfo info;
-				for (int j = 0; j < C_goodsShelfInfoNum((C_Goods*)B_vectorGet(x->goodsVector->vector, i));j++) {
+				for (int j = 0; j < C_goodsShelfInfoNum((C_Goods*)B_vectorGet(x->goodsVector->vector, i)); j++) {
 					fread(&info, sizeof(C_goodsInfo), 1, tfile);
-					B_listPushBack(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_shelfInfo,&info);
+					B_listPushBack(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_shelfInfo, &info);
 				}
 				for (int j = 0; j < C_goodsStockInfoNum((C_Goods*)B_vectorGet(x->goodsVector->vector, i)); j++) {
 					fread(&info, sizeof(C_goodsInfo), 1, tfile);
@@ -114,7 +117,7 @@ void SR_dataInsertSort(char dir[], char name[]) {//插入分类
 	SR_dataBTNode* pos = SR_dataGet(dir);
 	SR_dataBTNode x;
 	SR_dataBTNodeInit(&x);//初始化节点x
-	char sort = SR_dataSelect(pos);//获取分类标识符
+	char sort = SR_dataSelectSort(pos);//获取分类标识符
 	x.sort = sort;
 	strcpy(x.name, name);
 	x.sort = pos->childNum + 'A';//分类标识符
@@ -127,9 +130,9 @@ void SR_dataInsertSort(char dir[], char name[]) {//插入分类
 	B_vectorInsert(pos->childCode, &sort, r);
 	pos->childNum++;
 }
-void SR_dataSaveGoodsInfo(B_list* info,FILE* file) {//保存shelfInfo和stockInfo
+void SR_dataSaveGoodsInfo(B_list* info, FILE* file) {//保存shelfInfo和stockInfo
 	B_listNode* x = B_listGetFirstNode(info);
-	while (x != NULL){
+	while (x != NULL) {
 		fwrite(x->_elem, info->_esize, 1, file);
 		x = B_listNextNode(x);
 	}
@@ -154,4 +157,5 @@ void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root) {//先序遍历保存节点（未完
 void SR_dataSave() {//保存数据
 	FILE* file = fopen("root", "wb");;
 	SR_dataSavePreOrder(&SR_dataBTRoot, file);
+	fclose(file);
 }

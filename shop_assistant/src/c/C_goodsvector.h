@@ -1,3 +1,4 @@
+#pragma once
 #include"C_goods.h"
 #include"B_vector.h"
 typedef struct {
