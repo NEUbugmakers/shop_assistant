@@ -23,14 +23,9 @@ typedef struct {//商品信息
 	B_list* C_shelfInfo;
 	B_list* C_stockInfo;
 } C_Goods;
-C_Goods C_GoodsCreat(int out,char name[],char code[]){//创建C_Goods
-	C_Goods newGoods;
-	newGoods.C_out = out;
-	newGoods.C_shelfKinds = 0;
-	newGoods.C_stockKinds = 0;
-	strcpy(newGoods.name, name);
-	strcpy(newGoods.code, code);
-	newGoods.C_shelfInfo = B_listCreat(sizeof(C_goodsInfo));
-	newGoods.C_stockInfo = B_listCreat(sizeof(C_goodsInfo));
-	return newGoods;
-};
+C_Goods C_GoodsCreat(int out, char name[], char code[]);//创建C_Goods
+int C_goodsShelfInfoNum(C_Goods* x);//获取货架商品批次数量
+int C_goodsStockInfoNum(C_Goods* x);//获取库存商品批次数量
+void C_goodsListInit(C_Goods* goods);//库存货架列表初始化
+void C_goodsShelfAdd(C_Goods* goods, C_goodsInfo* info);//向goodsShelf中添加新批次货物
+void C_goodsStockAdd(C_Goods* goods, C_goodsInfo* info);//向goodsStock中添加新批次货物

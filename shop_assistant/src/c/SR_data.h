@@ -19,6 +19,7 @@ struct SR_dataBTNodeT {//B-树节点
 	B_vector* child;
 	B_vector* childCode;
 	char fileName[10];
+	char SR_dataBTNodeHaveGoods;//判断goodsVector是否为空
 	C_goodsVector* goodsVector;
 };
 SR_dataBTNode SR_dataBTRoot;//根节点
