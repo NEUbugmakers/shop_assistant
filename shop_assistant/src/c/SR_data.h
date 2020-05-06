@@ -1,6 +1,7 @@
 #pragma once
 #define _CRT_SECURE_MO_WARNINGS
 #define SR_BTNODE_NAME_LEN 50
+#define SR_DATA_FILENAME_LEN 10
 #include<stdio.h>
 #include<stdlib.h>
 #include<ctype.h>
@@ -18,7 +19,7 @@ struct SR_dataBTNodeT {//B-树节点
 	int childNum;//子节点的数量
 	B_vector* child;
 	B_vector* childCode;
-	char fileName[10];
+	char fileName[SR_DATA_FILENAME_LEN];
 	char SR_dataBTNodeHaveGoods;//判断goodsVector是否为空
 	C_goodsVector* goodsVector;
 };
