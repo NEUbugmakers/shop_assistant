@@ -59,64 +59,6 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file) {//根据文件建立B-树,先序遍历
 		}
 	}
 }
-//void SR_dataBTBuild(SR_dataBTNode* x, FILE* file) {//根据文件建立B-树,先序遍历
-//	x->child = B_vectorCreat(sizeof(SR_dataBTNode*));
-//	x->childCode = B_vectorCreat(sizeof(char));
-//	x->goodsVector = C_goodsVectorCreat();
-//	if (x->childNum > 0) {//建立子节点
-//		free(x->childCode->_elem);//还原childCode
-//		x->childCode->_elem = (char*)malloc(sizeof(char) * x->childNum);
-//		x->childCode->_capicity = x->childNum;
-//		x->childCode->_size = x->childNum;
-//		fread(x->childCode->_elem, sizeof(char) * x->childNum, 1, file);//(增加了*x->childNum)
-//		if (x->SR_dataBTNodeHaveGoods) {//还原goodsVector
-//			FILE* tfile = fopen(x->fileName, "rb");
-//			fseek(tfile, 0, SEEK_END);
-//			int len = ftell(tfile);
-//			fseek(tfile, 0, SEEK_SET);
-//			free(x->goodsVector->vector->_elem);
-//			x->goodsVector->vector->_elem = malloc(len);
-//			fread(x->goodsVector->vector->_elem, len, 1, tfile);
-//			x->goodsVector->vector->_capicity = x->goodsVector->vector->_size = len / x->goodsVector->vector->_esize;
-//			for (int i = 0; i < x->goodsVector->vector->_size; i++) {//还原C_goodsInfo
-//				C_goodsListInit((C_Goods*)B_vectorGet(x->goodsVector->vector, i));
-//				C_goodsInfo info;
-//				for (int j = 0; j < C_goodsShelfInfoNum((C_Goods*)B_vectorGet(x->goodsVector->vector, i)); j++) {
-//					fread(&info, sizeof(C_goodsInfo), 1, tfile);
-//					B_listPushBack(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_shelfInfo, &info);
-//				}
-//				for (int j = 0; j < C_goodsStockInfoNum((C_Goods*)B_vectorGet(x->goodsVector->vector, i)); j++) {
-//					fread(&info, sizeof(C_goodsInfo), 1, tfile);
-//					B_listPushBack(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_stockInfo, &info);
-//				}
-//			}
-//			fclose(tfile);
-//		}
-//		free(x->child->_elem);//还原child
-//		x->child->_elem = (char*)malloc(sizeof(SR_dataBTNode*) * x->childNum);
-//		x->child->_capicity = x->childNum;
-//		x->child->_size = x->childNum;
-//		for (int i = 0; i < x->childNum; i++) {
-//			SR_dataBTNode* t = (SR_dataBTNode*)B_vectorGet(x->child, i) = (SR_dataBTNode*)malloc(sizeof(SR_dataBTNode));
-//			SR_dataBTBuild(t, file);
-//		}
-//	}
-//	else {//建立外部节点
-//		x->child = NULL;
-//		x->childCode = NULL;
-//		FILE* _file;
-//		_file = fopen(x->fileName, "rb+");
-//		fseek(_file, 0, SEEK_END);
-//		int flen = ftell(_file);
-//		fseek(_file, 0, SEEK_SET);
-//		x->goodsVector = B_vectorCreat(sizeof(C_Goods));
-//		x->goodsVector->vector->_capicity = flen / sizeof(C_Goods);
-//		free(x->goodsVector->vector->_elem);
-//		x->goodsVector->vector->_elem = (char*)malloc(flen);
-//		fread(x->goodsVector->vector->_elem, flen, 1, _file);
-//		x->goodsVector->vector->_size = flen / sizeof(C_Goods);
-//	}
-//}
 SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort) {//在当前节点的子节点查找分类,失败返回NULL
 	if (pos->childNum < sort - 'A')
 		return B_vectorGet(pos->child, sort - 'A');
