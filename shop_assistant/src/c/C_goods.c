@@ -29,6 +29,7 @@ void C_goodsShelfAdd(C_Goods* goods, C_goodsInfo* info) {//œÚgoodsShelf÷–ÃÌº”–¬≈
 }
 void C_goodsStockAdd(C_Goods* goods, C_goodsInfo* info) {//œÚgoodsStock÷–ÃÌº”–¬≈˙¥ŒªıŒÔ
 	B_listNode* x = B_listGetFirstNode(goods->C_stockInfo);//÷∏œÚgoodsStockµƒµ⁄“ª∏ˆΩ⁄µ„
+	goods->C_shelfDate_Pre = info->C_shelfDate;//Ω´±∏∑›µƒ±£÷ ∆⁄±‰∏¸Œ™µ±«∞±£÷ ∆⁄
 	while (B_listNextNode(x) != NULL && B_DateIsSmall(((C_goodsInfo*)x->_elem)->C_rotDate, info->C_rotDate))//’“µΩ≤Â»ÎŒª÷√(π˝∆⁄ ±º‰œ‡Õ¨‘Ú∑≈‘⁄Õ¨ ±º‰≈˙¥Œµƒ◊Ó∫Û°∞Õ¨ ±º‰œ»Ω¯œ»¬Ù°±£©
 		x = B_listNextNode(x);
 	B_listInsertPre(goods->C_stockInfo, info, x);//≤Â»Î

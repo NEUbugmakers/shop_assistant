@@ -29,3 +29,4 @@ int C_goodsStockInfoNum(C_Goods* x);//获取库存商品批次数量
 void C_goodsListInit(C_Goods* goods);//库存货架列表初始化
 void C_goodsShelfAdd(C_Goods* goods, C_goodsInfo* info);//向goodsShelf中添加新批次货物
 void C_goodsStockAdd(C_Goods* goods, C_goodsInfo* info);//向goodsStock中添加新批次货物
+

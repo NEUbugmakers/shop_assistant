@@ -1,6 +1,15 @@
-﻿  main_test.c
+﻿  SR_data.c
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\C_goods.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_time.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(57,1): warning C4133: “初始化”: 从“char *”到“SR_dataBTNode *”的类型不兼容
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(76,78): warning C4267: “函数”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(78,36): warning C4133: “return”: 从“char *”到“SR_dataBTNode *”的类型不兼容
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(109,80): warning C4267: “函数”: 从“size_t”转换到“Rank”，可能丢失数据
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(146,35): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(174,44): warning C4133: “函数”: 从“SR_dataBTNode *”到“C_goodsVector *”的类型不兼容
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(94): warning C4716: “SR_dataGet”: 必须返回一个值
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(90): warning C4716: “SR_dataGetSort”: 必须返回一个值
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(119): warning C4715: “SR_dataSelectSort”: 不是所有的控件路径都返回值
   Project1.vcxproj -> C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\Project1\x64\Debug\Project1.exe

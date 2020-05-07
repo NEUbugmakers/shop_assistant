@@ -36,3 +36,5 @@ void SR_dataInsertSort(char dir[], char name[]);//插入分类
 void SR_dataSaveGoodsInfo(B_list* info, FILE* file);//保存shelfInfo和stockInfo
 void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root);//先序遍历保存节点（未完成）
 void SR_dataSave();//保存数据
+void SR_dataAddNewGoods(C_Goods* goods);//添加新商品
+void SR_dataReplenishGoods(char code[], C_goodsInfo* info);//补货

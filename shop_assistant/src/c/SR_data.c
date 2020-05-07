@@ -59,15 +59,29 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file) {//根据文件建立B-树,先序遍历
 		}
 	}
 }
-SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort) {//在当前节点的子节点查找分类,失败返回NULL
-	if (pos->childNum < sort - 'A')
-		return B_vectorGet(pos->child, sort - 'A');
+int SR_dataGetSortFromChildInterval(SR_dataBTNode* pos, char sort, int lo, int hi) {//在当前节点的子节点区间[lo,hi)找分类,失败返回不大于当前分类编号的最大编号位置(有问题）
+	int mi = (hi - lo) >> 1;
+	if (lo < hi)
+		if (*(char*)B_vectorGet(pos->childCode, mi) < sort) {
+			return SR_dataGetSortFromChildInterval(pos, sort, lo, mi);
+		}
+		else {
+			return SR_dataGetSortFromChildInterval(pos, sort, mi + 1, hi);
+		}
+	else {
+		return lo - 1;
+	}
+}
+SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort) {//在当前节点的子节点查找分类,失败返回NULL(有问题）
+	Rank r = SR_dataGetSortFromChildInterval(pos, sort, 0, pos->childCode->_size);
+	if (*(char*)B_vectorGet(pos->childCode, r) == sort)//判断是否找到
+		return B_vectorGet(pos->child, r);
 	else
 		return NULL;
 }
 SR_dataBTNode* SR_dataGetSortFromNode(SR_dataBTNode* pos, char sort[]) {//从某一节点查找分类(递归)
 	if (isalpha(sort[0]))
-		return SR_dataGetSortFromNode(SR_dataGetSortFromChild(sort[0], pos), sort + 1);
+		return SR_dataGetSortFromNode(SR_dataGetSortFromChild(pos, sort[0]), sort + 1);
 	else
 		return pos;
 }
@@ -150,4 +164,13 @@ void SR_dataSave() {//保存数据
 	FILE* file = fopen("root", "wb");
 	SR_dataSavePreOrder(&SR_dataBTRoot, file);
 	fclose(file);
+}
+void SR_dataAddNewGoods(C_Goods* goods) {//添加新商品
+	SR_dataBTNode* pos = SR_dataGetSort(goods->code);
+	C_goodsVectorInsert(pos->goodsVector, goods);
+}
+void SR_dataReplenishGoods(char code[],C_goodsInfo* info) {//补货
+	SR_dataBTNode* posNode = SR_dataGetSort(code);
+	C_Goods* pos = C_goodsVectorFind_P(posNode,code);
+	C_goodsStockAdd(pos, info);
 }
