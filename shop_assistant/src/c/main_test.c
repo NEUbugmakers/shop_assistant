@@ -1,20 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include"B_list.h"
-#include<stdio.h>
-struct test {
-	int a;
-	int b;
-	int c;
-};
+#include"SR_data.h"
 int main() {
-	struct test t;
-	t.a = 1;
-	t.b = 2;
-	t.c = 3;
-	B_list* list = B_listCreat(sizeof(t));
-	B_listPushBack(list,&t);
-	struct test* cpy = B_listGetFirst(list);
-	printf("%d\n", cpy->b);
-	B_listRemoveFirst(list);
-	printf("%d", cpy->c);
+	SR_dataBTInit();
+	C_Goods goods = C_GoodsCreat(100, "ÀûÄ·Â¶", "A10086");
+
+	SR_dataInsertSort("", "À¶º¢×Ó");
+	
+	strcpy(SR_dataBTRoot.name, "ROOT");
+	SR_dataAddNewGoods(&goods);
+	SR_dataSave();
 }
