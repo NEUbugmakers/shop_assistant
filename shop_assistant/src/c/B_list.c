@@ -1,3 +1,4 @@
+
 #include"B_list.h"
 B_list* B_listCreat(size_t esize) {//创建B_list，需指定元素内存大小
 	B_list* list = malloc(sizeof(B_list));
@@ -126,7 +127,10 @@ char* B_listGetFromNode(B_listNode* x) {//获取当前节点的保存的数据
 	return x->_elem;
 }
 B_listNode* B_listGetFirstNode(B_list* list) {//获取首元素
-	return list->header->succ;
+	if (list->header->succ != list->trailer)//不含元素则返回NULL
+		return list->header->succ;
+	else
+		return NULL;
 }
 void B_listInsertPre(B_list* list, const void* e, B_listNode* listNode) {//插入元素到指定位置(需保证listNode为list下的节点）
 	B_listNode* x = malloc(sizeof(B_listNode));
