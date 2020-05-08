@@ -1,8 +1,7 @@
-#pragma once
 //
-// Created by Charon on 2020/4/25.6666
-//6666
-#define _CRT_SECURE_NO_WARNINGS
+// Created by Charon on 2020/4/25
+//
+
 #ifndef B_TIME_B_TIME_H
 #define B_TIME_B_TIME_H
 #include <stdio.h>
@@ -28,9 +27,14 @@ typedef struct {
     int B_Minute;
     int B_Second;
 } Date;
+
+
 void IntToChar(int x, char* Str);//转换int到字符串
-Date_C B_Time_C(void);//返回字符串型时间的函数
-Date B_Time_I(void);//返回整型时间的函数
-int B_DateIsSmall(Date x, Date y);//比较两个时间，x<y?1:0 ;
+Date_C B_Time_C(void) ;//返回字符串型时间的函数
+Date B_Time_I(void) ;//返回整型时间的函数
+int B_DateIsSmall(Date x, Date y) ;//比较两个时间，x<y?1:0 ;
 int B_DayPassed(Date pre, Date lat);//计算两个日期间的天数，如有数据错误，返回-1；
+
+
+
 #endif //B_TIME_B_TIME_H

@@ -1,11 +1,38 @@
-#include"B_time.h"
-void IntToChar(int x, char* Str)//×ª»»intµ½×Ö·û´®
+//
+// Created by Charon on 2020/5/7.
+//
+#pragma once
+#include <stdio.h>
+#include <time.h>
+#include <math.h>
+#define isPrime(year) ((year%4==0&&year%100!=0)||(year%400==0))
+
+typedef struct {
+    char B_Day[4];
+    char B_Year[4];
+    char B_Months[4];
+    char B_Hour[4];
+    char B_Minute[4];
+    char B_Second[4];
+} Date_C;
+
+typedef struct {
+    int B_Day;
+    int B_Year;
+    int B_Months;
+    int B_Hour;
+    int B_Minute;
+    int B_Second;
+} Date;
+
+
+void IntToChar(int x, char* Str)//è½¬æ¢intåˆ°å­—ç¬¦ä¸²
 {
     int t;
     char* Ptr, Buf[5];
     int i = 0;
     Ptr = Str;
-    if (x < 10)  // µ±ÕûÊıĞ¡ÓÚ10£¬×ª»»Îª0x¸ñÊ½,×ó±ßÌí0
+    if (x < 10)  // å½“æ•´æ•°å°äº10ï¼Œè½¬æ¢ä¸º0xæ ¼å¼,å·¦è¾¹æ·»0
     {
         (*Ptr++) = '0';
         (*Ptr++) = x + 0x30;//0x30 == '0';
@@ -16,10 +43,10 @@ void IntToChar(int x, char* Str)//×ª»»intµ½×Ö·û´®
         {
             t = x % 10;
             x = x / 10;
-            Buf[i++] = t + 0x30; // £¨0x30 == '0';£©
+            Buf[i++] = t + 0x30; // ï¼ˆ0x30 == '0';ï¼‰
         }
         i--;
-        for (; i >= 0; i--)   // ½«µÃµ½µÄ×Ö·û´®µ¹Ğò
+        for (; i >= 0; i--)   // å°†å¾—åˆ°çš„å­—ç¬¦ä¸²å€’åº
         {
             *(Ptr++) = Buf[i];
         }
@@ -31,12 +58,12 @@ void IntToChar(int x, char* Str)//×ª»»intµ½×Ö·û´®
 
 
 
-Date_C B_Time_C(void) {//·µ»Ø×Ö·û´®ĞÍÊ±¼äµÄº¯Êı
+Date_C B_Time_C(void) {//è¿”å›å­—ç¬¦ä¸²å‹æ—¶é—´çš„å‡½æ•°
     time_t  timep;
     Date_C date;
     struct tm* p;
-    time(&timep);//»ñÈ¡´Ó1970ÖÁ½ñ¹ıÁË¶àÉÙÃë£¬´æÈëtime_tÀàĞÍµÄtimep
-    p = localtime(&timep);//È¡µÃ´Ó1900Äê¿ªÊ¼µÄÊ±¼ä
+    time(&timep);//è·å–ä»1970è‡³ä»Šè¿‡äº†å¤šå°‘ç§’ï¼Œå­˜å…¥time_tç±»å‹çš„timep
+    p = localtime(&timep);//å–å¾—ä»1900å¹´å¼€å§‹çš„æ—¶é—´
     IntToChar(1900 + p->tm_year, date.B_Year);//year
     IntToChar(1 + p->tm_mon, date.B_Months);//months
     IntToChar(1 + p->tm_mday, date.B_Day);//day
@@ -47,12 +74,12 @@ Date_C B_Time_C(void) {//·µ»Ø×Ö·û´®ĞÍÊ±¼äµÄº¯Êı
     return date;
 }
 
-Date B_Time_I(void) {//·µ»ØÕûĞÍÊ±¼äµÄº¯Êı
+Date B_Time_I(void) {//è¿”å›æ•´å‹æ—¶é—´çš„å‡½æ•°
     time_t  timep;
     Date date;
     struct tm* p;
-    time(&timep);//»ñÈ¡´Ó1970ÖÁ½ñ¹ıÁË¶àÉÙÃë£¬´æÈëtime_tÀàĞÍµÄtimep
-    p = localtime(&timep);//È¡µÃ´Ó1900Äê¿ªÊ¼µÄÊ±¼ä
+    time(&timep);//è·å–ä»1970è‡³ä»Šè¿‡äº†å¤šå°‘ç§’ï¼Œå­˜å…¥time_tç±»å‹çš„timep
+    p = localtime(&timep);//å–å¾—ä»1900å¹´å¼€å§‹çš„æ—¶é—´
     date.B_Year = 1900 + p->tm_year;//year
     date.B_Months = 1 + p->tm_mon;//months
     date.B_Day = 1 + p->tm_mday;//day
@@ -63,7 +90,7 @@ Date B_Time_I(void) {//·µ»ØÕûĞÍÊ±¼äµÄº¯Êı
     return date;
 }
 
-int B_DateIsSmall(Date x, Date y) {//±È½ÏÁ½¸öÊ±¼ä£¬x<y?1:0 ;
+int B_DateIsSmall(Date x, Date y) {//æ¯”è¾ƒä¸¤ä¸ªæ—¶é—´ï¼Œx<y?1:0 ;
     if (x.B_Year < y.B_Year) {
         return 1;
     }
@@ -91,7 +118,7 @@ int B_DateIsSmall(Date x, Date y) {//±È½ÏÁ½¸öÊ±¼ä£¬x<y?1:0 ;
     }
 
 }
-int B_DayPassed(Date pre, Date lat) {//¼ÆËãÁ½¸öÈÕÆÚ¼äµÄÌìÊı£¬ÈçÓĞÊı¾İ´íÎó£¬·µ»Ø-1£»
+int B_DayPassed(Date pre, Date lat) {//è®¡ç®—ä¸¤ä¸ªæ—¥æœŸé—´çš„å¤©æ•°ï¼Œå¦‚æœ‰æ•°æ®é”™è¯¯ï¼Œè¿”å›-1ï¼›
     int y2, m2, d2;
     int y1, m1, d1;
     if (B_DateIsSmall(lat, pre)) {
@@ -109,3 +136,4 @@ int B_DayPassed(Date pre, Date lat) {//¼ÆËãÁ½¸öÈÕÆÚ¼äµÄÌìÊı£¬ÈçÓĞÊı¾İ´íÎó£¬·µ»Ø-
         return (d2 - d1);
     }
 }
+
