@@ -4,42 +4,42 @@
 #include"SR_data.h"
 void SR_dataBTInit() {//初始化B-树
 	FILE* file = fopen("root", "rb+");
+	FILE* goodsFile = fopen("goods", "rb");
 	if (file != NULL) {//判断文件是否存在
 		fread(&SR_dataBTRoot, sizeof(SR_dataBTNode), 1, file);
-		SR_dataBTBuild(&SR_dataBTRoot, file);
+		SR_dataBTBuild(&SR_dataBTRoot, file, goodsFile);
 		fclose(file);
+		fclose(goodsFile);
 	}
 	else {
 		SR_dataBTNodeInit(&SR_dataBTRoot);
 		strcpy(SR_dataBTRoot.fileName, "0");
 	}
 }
-void SR_dataBTBuild(SR_dataBTNode* x, FILE* file) {//根据文件建立B-树,先序遍历
+void SR_dataBTBuild(SR_dataBTNode* x, FILE* file, FILE* goodsFile) {//根据文件建立B-树,先序遍历
 	x->child = B_vectorCreat(sizeof(SR_dataBTNode*));
 	x->childCode = B_vectorCreat(sizeof(char));
 	x->goodsVector = C_goodsVectorCreat();
-	FILE* tfile = fopen(x->fileName, "rb");
-	if (tfile != NULL) {//还原goodsVector
-		fseek(tfile, 0, SEEK_END);
-		int len = ftell(tfile);
-		fseek(tfile, 0, SEEK_SET);
+	if (goodsFile != NULL) {//还原goodsVector
+		fseek(goodsFile, 0, SEEK_END);
+		int len = ftell(goodsFile);
+		fseek(goodsFile, 0, SEEK_SET);
 		free(x->goodsVector->vector->_elem);
 		x->goodsVector->vector->_elem = malloc(len);
-		fread(x->goodsVector->vector->_elem, len, 1, tfile);
+		fread(x->goodsVector->vector->_elem, len, 1, goodsFile);
 		x->goodsVector->vector->_capicity = x->goodsVector->vector->_size = len / x->goodsVector->vector->_esize;
 		for (int i = 0; i < x->goodsVector->vector->_size; i++) {//还原C_goodsInfo
 			C_goodsListInit((C_Goods*)B_vectorGet(x->goodsVector->vector, i));
 			C_goodsInfo info;
 			for (int j = 0; j < C_goodsShelfInfoNum((C_Goods*)B_vectorGet(x->goodsVector->vector, i)); j++) {
-				fread(&info, sizeof(C_goodsInfo), 1, tfile);
+				fread(&info, sizeof(C_goodsInfo), 1, goodsFile);
 				B_listPushBack(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_shelfInfo, &info);
 			}
 			for (int j = 0; j < C_goodsStockInfoNum((C_Goods*)B_vectorGet(x->goodsVector->vector, i)); j++) {
-				fread(&info, sizeof(C_goodsInfo), 1, tfile);
+				fread(&info, sizeof(C_goodsInfo), 1, goodsFile);
 				B_listPushBack(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_stockInfo, &info);
 			}
 		}
-		fclose(tfile);
 	}
 	if (x->childNum > 0) {//建立子节点
 		free(x->childCode->_elem);//还原childCode
@@ -55,7 +55,7 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file) {//根据文件建立B-树,先序遍历
 		fread(x->child->_elem, sizeof(SR_dataBTNode), x->childNum, file);
 		for (int i = 0; i < x->childNum; i++) {
 			SR_dataBTNode* t = B_vectorGet(x->child, i);
-			SR_dataBTBuild(t, file);
+			SR_dataBTBuild(t, file,goodsFile);
 		}
 	}
 }
@@ -141,36 +141,37 @@ void SR_dataSaveGoodsInfo(B_list* info, FILE* file) {//保存shelfInfo和stockInfo
 		x = B_listNextNode(x);
 	}
 }
-void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root) {//先序遍历保存节点（未完成）
+void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root,FILE* goodsFile) {//先序遍历保存节点（未完成）
 
 	x->childNum = x->childCode->_size;
 	fwrite(x, sizeof(SR_dataBTNode), 1, root);//保存当前节点的数据
 	if (x->goodsVector->vector->_size != 0) {//商品信息和商品目录分别存储
-		FILE* fp = fopen(x->fileName, "wb");
-		fwrite(x->goodsVector->vector->_elem, x->goodsVector->vector->_esize, x->goodsVector->vector->_size, fp);
+
+		fwrite(x->goodsVector->vector->_elem, x->goodsVector->vector->_esize, x->goodsVector->vector->_size, goodsFile);
 		for (int i = 0; i < x->goodsVector->vector->_size; i++) {
-			SR_dataSaveGoodsInfo(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_shelfInfo, fp);
-			SR_dataSaveGoodsInfo(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_stockInfo, fp);
+			SR_dataSaveGoodsInfo(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_shelfInfo, goodsFile);
+			SR_dataSaveGoodsInfo(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_stockInfo, goodsFile);
 		}
-		fclose(fp);
 	}
 	fwrite(x->childCode->_elem, sizeof(char), x->childNum, root);
 	for (int i = 0; i < x->child->_size; i++) {
 		SR_dataBTNode* t = (SR_dataBTNode*)B_vectorGet(x->child, i);
-		SR_dataSavePreOrder(t, root);
+		SR_dataSavePreOrder(t, root,goodsFile);
 	}
 }
 void SR_dataSave() {//保存数据
 	FILE* file = fopen("root", "wb");
-	SR_dataSavePreOrder(&SR_dataBTRoot, file);
+	FILE* goodsFile = fopen("goods", "wb");
+	SR_dataSavePreOrder(&SR_dataBTRoot, file, goodsFile);
 	fclose(file);
+	fclose(goodsFile);
 }
 void SR_dataAddNewGoods(C_Goods* goods) {//添加新商品
 	SR_dataBTNode* pos = SR_dataGetSort(goods->code);
 	C_goodsVectorInsert(pos->goodsVector, goods);
 }
-void SR_dataReplenishGoods(char code[],C_goodsInfo* info) {//补货
+void SR_dataReplenishGoods(char code[], C_goodsInfo* info) {//补货
 	SR_dataBTNode* posNode = SR_dataGetSort(code);
-	C_Goods* pos = C_goodsVectorFind_P(posNode,code);
+	C_Goods* pos = C_goodsVectorFind_P(posNode, code);
 	C_goodsStockAdd(pos, info);
 }

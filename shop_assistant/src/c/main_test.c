@@ -5,8 +5,9 @@ int main() {
 	C_Goods goods = C_GoodsCreat(100, "ÀûÄ·Â¶", "A10086");
 
 	SR_dataInsertSort("", "À¶º¢×Ó");
-	
+	SR_dataBTNode* test = SR_dataGetSort("A");
 	strcpy(SR_dataBTRoot.name, "ROOT");
 	SR_dataAddNewGoods(&goods);
+	/*C_Goods* goods = SR_dataGet("A10086");*/
 	SR_dataSave();
 }
