@@ -12,7 +12,7 @@ typedef  int Rank;
 //不影响使用，但就是感觉有点丑
 struct B_tlistNode;
 typedef struct B_tlistNode B_listNode;
-struct B_tlistNode {//B_vector的基本数据
+struct B_tlistNode{//B_vector的基本数据
 	B_listNode* pred;
 	B_listNode* succ;
 	char* _elem;
@@ -20,7 +20,7 @@ struct B_tlistNode {//B_vector的基本数据
 typedef struct {//B_vector的基本数据
 	size_t _esize;//存储数据大小
 	size_t _size;//存储数据数量
-	B_listNode* header;//头哨兵
+	B_listNode* header ;//头哨兵
 	B_listNode* trailer;//尾哨兵
 } B_list;
 //public
@@ -33,7 +33,7 @@ void B_listRemoveFirst(B_list* list);//删除首元素
 void B_listRemoveBack(B_list* list);//删除尾元素,原理与首元素相同
 void B_listRemoveRank(B_list* list, Rank r);//删除指定位置的元素
 void B_listRemoveInterval(B_list* list, Rank lo, Rank hi);//删除[lo,hi)的元素
-char* B_listGetFirst(B_list* list);//获取首元素
+char* B_listGetFirst(B_list* list);//获取首元素,不含元素则返回NULL
 char* B_listGetBack(B_list* list);//获取尾元素
 char* B_listGetRank(B_list* list, Rank r);////得到指定位置的元素，速度较慢
 B_listNode* B_listGetFirstNode(B_list* list);//获取首元素
