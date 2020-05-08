@@ -17,7 +17,7 @@ void SR_dataBTInit() {//初始化B-树
 	}
 }
 void SR_dataBTBuild(SR_dataBTNode* x, FILE* file, FILE* goodsFile) {//根据文件建立B-树,先序遍历
-	x->child = B_vectorCreat(sizeof(SR_dataBTNode*));
+	x->child = B_vectorCreat(sizeof(SR_dataBTNode));
 	x->childCode = B_vectorCreat(sizeof(char));
 	x->goodsVector = C_goodsVectorCreat();
 	if (goodsFile != NULL) {//还原goodsVector
@@ -55,22 +55,19 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file, FILE* goodsFile) {//根据文件建
 		fread(x->child->_elem, sizeof(SR_dataBTNode), x->childNum, file);
 		for (int i = 0; i < x->childNum; i++) {
 			SR_dataBTNode* t = B_vectorGet(x->child, i);
-			SR_dataBTBuild(t, file,goodsFile);
+			SR_dataBTBuild(t, file, goodsFile);
 		}
 	}
 }
 int SR_dataGetSortFromChildInterval(SR_dataBTNode* pos, char sort, int lo, int hi) {//在当前节点的子节点区间[lo,hi)找分类,失败返回不大于当前分类编号的最大编号位置(有问题）
-	int mi = (hi - lo) >> 1;
-	if (lo < hi)
-		if (*(char*)B_vectorGet(pos->childCode, mi) < sort) {
-			return SR_dataGetSortFromChildInterval(pos, sort, lo, mi);
-		}
-		else {
-			return SR_dataGetSortFromChildInterval(pos, sort, mi + 1, hi);
-		}
-	else {
-		return lo - 1;
+	while (lo < hi) {
+		int mi = (hi + lo) >> 1;
+		if (sort < *(char*)B_vectorGet(pos->childCode, mi))
+			hi = mi;
+		else
+			lo = mi + 1;
 	}
+	return --lo;
 }
 SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort) {//在当前节点的子节点查找分类,失败返回NULL(有问题）
 	Rank r = SR_dataGetSortFromChildInterval(pos, sort, 0, pos->childCode->_size);
@@ -90,7 +87,7 @@ SR_dataBTNode* SR_dataGetSort(char sort[]) {//从根节点开始查找分类
 }
 C_Goods* SR_dataGet(char code[]) {//根据编码查找商品
 	SR_dataBTNode* pos = SR_dataGetSort(code);
-	C_goodsVectorFind_P(pos->goodsVector, code);
+	return (C_Goods*)C_goodsVectorFind_P(pos->goodsVector, code);
 }
 void SR_dataBTNodeInit(SR_dataBTNode* node) {//对创建的节点初始化
 	node->name[0] = 0;
@@ -127,9 +124,11 @@ void SR_dataInsertSort(char dir[], char name[]) {//插入分类
 	x.parent = pos;
 	strcpy(x.fileName, dir);
 	Rank r;//即将插入的分类在父类中秩
-	for (r = 0; r < pos->childNum; r++)
-		if (*(char*)B_vectorGet(pos->childCode, r) > sort)
-			break;
+	for (r = 0; r < pos->childNum; r++) {
+		char t = *(char*)B_vectorGet(pos->childCode, r);
+			if (t > sort)
+				break;
+	}
 	B_vectorInsert(pos->child, &x, r);
 	B_vectorInsert(pos->childCode, &sort, r);
 	pos->childNum++;
@@ -141,7 +140,7 @@ void SR_dataSaveGoodsInfo(B_list* info, FILE* file) {//保存shelfInfo和stockInfo
 		x = B_listNextNode(x);
 	}
 }
-void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root,FILE* goodsFile) {//先序遍历保存节点（未完成）
+void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root, FILE* goodsFile) {//先序遍历保存节点（未完成）
 
 	x->childNum = x->childCode->_size;
 	fwrite(x, sizeof(SR_dataBTNode), 1, root);//保存当前节点的数据
@@ -156,7 +155,7 @@ void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root,FILE* goodsFile) {//先序遍
 	fwrite(x->childCode->_elem, sizeof(char), x->childNum, root);
 	for (int i = 0; i < x->child->_size; i++) {
 		SR_dataBTNode* t = (SR_dataBTNode*)B_vectorGet(x->child, i);
-		SR_dataSavePreOrder(t, root,goodsFile);
+		SR_dataSavePreOrder(t, root, goodsFile);
 	}
 }
 void SR_dataSave() {//保存数据

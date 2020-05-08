@@ -25,7 +25,7 @@ struct SR_dataBTNodeT {//B-树节点
 };
 SR_dataBTNode SR_dataBTRoot;//根节点
 void SR_dataBTInit();//初始化B-树
-void SR_dataBTBuild(SR_dataBTNode* x, FILE* file);//根据文件建立B-树,先序遍历
+void SR_dataBTBuild(SR_dataBTNode* x, FILE* file,FILE* goodsFile);//根据文件建立B-树,先序遍历
 SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort);//在当前节点的子节点查找分类,失败返回NULL
 SR_dataBTNode* SR_dataGetSortFromNode(SR_dataBTNode* pos, char sort[]);//从某一节点查找分类(递归)
 SR_dataBTNode* SR_dataGetSort(char sort[]);//从根节点开始查找分类

@@ -2,6 +2,7 @@
 // Created by Charon on 2020/5/7.
 //
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <time.h>
 #include <math.h>

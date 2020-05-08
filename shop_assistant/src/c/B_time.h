@@ -1,7 +1,7 @@
 //
 // Created by Charon on 2020/4/25
 //
-
+#define _CRT_SECURE_NO_WARNINGS
 #ifndef B_TIME_B_TIME_H
 #define B_TIME_B_TIME_H
 #include <stdio.h>
