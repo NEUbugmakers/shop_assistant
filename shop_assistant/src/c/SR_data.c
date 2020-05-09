@@ -20,10 +20,8 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file, FILE* goodsFile) {//根据文件建
 	x->child = B_vectorCreat(sizeof(SR_dataBTNode));
 	x->childCode = B_vectorCreat(sizeof(char));
 	x->goodsVector = C_goodsVectorCreat();
-	if (goodsFile != NULL) {//还原goodsVector
-		fseek(goodsFile, 0, SEEK_END);
-		int len = ftell(goodsFile);
-		fseek(goodsFile, 0, SEEK_SET);
+	if (x->SR_dataBTNodeGoodsNum>0) {//还原goodsVector
+		int len = x->SR_dataBTNodeGoodsNum;
 		free(x->goodsVector->vector->_elem);
 		x->goodsVector->vector->_elem = malloc(len);
 		fread(x->goodsVector->vector->_elem, len, 1, goodsFile);
@@ -52,9 +50,9 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file, FILE* goodsFile) {//根据文件建
 		x->child->_elem = (char*)malloc(sizeof(SR_dataBTNode) * x->childNum);
 		x->child->_capicity = x->childNum;
 		x->child->_size = x->childNum;
-		fread(x->child->_elem, sizeof(SR_dataBTNode), x->childNum, file);
 		for (int i = 0; i < x->childNum; i++) {
 			SR_dataBTNode* t = B_vectorGet(x->child, i);
+			fread(t, sizeof(SR_dataBTNode), 1, file);
 			SR_dataBTBuild(t, file, goodsFile);
 		}
 	}
@@ -126,8 +124,8 @@ void SR_dataInsertSort(char dir[], char name[]) {//插入分类
 	Rank r;//即将插入的分类在父类中秩
 	for (r = 0; r < pos->childNum; r++) {
 		char t = *(char*)B_vectorGet(pos->childCode, r);
-			if (t > sort)
-				break;
+		if (t > sort)
+			break;
 	}
 	B_vectorInsert(pos->child, &x, r);
 	B_vectorInsert(pos->childCode, &sort, r);
@@ -143,9 +141,15 @@ void SR_dataSaveGoodsInfo(B_list* info, FILE* file) {//保存shelfInfo和stockInfo
 void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root, FILE* goodsFile) {//先序遍历保存节点（未完成）
 
 	x->childNum = x->childCode->_size;
+	if (x->goodsVector->vector->_size != 0)//添加含有goodsVector标记
+		x->SR_dataBTNodeGoodsNum = x->goodsVector->vector->_size;
 	fwrite(x, sizeof(SR_dataBTNode), 1, root);//保存当前节点的数据
 	if (x->goodsVector->vector->_size != 0) {//商品信息和商品目录分别存储
-
+		for (int i = 0; i < x->goodsVector->vector->_size; i++) {//保存时更新C_shelfKinds和C_stockKinds;
+			C_Goods* t = (C_Goods*)B_vectorGet(x->goodsVector->vector, i);
+			t->C_shelfKinds = t->C_shelfInfo->_size;
+			t->C_stockKinds = t->C_stockInfo->_size;
+		}
 		fwrite(x->goodsVector->vector->_elem, x->goodsVector->vector->_esize, x->goodsVector->vector->_size, goodsFile);
 		for (int i = 0; i < x->goodsVector->vector->_size; i++) {
 			SR_dataSaveGoodsInfo(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_shelfInfo, goodsFile);

@@ -20,7 +20,7 @@ struct SR_dataBTNodeT {//B-树节点
 	B_vector* child;
 	B_vector* childCode;
 	char fileName[SR_DATA_FILENAME_LEN];
-	char SR_dataBTNodeHaveGoods;//判断goodsVector是否为空
+	char SR_dataBTNodeGoodsNum;//当前分类直接包含的商品个数,不必时时维护，仅在打开文件和保存文件的时候维护即可
 	C_goodsVector* goodsVector;
 };
 SR_dataBTNode SR_dataBTRoot;//根节点
@@ -34,7 +34,7 @@ void SR_dataBTNodeInit(SR_dataBTNode* node);//对创建的节点初始化
 char SR_dataSelectSort(SR_dataBTNode* pos);//在当前节点挑选新增分类的分类标识符
 void SR_dataInsertSort(char dir[], char name[]);//插入分类
 void SR_dataSaveGoodsInfo(B_list* info, FILE* file);//保存shelfInfo和stockInfo
-void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root);//先序遍历保存节点（未完成）
+void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root,FILE* goodsFile);//先序遍历保存节点（未完成）
 void SR_dataSave();//保存数据
 void SR_dataAddNewGoods(C_Goods* goods);//添加新商品
 void SR_dataReplenishGoods(char code[], C_goodsInfo* info);//补货

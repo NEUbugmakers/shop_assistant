@@ -18,8 +18,8 @@ typedef struct {//商品信息
 	char name[C_NAME_LEN];//商品名
 	char code[C_CODE_LEN];//编码
 	int C_shelfDate_Pre;//备选保质期，用于下次录入该商品信息时的自动填充
-	int C_shelfKinds;//货架上的现存的商品总批次,不必时时维护，尽在打开文件和保存文件的时候维护即可
-	int C_stockKinds;//库存中现存的商品总批次,不必时时维护，尽在打开文件和保存文件的时候维护即可
+	int C_shelfKinds;//货架上的现存的商品总批次,不必时时维护，仅在打开文件和保存文件的时候维护即可
+	int C_stockKinds;//库存中现存的商品总批次,不必时时维护，仅在打开文件和保存文件的时候维护即可
 	B_list* C_shelfInfo;
 	B_list* C_stockInfo;
 } C_Goods;
