@@ -31,8 +31,12 @@ int main() {
 	info.C_shelfDate = 30;
 	printf("666");
 	C_Goods* tgoods = SR_dataGet("B1000");
-	C_goodsInfo* testinfo = B_listGetFirst(tgoods->C_stockInfo);
-	C_goodsStockAdd(tgoods, &info);
+	C_goodsOutofStock(tgoods);
+	C_goodsInfo* testinfo = B_listGetRank(tgoods->C_stockInfo,0);
+	testinfo = B_listGetRank(tgoods->C_stockInfo, 1);
+	testinfo = B_listGetRank(tgoods->C_shelfInfo, 0);
+	testinfo = B_listGetRank(tgoods->C_shelfInfo, 1);
+	//C_goodsStockAdd(tgoods, &info);
 	//tgoods = SR_dataGet("B1000");
 	//tgoods = SR_dataGet("AA1000");
 	SR_dataSave();

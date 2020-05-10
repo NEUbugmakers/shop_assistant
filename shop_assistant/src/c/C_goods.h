@@ -12,6 +12,7 @@ typedef struct {
 	int C_in;//进价
 	int C_shelfDate;//保质期
 	int C_amount;//数量
+	char batch;//批次，仅在货架上使用
 } C_goodsInfo;
 typedef struct {//商品信息
 	int C_out;//标价（非实售价）
@@ -29,4 +30,9 @@ int C_goodsStockInfoNum(C_Goods* x);//获取库存商品批次数量
 void C_goodsListInit(C_Goods* goods);//库存货架列表初始化
 void C_goodsShelfAdd(C_Goods* goods, C_goodsInfo* info);//向goodsShelf中添加新批次货物
 void C_goodsStockAdd(C_Goods* goods, C_goodsInfo* info);//向goodsStock中添加新批次货物
-
+void C_goodsRemoveShelfInfoRank(C_Goods* goods, Rank r);//删除货架上的某批商品
+void C_goodsRemoveStockInfoRank(C_Goods* goods, Rank r);//删除库存中的某批商品
+int C_goodsOutofStockRank(C_Goods* goods, Rank r, int amount);//商品指定批次出库上架,返回1表示操作成功，0表示操作失败
+void C_goodsOutofStock(C_Goods* goods, int amount);//商品出库上架，默认最先过期的批次
+Rank C_goodsGetShelfBatch(C_Goods* goods, char batch);//在shelfInfo下查找批次，成功返回秩，失败返回-1
+void C_goodsSell(C_Goods* goods, char batch, int amount);//商品出售

@@ -37,3 +37,4 @@ void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root,FILE* goodsFile);//ÏÈĞò±éÀ
 void SR_dataSave();//±£´æÊı¾İ
 void SR_dataAddNewGoods(C_Goods* goods);//Ìí¼ÓĞÂÉÌÆ·
 void SR_dataReplenishGoods(char code[], C_goodsInfo* info);//²¹»õ
+void SR_dataSell(char code[], char batch, int amount);//³öÊÛÉÌÆ·

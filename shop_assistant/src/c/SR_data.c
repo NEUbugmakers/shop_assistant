@@ -184,3 +184,7 @@ void SR_dataReplenishGoods(char code[], C_goodsInfo* info) {//补货
 	C_Goods* pos = C_goodsVectorFind_P(posNode, code);
 	C_goodsStockAdd(pos, info);
 }
+void SR_dataSell(char code[], char batch, int amount) {//出售商品
+	C_Goods* pos = SR_dataGet(code);
+	C_goodsSell(pos, batch, amount);
+}
