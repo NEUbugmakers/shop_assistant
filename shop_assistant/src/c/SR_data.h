@@ -19,8 +19,7 @@ struct SR_dataBTNodeT {//B-树节点
 	int childNum;//子节点的数量
 	B_vector* child;
 	B_vector* childCode;
-	char fileName[SR_DATA_FILENAME_LEN];
-	char SR_dataBTNodeGoodsNum;//当前分类直接包含的商品个数,不必时时维护，仅在打开文件和保存文件的时候维护即可
+	int SR_dataBTNodeGoodsNum;//当前分类直接包含的商品个数,不必时时维护，仅在打开文件和保存文件的时候维护即可
 	C_goodsVector* goodsVector;
 };
 SR_dataBTNode SR_dataBTRoot;//根节点

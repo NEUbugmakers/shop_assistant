@@ -6,6 +6,7 @@ void SR_dataBTInit() {//≥ı ºªØB- ˜
 	FILE* file = fopen("root", "rb+");
 	FILE* goodsFile = fopen("goods", "rb");
 	if (file != NULL) {//≈–∂œŒƒº˛ «∑Ò¥Ê‘⁄
+		printf("%s:%d\n", "root", sizeof(SR_dataBTNode));
 		fread(&SR_dataBTRoot, sizeof(SR_dataBTNode), 1, file);
 		SR_dataBTBuild(&SR_dataBTRoot, file, goodsFile);
 		fclose(file);
@@ -13,7 +14,6 @@ void SR_dataBTInit() {//≥ı ºªØB- ˜
 	}
 	else {
 		SR_dataBTNodeInit(&SR_dataBTRoot);
-		strcpy(SR_dataBTRoot.fileName, "0");
 	}
 }
 void SR_dataBTBuild(SR_dataBTNode* x, FILE* file, FILE* goodsFile) {//∏˘æ›Œƒº˛Ω®¡¢B- ˜,œ»–Ú±È¿˙
@@ -21,19 +21,21 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file, FILE* goodsFile) {//∏˘æ›Œƒº˛Ω®
 	x->childCode = B_vectorCreat(sizeof(char));
 	x->goodsVector = C_goodsVectorCreat();
 	if (x->SR_dataBTNodeGoodsNum>0) {//ªπ‘≠goodsVector
-		int len = x->SR_dataBTNodeGoodsNum;
 		free(x->goodsVector->vector->_elem);
-		x->goodsVector->vector->_elem = malloc(len);
-		fread(x->goodsVector->vector->_elem, len, 1, goodsFile);
-		x->goodsVector->vector->_capicity = x->goodsVector->vector->_size = len / x->goodsVector->vector->_esize;
-		for (int i = 0; i < x->goodsVector->vector->_size; i++) {//ªπ‘≠C_goodsInfo
+		x->goodsVector->vector->_elem = malloc(sizeof(C_Goods)*x->SR_dataBTNodeGoodsNum);
+		printf("%s:%d\n", "goodsVector", sizeof(C_Goods) * x->SR_dataBTNodeGoodsNum);
+		fread(x->goodsVector->vector->_elem, sizeof(C_Goods), x->SR_dataBTNodeGoodsNum, goodsFile);
+		x->goodsVector->vector->_capicity = x->goodsVector->vector->_size = x->SR_dataBTNodeGoodsNum;
+		for (int i = 0; i < x->goodsVector->vector->_size; i++) {//ªπ‘≠C_goodsInfo(”–Œ Ã‚£©
 			C_goodsListInit((C_Goods*)B_vectorGet(x->goodsVector->vector, i));
 			C_goodsInfo info;
-			for (int j = 0; j < C_goodsShelfInfoNum((C_Goods*)B_vectorGet(x->goodsVector->vector, i)); j++) {
+			for (int j = 0; j < ((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_shelfKinds; j++) {
+				printf("%s:%d\n", "shelfInfo", sizeof(C_goodsInfo));
 				fread(&info, sizeof(C_goodsInfo), 1, goodsFile);
 				B_listPushBack(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_shelfInfo, &info);
 			}
-			for (int j = 0; j < C_goodsStockInfoNum((C_Goods*)B_vectorGet(x->goodsVector->vector, i)); j++) {
+			for (int j = 0; j < ((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_stockKinds; j++) {
+				printf("%s:%d\n", "stockInfo", sizeof(C_goodsInfo));
 				fread(&info, sizeof(C_goodsInfo), 1, goodsFile);
 				B_listPushBack(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_stockInfo, &info);
 			}
@@ -44,7 +46,8 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file, FILE* goodsFile) {//∏˘æ›Œƒº˛Ω®
 		x->childCode->_elem = (char*)malloc(sizeof(char) * x->childNum);
 		x->childCode->_capicity = x->childNum;
 		x->childCode->_size = x->childNum;
-		fread(x->childCode->_elem, sizeof(char) * x->childNum, 1, file);//(‘ˆº”¡À*x->childNum)
+		printf("%s:%d\n", "childCode", sizeof(char) * x->childNum);
+		fread(x->childCode->_elem, sizeof(char), x->childNum, file);//(‘ˆº”¡À*x->childNum)
 
 		free(x->child->_elem);//ªπ‘≠child
 		x->child->_elem = (char*)malloc(sizeof(SR_dataBTNode) * x->childNum);
@@ -52,6 +55,7 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file, FILE* goodsFile) {//∏˘æ›Œƒº˛Ω®
 		x->child->_size = x->childNum;
 		for (int i = 0; i < x->childNum; i++) {
 			SR_dataBTNode* t = B_vectorGet(x->child, i);
+			printf("%s:%d\n", "child", sizeof(SR_dataBTNode));
 			fread(t, sizeof(SR_dataBTNode), 1, file);
 			SR_dataBTBuild(t, file, goodsFile);
 		}
@@ -92,7 +96,6 @@ void SR_dataBTNodeInit(SR_dataBTNode* node) {//∂‘¥¥Ω®µƒΩ⁄µ„≥ı ºªØ
 	node->childNum = 0;
 	node->child = B_vectorCreat(sizeof(SR_dataBTNode));
 	node->childCode = B_vectorCreat(sizeof(char));
-	node->fileName[0] = 0;
 	node->sort = 0;
 	node->parent = 0;
 	node->goodsVector = C_goodsVectorCreat();
@@ -120,7 +123,6 @@ void SR_dataInsertSort(char dir[], char name[]) {//≤Â»Î∑÷¿‡
 	x.sort = sort;
 	strcpy(x.name, name);
 	x.parent = pos;
-	strcpy(x.fileName, dir);
 	Rank r;//º¥Ω´≤Â»Îµƒ∑÷¿‡‘⁄∏∏¿‡÷–÷»
 	for (r = 0; r < pos->childNum; r++) {
 		char t = *(char*)B_vectorGet(pos->childCode, r);
@@ -134,6 +136,7 @@ void SR_dataInsertSort(char dir[], char name[]) {//≤Â»Î∑÷¿‡
 void SR_dataSaveGoodsInfo(B_list* info, FILE* file) {//±£¥ÊshelfInfo∫ÕstockInfo
 	B_listNode* x = B_listGetFirstNode(info);
 	while (x != NULL) {
+		printf("%s:%d\n","C_GoodsInfo",sizeof(C_goodsInfo));
 		fwrite(x->_elem, info->_esize, 1, file);
 		x = B_listNextNode(x);
 	}
@@ -143,6 +146,7 @@ void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root, FILE* goodsFile) {//œ»–Ú±
 	x->childNum = x->childCode->_size;
 	if (x->goodsVector->vector->_size != 0)//ÃÌº”∫¨”–goodsVector±Íº«
 		x->SR_dataBTNodeGoodsNum = x->goodsVector->vector->_size;
+	printf("%s:%d\n", "child", sizeof(SR_dataBTNode));
 	fwrite(x, sizeof(SR_dataBTNode), 1, root);//±£¥Êµ±«∞Ω⁄µ„µƒ ˝æ›
 	if (x->goodsVector->vector->_size != 0) {//…Ã∆∑–≈œ¢∫Õ…Ã∆∑ƒø¬º∑÷±¥Ê¥¢
 		for (int i = 0; i < x->goodsVector->vector->_size; i++) {//±£¥Ê ±∏¸–¬C_shelfKinds∫ÕC_stockKinds;
@@ -150,12 +154,14 @@ void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root, FILE* goodsFile) {//œ»–Ú±
 			t->C_shelfKinds = t->C_shelfInfo->_size;
 			t->C_stockKinds = t->C_stockInfo->_size;
 		}
+		printf("%s:%d\n", "goodsVector", x->goodsVector->vector->_esize * x->goodsVector->vector->_size);
 		fwrite(x->goodsVector->vector->_elem, x->goodsVector->vector->_esize, x->goodsVector->vector->_size, goodsFile);
 		for (int i = 0; i < x->goodsVector->vector->_size; i++) {
 			SR_dataSaveGoodsInfo(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_shelfInfo, goodsFile);
 			SR_dataSaveGoodsInfo(((C_Goods*)B_vectorGet(x->goodsVector->vector, i))->C_stockInfo, goodsFile);
 		}
 	}
+	printf("%s:%d\n", "childCode", sizeof(char) * x->childNum);
 	fwrite(x->childCode->_elem, sizeof(char), x->childNum, root);
 	for (int i = 0; i < x->child->_size; i++) {
 		SR_dataBTNode* t = (SR_dataBTNode*)B_vectorGet(x->child, i);
