@@ -2,7 +2,7 @@
 #include"C_goods.h"
 #include"SR_data.h"
 int main() {
-	//SR_dataBTInit();
+	SR_dataBTInit();
 	//C_Goods goods;
 	//printf("%d", sizeof(SR_dataBTNode));
 	//SR_dataBTNode* test = SR_dataGetSort("A");
@@ -20,21 +20,20 @@ int main() {
 	//SR_dataAddNewGoods(&goods);
 	//goods = C_GoodsCreat(100, "B", "B1000");
 	//SR_dataAddNewGoods(&goods);
-	//C_goodsInfo info;
-	//Date date;
-	//B_DateSet(&date, 2000, 2, 2);
-	//info.C_amount = 100;
-	//info.C_entryDate = date;
-	//info.C_in = 100;
-	//B_DateSet(&date, 2000, 1, 1);
-	//info.C_producedDate = date;
-	//info.C_shelfDate = 30;
-	//C_Goods* tgoods = SR_dataGet("A1000");
+	C_goodsInfo info;
+	Date date;
+	B_DateSet(&date, 2000, 2, 9);
+	info.C_amount = 100;
+	info.C_entryDate = date;
+	info.C_in = 100;
+	B_DateSet(&date, 3335, 8, 9);
+	info.C_producedDate = date;
+	info.C_shelfDate = 30;
+	printf("666");
+	C_Goods* tgoods = SR_dataGet("B1000");
+	C_goodsInfo* testinfo = B_listGetFirst(tgoods->C_stockInfo);
+	C_goodsStockAdd(tgoods, &info);
 	//tgoods = SR_dataGet("B1000");
 	//tgoods = SR_dataGet("AA1000");
-	//SR_dataSave();
-	Date date;
-	B_DateSet(&date, 2000, 1, 3);
-	Date later = B_DayLater(&date, 100000);
-	printf("%d %d %d", later.B_Year, later.B_Months, later.B_Day);
+	SR_dataSave();
 }

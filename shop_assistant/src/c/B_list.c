@@ -56,6 +56,7 @@ void B_listPushFirst(B_list* list, const void* ve) {//插入元素到列表头�
 void B_listInsertRank(B_list* list, const void* e, Rank r) {//插入元素到指定位置
 	B_listNode* x = malloc(sizeof(B_listNode));
 	B_listNode* dst = B_listGetNodeRank(list, r);//获取插入位置
+	x->_elem = malloc(list->_esize);
 	memcpy(x->_elem, e, list->_esize);
 	x->succ = dst;
 	x->pred = dst->pred;
@@ -135,6 +136,7 @@ B_listNode* B_listGetFirstNode(B_list* list) {//获取首元素
 void B_listInsertPre(B_list* list, const void* e, B_listNode* listNode) {//插入元素到指定位置(需保证listNode为list下的节点）
 	B_listNode* x = malloc(sizeof(B_listNode));
 	B_listNode* dst = listNode;
+	x->_elem = malloc(list->_esize);
 	memcpy(x->_elem, e, list->_esize);
 	x->succ = dst;
 	x->pred = dst->pred;
