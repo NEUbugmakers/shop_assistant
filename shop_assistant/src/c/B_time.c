@@ -1,21 +1,12 @@
-/*
- * @Description: 
- * @Version: 2.0
- * @Autor: Charol
- * @Date: 2020-05-07 22:38:14
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-05-07 22:38:31
- */
-
 //
 // Created by Charon on 2020/5/7.
 //
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <time.h>
 #include <math.h>
 #define isPrime(year) ((year%4==0&&year%100!=0)||(year%400==0))
-
 
 typedef struct {
     char B_Day[4];
@@ -63,11 +54,6 @@ void IntToChar(int x, char* Str)//转换int到字符串
     }
     *Ptr = '\0';
 }
-
-
-
-
-
 Date_C B_Time_C(void) {//返回字符串型时间的函数
     time_t  timep;
     Date_C date;
@@ -145,4 +131,42 @@ int B_DayPassed(Date pre, Date lat) {//计算两个日期间的天数，如有�
 
         return (d2 - d1);
     }
+}
+/////个人新增
+void B_DateSet(Date* date, int y, int m, int d) {
+    date->B_Year = y;
+    date->B_Months = m;
+    date->B_Day = d;
+}
+Date B_DayLater(Date* date, int day) {
+    int dpm[] = { 31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };//每个月的天数
+    int tempday = date->B_Day + day - 1;//自当前月的一号起算需经过多少天
+    int dom;//当前月的天数
+    Date rdate = *date;
+    while (tempday > 0) {
+        if (rdate.B_Months != 2)//j计算当前月有多少天
+            dom = dpm[rdate.B_Months - 1];
+        else if (rdate.B_Year % 4 == 0 && rdate.B_Year % 100 != 0) {
+            dom = 29;
+        }
+        else if (rdate.B_Year % 400 == 0) {
+            dom = 29;
+        }
+        else
+            dom = 28;
+
+        if (tempday <= dom - 1) {//判断当前月是否是目标月，不是则月份加一，tempday减去当前月的天数
+            rdate.B_Day = tempday + 1;
+            tempday = 0;
+        }
+        else {
+            tempday -= dom;
+            rdate.B_Months++;
+        }
+        if (rdate.B_Months > 12) {//月份进位
+            rdate.B_Months = 1;
+            rdate.B_Year++;
+        }
+    }
+    return rdate;
 }
