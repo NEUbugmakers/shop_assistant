@@ -6,23 +6,6 @@
 #include "B_time.h"
 #define isPrime(year) ((year%4==0&&year%100!=0)||(year%400==0))
 
-typedef struct {
-    char B_Day[4];
-    char B_Year[4];
-    char B_Months[4];
-    char B_Hour[4];
-    char B_Minute[4];
-    char B_Second[4];
-} Date_C;
-
-typedef struct {
-    int B_Day;
-    int B_Year;
-    int B_Months;
-    int B_Hour;
-    int B_Minute;
-    int B_Second;
-} Date;
 
 
 void IntToChar(int x, char* Str)//转换int到字符串
