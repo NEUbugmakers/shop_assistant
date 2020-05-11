@@ -3,9 +3,7 @@
 //
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-#include <time.h>
-#include <math.h>
+#include "B_time.h"
 #define isPrime(year) ((year%4==0&&year%100!=0)||(year%400==0))
 
 typedef struct {
