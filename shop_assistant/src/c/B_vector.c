@@ -1,3 +1,4 @@
+
 #include "B_vector.h"
 B_vector* B_vectorCreat(size_t esize) {//创建B_vector,成功返回指针，失败返回NULL;
 	B_vector* vector = (B_vector*)malloc(sizeof(B_vector));
@@ -14,7 +15,7 @@ B_vector* B_vectorCreat(size_t esize) {//创建B_vector,成功返回指针，失
 	vector->_capicity = B_Vector_DEFAULT_CAPACITY;
 	return vector;
 }
-void vectorcpyRank(B_vector* vector, char* _Dst, Rank _Dstr, char* _Src, Rank _Srcr) {//将_Src的元素拷贝到_Dst上
+void B_vectorCpyRank(B_vector* vector, char* _Dst, Rank _Dstr, char* _Src, Rank _Srcr) {//将_Src的元素拷贝到_Dst上
 	memcpy(_Dst + _Dstr * vector->_esize, _Src + _Srcr * vector->_esize, vector->_esize);
 }
 int B_vectorExpand(B_vector* vector) {//有必要时扩容，返回值1表示运行正常（无需扩容或已成功扩容），0表示需要扩容但扩容失败
@@ -30,7 +31,7 @@ int B_vectorExpand(B_vector* vector) {//有必要时扩容，返回值1表示运
 	}
 	if (oldElem != NULL)//capacity==0的时候的扩容不需要复制
 		for (int i = 0; i < vector->_size; i++)
-			vectorcpyRank(vector, vector->_elem, i, oldElem, i);
+			B_vectorCpyRank(vector, vector->_elem, i, oldElem, i);
 	free(oldElem);
 	return 1;
 }
@@ -38,8 +39,8 @@ int B_vectorInsert(B_vector* vector, const void* ve, Rank r) {//将新元素作�
 	char* e = (char*)ve;
 	if (!B_vectorExpand(vector)) return -1;//扩容检测异常，插入失败；
 	for (int i = vector->_size; i > r; i--)
-		vectorcpyRank(vector, vector->_elem, i, vector->_elem, i-1);
-	vectorcpyRank(vector, vector->_elem, r, e, 0);
+		B_vectorCpyRank(vector, vector->_elem, i, vector->_elem, i-1);
+	B_vectorCpyRank(vector, vector->_elem, r, e, 0);
 	vector->_size++;
 	return r;
 }
@@ -59,14 +60,14 @@ int B_vectorShrink(B_vector* vector) {//有必要时缩容，返回值1表示运
 		return 0;
 	}
 	for (int i = 0; i < vector->_size; i++)
-		vectorcpyRank(vector, vector->_elem, i, oldElem, i);
+		B_vectorCpyRank(vector, vector->_elem, i, oldElem, i);
 	free(oldElem);
 	return 1;
 }
 int B_vectorRemoveInteral(B_vector* vector, Rank lo, Rank hi) {//删除区间[lo,hi),成功返回删除元素个数,异常则返回-1
 	if (lo == hi) return 0;//出于效率考虑，单独处理退化情况，比如remove（0,0）
 	while (hi < vector->_size)
-		vectorcpyRank(vector, vector->_elem, lo++, vector->_elem, hi++);
+		B_vectorCpyRank(vector, vector->_elem, lo++, vector->_elem, hi++);
 	vector->_size = lo;
 	if (!B_vectorShrink(vector))//缩容异常处理
 		return -1;
@@ -83,4 +84,7 @@ void B_vectorClear(B_vector* vector) {//清空数据
 	vector->_size = 0;
 	vector->_capicity = 0;
 	vector->_elem = NULL;
+}
+void B_vectorSort(B_vector* vector, void* cmp) {//排序
+	qsort(vector->_elem, vector->_size, vector->_esize, cmp);
 }
