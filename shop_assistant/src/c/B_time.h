@@ -11,6 +11,13 @@
 
 
 typedef struct {
+    int A_num;//工号
+    char A_password[6];//密码，六位
+    int A_right;//权限标识，0是管理员，1是老板，2是员工。
+} A_account;
+
+
+typedef struct {
     char B_Day[4];
     char B_Year[4];
     char B_Months[4];
