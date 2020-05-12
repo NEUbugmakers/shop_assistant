@@ -7,7 +7,6 @@
 #pragma once
 #include<stdlib.h>
 #include<string.h>
-#include<stdio.h>
 #include"B_vector.h"
 typedef  int Rank;
 //下面这两行只是typedef的时候结构体面能用定义的名称定义结构体内的变量的临时解决办法
