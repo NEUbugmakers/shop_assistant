@@ -1,7 +1,7 @@
 //
 // Created by Charon on 2020/5/7.
 //
-#pragma once
+
 #define _CRT_SECURE_NO_WARNINGS
 #include "B_time.h"
 #define isPrime(year) ((year%4==0&&year%100!=0)||(year%400==0))
