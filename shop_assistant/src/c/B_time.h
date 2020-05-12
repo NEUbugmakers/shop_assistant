@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: Charol
+ * @Date: 2020-05-12 16:40:13
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-05-12 16:57:44
+ */
 //
 // Created by Charon on 2020/4/25
 //
@@ -12,7 +20,7 @@
 
 typedef struct {
     int A_num;//工号
-    char A_password[6];//密码，六位
+    char A_password[8];//密码，六位
     int A_right;//权限标识，0是管理员，1是老板，2是员工。
 } A_account;
 
