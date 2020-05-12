@@ -10,10 +10,10 @@
 #define B_Vector_DEFAULT_CAPACITY  3
 typedef  int Rank;
 typedef struct {//B_vector的基本数据
-	size_t _esize;
-	size_t _size;
-	size_t _capicity;
-	char* _elem;
+	size_t _esize;//单元素大小
+	size_t _size;//元素数量
+	size_t _capicity;//容量
+	char* _elem;//存储元素的位置
 } B_vector;
 //public
 B_vector* B_vectorCreat(size_t esize);//创建B_vector,成功返回指针，失败返回NULL;
@@ -26,4 +26,5 @@ void B_vectorClear(B_vector* vector);//清空数据
 //private(不推荐调用）
 int B_vectorExpand(B_vector* vector);//有必要时扩容，返回值1表示运行正常（无需扩容或已成功扩容），0表示需要扩容但扩容失败
 int B_vectorShrink(B_vector* vector);//有必要时缩容，返回值1表示运行正常（无需缩容或已成功缩容），0表示需要缩容但缩容失败
-void vectorcpyRank(B_vector* vector, char* _Dst, Rank _Dstr, char* _Src, Rank _Srcr);//将_Src的元素拷贝到_Dst上
+void B_vectorCpyRank(B_vector* vector, char* _Dst, Rank _Dstr, char* _Src, Rank _Srcr);//将_Src的元素拷贝到_Dst上
+void B_vectorSort(B_vector* vector, void* cmp);//排序
