@@ -7,7 +7,6 @@
 #pragma once
 #include<stdlib.h>
 #include<string.h>
-#include<stdio.h>
 #include"B_vector.h"
 typedef  int Rank;
 //下面这两行只是typedef的时候结构体面能用定义的名称定义结构体内的变量的临时解决办法
@@ -46,4 +45,4 @@ void B_listInsertPre(B_list* list, const void* e, B_listNode* listNode);//插入
 void B_listSort(B_list* list, int (*cmp)(void*, void*));//链表排序
 //private
 B_listNode* B_listGetNodeRank(B_list* list, Rank r);//得到指定位置的元素对应的节点，速度较慢
-int B_listCmp(B_listNode* node1, B_listNode* node2);//内部排序函数
+int B_listCmp(B_listNode** node1, B_listNode** node2);//内部排序函数

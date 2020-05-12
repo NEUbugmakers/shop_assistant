@@ -4,19 +4,11 @@ C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(19,13): warning C4098: “B_listInit”:“void”函数返回值
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(99,26): warning C4267: “=”: 从“size_t”转换到“Rank”，可能丢失数据
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(147,28): warning C4028: 形参 1 与声明不同
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(147,48): warning C4028: 形参 2 与声明不同
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(159,32): warning C4090: “函数”: 不同的“const”限定符
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(159,32): warning C4028: 形参 1 与声明不同
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(159,32): warning C4028: 形参 2 与声明不同
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(160,36): warning C4047: “=”:“B_listNode **”与“char *”的间接级别不同
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(164,38): warning C4047: “=”:“B_listNode **”与“char *”的间接级别不同
-  B_vector.c
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.c(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.c(41,1): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.c(49,48): warning C4267: “函数”: 从“size_t”转换到“Rank”，可能丢失数据
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.c(55,1): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
   C_goods.c
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\C_goods.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_time.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -77,11 +69,9 @@ C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(216,1): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(248,6): warning C4101: “preLen”: 未引用的局部变量
   main_test.c
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\C_goods.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_time.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\main_test.c(57,20): warning C4087: “rand”: 用“void”参数列表声明
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\main_test.c(15,20): warning C4087: “rand”: 用“void”参数列表声明
   正在生成代码...
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(89): warning C4716: “SR_dataGetSort”: 必须返回一个值
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(117): warning C4715: “SR_dataSelectSort”: 不是所有的控件路径都返回值
