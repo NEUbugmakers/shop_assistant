@@ -85,6 +85,6 @@ void B_vectorClear(B_vector* vector) {//清空数据
 	vector->_capicity = 0;
 	vector->_elem = NULL;
 }
-void B_vectorSort(B_vector* vector, void* cmp) {//排序
+void B_vectorSort(B_vector* vector, int (*cmp)(const void*, const void*)) {//排序
 	qsort(vector->_elem, vector->_size, vector->_esize, cmp);
 }

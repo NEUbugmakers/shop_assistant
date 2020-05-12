@@ -144,3 +144,32 @@ void B_listInsertPre(B_list* list, const void* e, B_listNode* listNode) {//插�
 	x->succ->pred = x;
 	list->_size++;
 }
+int B_listCmp(B_listNode** node1, B_listNode** node2) {//内部排序函数
+	return B_listCmpTemp(node1[0]->_elem, node2[0]->_elem);
+}
+void B_listSort(B_list* list, int (*cmp)(void*, void*)) {//链表排序
+	B_listCmpTemp = cmp;
+	B_vector* node_p = B_vectorCreat(sizeof(B_listNode*));
+	B_listNode* x = B_listGetFirstNode(list);
+	B_listNode** travelpre=NULL, ** travelsucc=NULL;
+	while (x != NULL) {
+		B_vectorPushBack(node_p, &x);
+		x = B_listNextNode(x);
+	}
+	B_vectorSort(node_p, B_listCmp);
+	travelpre = B_vectorGet(node_p, 0);
+	travelpre[0][0].pred = list->header;
+	list->header->succ = travelpre[0];
+	for (int i = 1; i < node_p->_size; i++) {
+		travelsucc = B_vectorGet(node_p, i);
+		travelpre[0][0].succ = travelsucc[0];
+		travelsucc[0][0].pred = travelpre[0];
+		travelpre = travelsucc;
+	}
+	travelsucc[0][0].succ = list->trailer;
+	list->trailer->succ = travelsucc[0];
+	B_vectorClear(node_p);
+	free(node_p);
+	node_p = NULL;
+	B_listCmpTemp = NULL;
+}
