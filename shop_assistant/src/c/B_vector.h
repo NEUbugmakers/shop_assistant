@@ -7,6 +7,7 @@
 #pragma once
 #include<stdlib.h>
 #include<string.h>
+#include<math.h>
 #define B_Vector_DEFAULT_CAPACITY  3
 typedef  int Rank;
 typedef struct {//B_vector的基本数据
@@ -27,4 +28,4 @@ void B_vectorClear(B_vector* vector);//清空数据
 int B_vectorExpand(B_vector* vector);//有必要时扩容，返回值1表示运行正常（无需扩容或已成功扩容），0表示需要扩容但扩容失败
 int B_vectorShrink(B_vector* vector);//有必要时缩容，返回值1表示运行正常（无需缩容或已成功缩容），0表示需要缩容但缩容失败
 void B_vectorCpyRank(B_vector* vector, char* _Dst, Rank _Dstr, char* _Src, Rank _Srcr);//将_Src的元素拷贝到_Dst上
-void B_vectorSort(B_vector* vector, void* cmp);//排序
+void B_vectorSort(B_vector* vector, int (*cmp)(const void *,const void *));//排序
