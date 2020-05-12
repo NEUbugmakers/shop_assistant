@@ -1,31 +1,49 @@
 //使用规范
-//B_vector* vector = B_vectorCreat(sizeof(T));
+//B_list* list = B_listCreat(sizeof(T));
 //T为所要存储的数据类型
 //只能以上面这种方式创建
 //下面的创建方式会出现问题
-//B_vecor vector；
+//B_list list;
 #pragma once
 #include<stdlib.h>
 #include<string.h>
-#include<math.h>
-#define B_Vector_DEFAULT_CAPACITY  3
+#include<stdio.h>
+#include"B_vector.h"
 typedef  int Rank;
+//下面这两行只是typedef的时候结构体面能用定义的名称定义结构体内的变量的临时解决办法
+//不影响使用，但就是感觉有点丑
+struct B_tlistNode;
+typedef struct B_tlistNode B_listNode;
+struct B_tlistNode {//B_vector的基本数据
+	B_listNode* pred;
+	B_listNode* succ;
+	char* _elem;
+};
 typedef struct {//B_vector的基本数据
-	size_t _esize;//单元素大小
-	size_t _size;//元素数量
-	size_t _capicity;//容量
-	char* _elem;//存储元素的位置
-} B_vector;
+	size_t _esize;//存储数据大小
+	size_t _size;//存储数据数量
+	B_listNode* header;//头哨兵
+	B_listNode* trailer;//尾哨兵
+} B_list;
+int (*B_listCmpTemp)(void*, void*);//临时保存排序函数
 //public
-B_vector* B_vectorCreat(size_t esize);//创建B_vector,成功返回指针，失败返回NULL;
-int B_vectorInsert(B_vector* vector, const void* ve, Rank r);//将新元素作为秩为r元素插入，成功返回位置，失败返回-1；
-int B_vectorPushBack(B_vector* vector, const void* ve);//将新元素作为末尾元素插入，成功返回位置，失败返回-1；
-int B_vectorRemoveRank(B_vector* vector, Rank r);//删除秩为r的元素，成功返回1，失败返回0；
-int B_vectorRemoveInteral(B_vector* vector, Rank lo, Rank hi);//删除区间[lo,hi),成功返回删除元素个数,异常则返回-1
-char* B_vectorGet(B_vector* vector, Rank r);//得到指定位置的元素，支持对元素修改
-void B_vectorSort(B_vector* vector, int (*cmp)(const void*, const void*));//排序
-void B_vectorClear(B_vector* vector);//清空数据
-//private(不推荐调用）
-int B_vectorExpand(B_vector* vector);//有必要时扩容，返回值1表示运行正常（无需扩容或已成功扩容），0表示需要扩容但扩容失败
-int B_vectorShrink(B_vector* vector);//有必要时缩容，返回值1表示运行正常（无需缩容或已成功缩容），0表示需要缩容但缩容失败
-void B_vectorCpyRank(B_vector* vector, char* _Dst, Rank _Dstr, char* _Src, Rank _Srcr);//将_Src的元素拷贝到_Dst上
+B_list* B_listCreat(size_t esize);//创建B_list，需指定元素内存大小
+void B_listClear(B_list* list);//清空列表
+void B_listInit(B_list* list);//初始化B_list
+void B_listPushBack(B_list* list, const void* ve);//插入元素到列表尾部
+void B_listPushFirst(B_list* list, const void* ve);//插入元素到列表头部
+void B_listRemoveFirst(B_list* list);//删除首元素
+void B_listRemoveBack(B_list* list);//删除尾元素,原理与首元素相同
+void B_listRemoveRank(B_list* list, Rank r);//删除指定位置的元素
+void B_listRemoveInterval(B_list* list, Rank lo, Rank hi);//删除[lo,hi)的元素
+char* B_listGetFirst(B_list* list);//获取首元素,不含元素则返回NULL
+char* B_listGetBack(B_list* list);//获取尾元素
+char* B_listGetRank(B_list* list, Rank r);////得到指定位置的元素，速度较慢
+B_listNode* B_listGetFirstNode(B_list* list);//获取首元素
+B_listNode* B_listNextNode(B_listNode* x);//获得当前节点的下一个节点，若为最后一个节点则返回NULL
+char* B_listGetFromNode(B_listNode* x);//获取当前节点的保存的数据
+void B_listInsertPre(B_list* list, const void* e, B_listNode* listNode);//插入元素到指定位置(需保证listNode为list下的节点）
+void B_listSort(B_list* list, int (*cmp)(void*, void*));//链表排序
+//private
+B_listNode* B_listGetNodeRank(B_list* list, Rank r);//得到指定位置的元素对应的节点，速度较慢
+int B_listCmp(B_listNode** node1, B_listNode** node2);//内部排序函数
