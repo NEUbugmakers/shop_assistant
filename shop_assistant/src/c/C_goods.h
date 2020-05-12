@@ -21,6 +21,8 @@ typedef struct {//商品信息
 	int C_shelfDate_Pre;//备选保质期，用于下次录入该商品信息时的自动填充
 	int C_shelfKinds;//货架上的现存的商品总批次,不必时时维护，仅在打开文件和保存文件的时候维护即可
 	int C_stockKinds;//库存中现存的商品总批次,不必时时维护，仅在打开文件和保存文件的时候维护即可
+	int C_shelfTotal;//货架中商品总量
+	int C_stockTotal;//库存中商品总量
 	B_list* C_shelfInfo;
 	B_list* C_stockInfo;
 } C_Goods;
@@ -36,3 +38,4 @@ int C_goodsOutofStockRank(C_Goods* goods, Rank r, int amount);//商品指定批�
 void C_goodsOutofStock(C_Goods* goods, int amount);//商品出库上架，默认最先过期的批次
 Rank C_goodsGetShelfBatch(C_Goods* goods, char batch);//在shelfInfo下查找批次，成功返回秩，失败返回-1
 void C_goodsSell(C_Goods* goods, char batch, int amount);//商品出售
+char C_goodsSelectBatch(C_Goods* goods);//为即将上架的商品挑选批次编码
