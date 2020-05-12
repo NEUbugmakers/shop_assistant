@@ -16,7 +16,7 @@ void B_listInit(B_list* list) {//初始化B_list
 	list->trailer->pred = list->header;
 	list->trailer->succ = NULL;
 	list->_size = 0;
-	return list;
+	return ;
 }
 void B_listClear(B_list* list) {//清空列表
 	B_listNode* x = list->trailer->pred->pred;
@@ -145,7 +145,7 @@ void B_listInsertPre(B_list* list, const void* e, B_listNode* listNode) {//插�
 	list->_size++;
 }
 int B_listCmp(B_listNode** node1, B_listNode** node2) {//内部排序函数
-	return B_listCmpTemp(node1[0]->_elem, node2[0]->_elem);
+	return B_listCmpTemp((*node1)->_elem, (*node2)->_elem);
 }
 void B_listSort(B_list* list, int (*cmp)(void*, void*)) {//链表排序
 	B_listCmpTemp = cmp;
@@ -158,16 +158,16 @@ void B_listSort(B_list* list, int (*cmp)(void*, void*)) {//链表排序
 	}
 	B_vectorSort(node_p, B_listCmp);
 	travelpre = B_vectorGet(node_p, 0);
-	travelpre[0][0].pred = list->header;
+	(**travelpre).pred = list->header;
 	list->header->succ = travelpre[0];
 	for (int i = 1; i < node_p->_size; i++) {
 		travelsucc = B_vectorGet(node_p, i);
-		travelpre[0][0].succ = travelsucc[0];
-		travelsucc[0][0].pred = travelpre[0];
+		(**travelpre).succ = (*travelsucc);
+		(**travelsucc).pred = *travelpre;
 		travelpre = travelsucc;
 	}
-	travelsucc[0][0].succ = list->trailer;
-	list->trailer->succ = travelsucc[0];
+	(**travelsucc).succ = list->trailer;
+	list->trailer->succ = *travelsucc;
 	B_vectorClear(node_p);
 	free(node_p);
 	node_p = NULL;
