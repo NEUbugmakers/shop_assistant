@@ -49,8 +49,13 @@ Date_C B_Time_C(void) ;//返回字符串型时间的函数
 Date B_Time_I(void) ;//返回整型时间的函数
 int B_DateIsSmall(Date x, Date y) ;//比较两个时间，x<y?1:0 ;
 int B_DayPassed(Date pre, Date lat);//计算两个日期间的天数，如有数据错误，返回-1；
+int B_WP_dayCompare(Date x,Date y);//只比较年和月，相等返回1，x>y?-2:2  （数值大小）
 ///////////////////
 void B_DateSet(Date* date, int y, int m, int d);//设定日期，个人新增
 Date B_DayLater(Date* date, int day);//几天后的日期
+
+
+
+
 
 #endif //B_TIME_B_TIME_H
