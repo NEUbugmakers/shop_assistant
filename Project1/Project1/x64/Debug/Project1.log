@@ -40,8 +40,10 @@ C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(214,52): warning C4028: 形参 2 与声明不同
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(214,52): warning C4133: “函数”: 从“void (__cdecl *)(SR_dataCodeNode *,SR_dataCodeNode *)”到“int (__cdecl *)(const void *,const void *)”的类型不兼容
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(217,1): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(249,6): warning C4101: “preLen”: 未引用的局部变量
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(248,25): warning C4133: “函数”: 从“C_goodsVector *”到“B_vector *”的类型不兼容
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(250,12): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(267,24): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(262,6): warning C4101: “preLen”: 未引用的局部变量
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(90): warning C4716: “SR_dataGetSort”: 必须返回一个值
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(118): warning C4715: “SR_dataSelectSort”: 不是所有的控件路径都返回值
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(191): warning C4716: “SR_dataSell”: 必须返回一个值
   Project1.vcxproj -> C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\Project1\x64\Debug\Project1.exe

@@ -65,7 +65,7 @@ int main() {
 	//	for (int i = 0; i < 10; i++) {
 	//		printf("%d\n", ((Test*)B_listGetRank(list, i))->num);
 	//	}
-	C_Goods* goods = SR_dataCodeFind("1000");
+	//C_Goods* goods = SR_dataCodeFind("1000");
 	SR_dataSave();
 }
 //#define _CRT_SECURE_NO_WARNINGS

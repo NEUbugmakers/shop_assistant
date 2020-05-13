@@ -3,10 +3,10 @@
 #define _CRT_NONSTDC_NO_DEPRECATE
 #include"SR_data.h"
 void SR_dataBTInit() {//³õÊ¼»¯B-Ê÷
-	FILE* file = fopen("root", "rb+");
-	FILE* goodsFile = fopen("goods", "rb");
+	FILE* file = fopen("../src/root", "rb");
+	FILE* goodsFile = fopen("../src/goods", "rb");
 	if (file != NULL) {//ÅÐ¶ÏÎÄ¼þÊÇ·ñ´æÔÚ
-		printf("%s:%d\n", "root", sizeof(SR_dataBTNode));
+		printf("%s:%d\n", "../SRC/root", sizeof(SR_dataBTNode));
 		fread(&SR_dataBTRoot, sizeof(SR_dataBTNode), 1, file);
 		SR_dataBTBuild(&SR_dataBTRoot, file, goodsFile);
 		fclose(file);
@@ -170,8 +170,8 @@ void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root, FILE* goodsFile) {//ÏÈÐò±
 	}
 }
 void SR_dataSave() {//±£´æÊý¾Ý
-	FILE* file = fopen("root", "wb");
-	FILE* goodsFile = fopen("goods", "wb");
+	FILE* file = fopen("../src/root", "wb");
+	FILE* goodsFile = fopen("../src/goods", "wb");
 	SR_dataSavePreOrder(&SR_dataBTRoot, file, goodsFile);
 	fclose(file);
 	fclose(goodsFile);
@@ -237,9 +237,19 @@ C_Goods* SR_dataCodeFind(char code[]) {//Í¨¹ýÊý×Ö±àÂë²éÕÒÉÌÆ·
 //		lo = mi + 1;
 //}
 //return --lo;
-C_goodsVector* SR_dataGetRot() {
+C_goodsVector* SR_dataGetRot() {//²éÕÒ¹ýÆÚÉÌÆ·
 	C_goodsVector* rotGoods = C_goodsVectorCreat();
-	
+	for (int i = 0; i < SR_dataCodeVector->_size; i++) {
+		C_Goods goods = C_goodsGetRot(SR_dataCodeFind(((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, i))->code));
+		if (strlen(goods.code) != 0)//ÊÇ·ñº¬ÓÐ¹ýÆÚÉÌÆ·
+			B_vectorPushBack(rotGoods->vector, &goods);
+	}
+	if (rotGoods->vector->_size == 0) {//Èç¹ûÎÞ¹ýÆÚÉÌÆ·ÔòÊÍ·Å¿Õ¼ä£¬²¢·µ»ØNULL
+		B_vectorClear(rotGoods);
+		free(rotGoods);
+		rotGoods == 0;
+	}
+	return rotGoods;//·µ»Ø¹ýÆÚÉÌÆ·µÄÏòÁ¿
 }
 
 

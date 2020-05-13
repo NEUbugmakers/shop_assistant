@@ -36,7 +36,16 @@ int C_goodsVectorRemove(C_goodsVector* goodsVector, char code[]) {//删除商品条目
 	if (strcmp((*(C_Goods*)B_vectorGet(goodsVector->vector, r)).code, code) != 0)//商品条目不存在，删除失败
 		return 0;
 	else {
+		C_goodsClear((C_Goods*)B_vectorGet(goodsVector->vector, r));
 		B_vectorRemoveRank(goodsVector->vector, r);
 		return 1;
 	}
+}
+void C_goodsVectorClear(C_goodsVector* goodsVector) {//释放goodsVector
+	for (int i = 0; i < goodsVector->vector->_size; i++) {
+		C_goodsClear((C_Goods*)B_vectorGet(goodsVector->vector, i));
+	}
+	B_vectorClear(goodsVector->vector);
+	free(goodsVector->vector);
+	goodsVector->vector = NULL;
 }
