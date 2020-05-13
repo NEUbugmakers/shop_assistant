@@ -3,8 +3,8 @@
 #define _CRT_NONSTDC_NO_DEPRECATE
 #include"SR_data.h"
 void SR_dataBTInit() {//³õÊ¼»¯B-Ê÷
-	FILE* file = fopen("../src/root", "rb");
-	FILE* goodsFile = fopen("../src/goods", "rb");
+	FILE* file = fopen("root", "rb");
+	FILE* goodsFile = fopen("goods", "rb");
 	if (file != NULL) {//ÅÐ¶ÏÎÄ¼þÊÇ·ñ´æÔÚ
 		printf("%s:%d\n", "../SRC/root", sizeof(SR_dataBTNode));
 		fread(&SR_dataBTRoot, sizeof(SR_dataBTNode), 1, file);
@@ -170,8 +170,8 @@ void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root, FILE* goodsFile) {//ÏÈÐò±
 	}
 }
 void SR_dataSave() {//±£´æÊý¾Ý
-	FILE* file = fopen("../src/root", "wb");
-	FILE* goodsFile = fopen("../src/goods", "wb");
+	FILE* file = fopen("root", "wb");
+	FILE* goodsFile = fopen("goods", "wb");
 	SR_dataSavePreOrder(&SR_dataBTRoot, file, goodsFile);
 	fclose(file);
 	fclose(goodsFile);
