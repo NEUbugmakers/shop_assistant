@@ -151,3 +151,19 @@ Date B_DayLater(Date* date, int day) {
     }
     return rdate;
 }
+
+
+int B_WP_dayCompare(Date x,Date y) { //只比较年和月，相等返回1，x>y?-2:2  （数值大小）
+    if ((x.B_Year==y.B_Year)&&(x.B_Months==y.B_Months)){
+        return 1;
+    }
+    if (x.B_Year>y.B_Year){
+        return -2;
+    }else if ((x.B_Year==y.B_Year)&&(x.B_Months>y.B_Months)){
+        return -2;
+    }else if ((x.B_Year==y.B_Year)&&(x.B_Months<y.B_Months)){
+        return 2;
+    }else if (x.B_Year<y.B_Year){
+        return -2;
+    }
+}
