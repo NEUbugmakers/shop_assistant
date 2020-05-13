@@ -26,6 +26,10 @@ typedef struct {//商品信息
 	B_list* C_shelfInfo;
 	B_list* C_stockInfo;
 } C_Goods;
+typedef struct {
+	float C_in;//进价
+	float C_out;//标价
+}C_goodsReturnPrice;
 C_Goods C_GoodsCreat(int out, char name[], char code[]);//创建C_Goods
 int C_goodsShelfInfoNum(C_Goods* x);//获取货架商品批次数量
 int C_goodsStockInfoNum(C_Goods* x);//获取库存商品批次数量
@@ -37,5 +41,8 @@ void C_goodsRemoveStockInfoRank(C_Goods* goods, Rank r);//删除库存中的某�
 int C_goodsOutofStockRank(C_Goods* goods, Rank r, int amount);//商品指定批次出库上架,返回1表示操作成功，0表示操作失败
 void C_goodsOutofStock(C_Goods* goods, int amount);//商品出库上架，默认最先过期的批次
 Rank C_goodsGetShelfBatch(C_Goods* goods, char batch);//在shelfInfo下查找批次，成功返回秩，失败返回-1
-void C_goodsSell(C_Goods* goods, char batch, int amount);//商品出售
+C_goodsReturnPrice C_goodsSell(C_Goods* goods, char batch, int amount);//商品出售,返回价格信息
 char C_goodsSelectBatch(C_Goods* goods);//为即将上架的商品挑选批次编码
+C_Goods C_goodsRotPreWarning(C_Goods* goods, int pre);//提前pre天进行过期报警,未过期则返回空信息，过期则返回仅包含过期商品的列表
+C_Goods C_goodsGetRot(C_Goods* goods);//获取过期商品
+void C_goodsClear(C_Goods* goods);//清空商品信息

@@ -15,6 +15,7 @@ void SR_dataBTInit() {//初始化B-树
 	else {
 		SR_dataBTNodeInit(&SR_dataBTRoot);
 	}
+	SR_dataCodeVectorBuild();//建立数字编码查找向量
 }
 void SR_dataBTBuild(SR_dataBTNode* x, FILE* file, FILE* goodsFile) {//根据文件建立B-树,先序遍历
 	x->child = B_vectorCreat(sizeof(SR_dataBTNode));
@@ -184,9 +185,9 @@ void SR_dataReplenishGoods(char code[], C_goodsInfo* info) {//补货
 	C_Goods* pos = C_goodsVectorFind_P(posNode, code);
 	C_goodsStockAdd(pos, info);
 }
-int SR_dataSell(char code[], char batch, int amount) {//出售商品,返回商品标价
+C_goodsReturnPrice SR_dataSell(char code[], char batch, int amount) {//出售商品,返回商品标价
 	C_Goods* pos = SR_dataGet(code);
-	C_goodsSell(pos, batch, amount);
+	return C_goodsSell(pos, batch, amount);
 }
 void SR_dataCodeVectorBuildFrom(SR_dataBTNode* pos,B_vector* vector) {//建立某一分类下的商品数字编码查找向量(无序）
 	C_Goods* goods;
@@ -204,7 +205,7 @@ void SR_dataCodeVectorBuildFrom(SR_dataBTNode* pos,B_vector* vector) {//建立某一
 	for (int i = 0; i < pos->child->_size; i++)//继续深入
 		SR_dataCodeVectorBuildFrom(B_vectorGet(pos->child, i), vector);
 }
-void SR_dataCodeNodeCmp(SR_dataCodeNode* node1,SR_dataCodeNode* node2) {
+void SR_dataCodeNodeCmp(SR_dataCodeNode* node1,SR_dataCodeNode* node2) {//通过数字编码比较codeNode大小
 	return strcmp(node1->code, node2->code);
 }
 void SR_dataCodeVectorBuild() {//建立数字编码查找向量
@@ -212,11 +213,11 @@ void SR_dataCodeVectorBuild() {//建立数字编码查找向量
 	SR_dataCodeVectorBuildFrom(&SR_dataBTRoot, SR_dataCodeVector);
 	B_vectorSort(SR_dataCodeVector, SR_dataCodeNodeCmp);
 }
-C_Goods* SR_dataCodeFind(char code[]) {//
+C_Goods* SR_dataCodeFind(char code[]) {//通过数字编码查找商品
 	int lo = 0, hi = SR_dataCodeVector->_size;
 	while (lo < hi) {
 		int mi = (lo + hi) >> 1;
-		if (strcmp(code, ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, mi))->code < 0))
+		if (strcmp(code, ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, mi))->code ) < 0)
 			hi = mi;
 		else
 			lo = mi + 1;
@@ -236,7 +237,10 @@ C_Goods* SR_dataCodeFind(char code[]) {//
 //		lo = mi + 1;
 //}
 //return --lo;
-
+C_goodsVector* SR_dataGetRot() {
+	C_goodsVector* rotGoods = C_goodsVectorCreat();
+	
+}
 
 
 

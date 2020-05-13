@@ -87,13 +87,17 @@ Rank C_goodsGetShelfBatch(C_Goods* goods, char batch) {//在shelfInfo下查找批次，
 	else
 		return -1;
 }
-void C_goodsSell(C_Goods* goods, char batch, int amount) {//商品出售
+C_goodsReturnPrice C_goodsSell(C_Goods* goods, char batch, int amount) {//商品出售
 	Rank r = C_goodsGetShelfBatch(goods, batch);
 	C_goodsInfo* pos = B_listGetRank(goods->C_shelfInfo, r);
+	C_goodsReturnPrice price;
+	price.C_in = pos->C_in;
+	price.C_out = goods->C_out;
 	pos->C_amount -= amount;
 	goods->C_shelfTotal -= amount;
 	if (pos->C_amount == 0)//检测当前批次是否售空，售空则删除当前批次
 		B_listRemoveRank(goods->C_shelfInfo, r);
+	return price;
 }
 char C_goodsSelectBatch(C_Goods* goods) {//为即将上架的商品挑选批次编码
 	char allBatch[26] = {0};
@@ -106,4 +110,35 @@ char C_goodsSelectBatch(C_Goods* goods) {//为即将上架的商品挑选批次编码
 		if (allBatch[i] != 1)
 			return 'A' + i;
 	return -1;
+}
+C_Goods C_goodsRotPreWarning(C_Goods* goods,int pre) {//提前pre天进行过期报警,未过期则返回空信息，过期则返回仅包含过期商品的列表
+	C_Goods rot = C_GoodsCreat(goods->C_out, goods->name, goods->code);
+	B_listNode* travel = B_listGetFirstNode(goods->C_shelfInfo);
+	while (travel != NULL) {
+		if (B_DateIsSmall(B_Time_I(), B_DayLater(&((C_goodsInfo*)travel->_elem)->C_rotDate, pre)))
+			C_goodsShelfAdd(&rot, (C_goodsInfo*)travel->_elem);
+	}
+	travel = B_listGetFirstNode(goods->C_stockInfo);
+	while (travel != NULL) {
+		if (B_DateIsSmall(B_Time_I(), B_DayLater(&((C_goodsInfo*)travel->_elem)->C_rotDate, pre)))
+			C_goodsStockAdd(&rot, (C_goodsInfo*)travel->_elem);
+	}
+	if (rot.C_shelfInfo->_size == 0 && rot.C_stockInfo->_size == 0) {//如果没有过期商品则清空rot商品信息strlen(code)==0
+		C_goodsClear(&rot);
+	}
+	return rot;
+}
+C_Goods C_goodsGetRot(C_Goods* goods) {//获取过期商品
+	return C_goodsRotPreWarning(goods, 0);
+}
+void C_goodsClear(C_Goods* goods) {//清空商品信息
+	B_listClear(goods->C_shelfInfo);
+	B_listClear(goods->C_stockInfo);
+	free(goods->C_shelfInfo);
+	free(goods->C_stockInfo);
+	goods->C_shelfInfo = NULL;
+	goods->C_stockInfo = NULL;
+	goods->code[0] = 0;
+	goods->name[0] = 0;
+	goods->C_out = 0;
 }

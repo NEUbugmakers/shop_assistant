@@ -24,7 +24,7 @@ struct SR_dataBTNodeT {//B-Ê÷½Úµã
 	C_goodsVector* goodsVector;
 };
 typedef struct {
-	int C_out;//±ê¼Û£¨·ÇÊµÊÛ¼Û£©
+	float C_out;//±ê¼Û£¨·ÇÊµÊÛ¼Û£©
 	char name[C_NAME_LEN];//ÉÌÆ·Ãû
 	char code[C_CODE_LEN];//±àÂë
 	int C_shelfNum;//»õ¼ÜÉÏµÄÏÖ´æµÄÉÌÆ·×ÜÅú´Î,²»±ØÊ±Ê±Î¬»¤£¬½öÔÚ´ò¿ªÎÄ¼şºÍ±£´æÎÄ¼şµÄÊ±ºòÎ¬»¤¼´¿É
@@ -36,6 +36,7 @@ typedef struct {
 	char sort[20];//·ÖÀà
 	char code[C_CODE_LEN];//Êı×Ö²¿·Ö±àÂë
 }SR_dataCodeNode;
+
 B_vector* SR_dataCodeVector;
 SR_dataBTNode SR_dataBTRoot;//¸ù½Úµã
 void SR_dataBTInit();//³õÊ¼»¯B-Ê÷
@@ -52,5 +53,8 @@ void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root,FILE* goodsFile);//ÏÈĞò±éÀ
 void SR_dataSave();//±£´æÊı¾İ
 void SR_dataAddNewGoods(C_Goods* goods);//Ìí¼ÓĞÂÉÌÆ·
 void SR_dataReplenishGoods(char code[], C_goodsInfo* info);//²¹»õ
-int SR_dataSell(char code[], char batch, int amount);//³öÊÛÉÌÆ·,·µ»ØÉÌÆ·±ê¼Û
-void SR_dataCodeVectorBuild();//
+C_goodsReturnPrice SR_dataSell(char code[], char batch, int amount);//³öÊÛÉÌÆ·,·µ»ØÉÌÆ·±ê¼Û
+void SR_dataCodeVectorBuildFrom(SR_dataBTNode* pos, B_vector* vector);//½¨Á¢Ä³Ò»·ÖÀàÏÂµÄÉÌÆ·Êı×Ö±àÂë²éÕÒÏòÁ¿(ÎŞĞò£©
+void SR_dataCodeNodeCmp(SR_dataCodeNode* node1, SR_dataCodeNode* node2);//Í¨¹ıÊı×Ö±àÂë±È½ÏcodeNode´óĞ¡
+void SR_dataCodeVectorBuild();//½¨Á¢Êı×Ö±àÂë²éÕÒÏòÁ¿
+C_Goods* SR_dataCodeFind(char code[]);//Í¨¹ıÊı×Ö±àÂë²éÕÒÉÌÆ·

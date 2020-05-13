@@ -51,21 +51,21 @@ int main() {
 	//C_goodsStockAdd(tgoods, &info);
 	//tgoods = SR_dataGet("B1000");
 	//tgoods = SR_dataGet("AA1000");
-	B_list* list = B_listCreat(sizeof(Test));
-		Test test;
-		for (int i = 0; i < 10; i++) {
-		test.num = rand(i);
-		strcpy(test.name, "test");
-		B_listPushBack(list, &test);
-	}
-		for (int i = 0; i < 10; i++) {
-			printf("%d\n", ((Test*)B_listGetRank(list, i))->num);
-		}
-		B_listSort(list, cmp);
-		for (int i = 0; i < 10; i++) {
-			printf("%d\n", ((Test*)B_listGetRank(list, i))->num);
-		}
-
+	//B_list* list = B_listCreat(sizeof(Test));
+	//	Test test;
+	//	for (int i = 0; i < 10; i++) {
+	//	test.num = rand(i);
+	//	strcpy(test.name, "test");
+	//	B_listPushBack(list, &test);
+	//}
+	//	for (int i = 0; i < 10; i++) {
+	//		printf("%d\n", ((Test*)B_listGetRank(list, i))->num);
+	//	}
+	//	B_listSort(list, cmp);
+	//	for (int i = 0; i < 10; i++) {
+	//		printf("%d\n", ((Test*)B_listGetRank(list, i))->num);
+	//	}
+	C_Goods* goods = SR_dataCodeFind("1000");
 	SR_dataSave();
 }
 //#define _CRT_SECURE_NO_WARNINGS
