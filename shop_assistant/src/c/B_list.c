@@ -148,6 +148,8 @@ int B_listCmp(B_listNode** node1, B_listNode** node2) {//内部排序函数
 	return B_listCmpTemp((*node1)->_elem, (*node2)->_elem);
 }
 void B_listSort(B_list* list, int (*cmp)(void*, void*)) {//链表排序
+	if (list->_size < 2)//数量小于2，无需排序
+		return;
 	B_listCmpTemp = cmp;
 	B_vector* node_p = B_vectorCreat(sizeof(B_listNode*));
 	B_listNode* x = B_listGetFirstNode(list);
