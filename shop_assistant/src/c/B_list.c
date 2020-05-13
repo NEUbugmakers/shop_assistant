@@ -16,7 +16,7 @@ void B_listInit(B_list* list) {//初始化B_list
 	list->trailer->pred = list->header;
 	list->trailer->succ = NULL;
 	list->_size = 0;
-	return list;
+	return ;
 }
 void B_listClear(B_list* list) {//清空列表
 	B_listNode* x = list->trailer->pred->pred;
@@ -56,6 +56,7 @@ void B_listPushFirst(B_list* list, const void* ve) {//插入元素到列表头�
 void B_listInsertRank(B_list* list, const void* e, Rank r) {//插入元素到指定位置
 	B_listNode* x = malloc(sizeof(B_listNode));
 	B_listNode* dst = B_listGetNodeRank(list, r);//获取插入位置
+	x->_elem = malloc(list->_esize);
 	memcpy(x->_elem, e, list->_esize);
 	x->succ = dst;
 	x->pred = dst->pred;
@@ -135,10 +136,42 @@ B_listNode* B_listGetFirstNode(B_list* list) {//获取首元素
 void B_listInsertPre(B_list* list, const void* e, B_listNode* listNode) {//插入元素到指定位置(需保证listNode为list下的节点）
 	B_listNode* x = malloc(sizeof(B_listNode));
 	B_listNode* dst = listNode;
+	x->_elem = malloc(list->_esize);
 	memcpy(x->_elem, e, list->_esize);
 	x->succ = dst;
 	x->pred = dst->pred;
 	x->pred->succ = x;
 	x->succ->pred = x;
 	list->_size++;
+}
+int B_listCmp(B_listNode** node1, B_listNode** node2) {//内部排序函数
+	return B_listCmpTemp((*node1)->_elem, (*node2)->_elem);
+}
+void B_listSort(B_list* list, int (*cmp)(void*, void*)) {//链表排序
+	if (list->_size < 2)//数量小于2，无需排序
+		return;
+	B_listCmpTemp = cmp;
+	B_vector* node_p = B_vectorCreat(sizeof(B_listNode*));
+	B_listNode* x = B_listGetFirstNode(list);
+	B_listNode** travelpre=NULL, ** travelsucc=NULL;
+	while (x != NULL) {
+		B_vectorPushBack(node_p, &x);
+		x = B_listNextNode(x);
+	}
+	B_vectorSort(node_p, B_listCmp);
+	travelpre = B_vectorGet(node_p, 0);
+	(**travelpre).pred = list->header;
+	list->header->succ = travelpre[0];
+	for (int i = 1; i < node_p->_size; i++) {
+		travelsucc = B_vectorGet(node_p, i);
+		(**travelpre).succ = (*travelsucc);
+		(**travelsucc).pred = *travelpre;
+		travelpre = travelsucc;
+	}
+	(**travelsucc).succ = list->trailer;
+	list->trailer->succ = *travelsucc;
+	B_vectorClear(node_p);
+	free(node_p);
+	node_p = NULL;
+	B_listCmpTemp = NULL;
 }
