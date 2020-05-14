@@ -10,13 +10,15 @@ int cmp(const Test* t1, const Test* t2) {
 }
 int main() {
 	SR_dataBTInit();
+	//FILE* bug=NULL;
+	//fread(NULL, 1, 1, bug);
 	//SR_dataInsertSort("", "SortA");
 	//SR_dataInsertSort("", "SortB");
 	//SR_dataInsertSort("A", "SortAA");
 	//SR_dataInsertSort("A", "SortAB");
 	//SR_dataInsertSort("B", "SortBA");
 	//SR_dataInsertSort("B", "SortBB");
-	
+
 	//printf("%d", sizeof(SR_dataBTNode));
 	//SR_dataBTNode* test = SR_dataGetSort("A");
 	//SR_dataInsertSort("A", "sortAA");
@@ -65,7 +67,10 @@ int main() {
 	//	for (int i = 0; i < 10; i++) {
 	//		printf("%d\n", ((Test*)B_listGetRank(list, i))->num);
 	//	}
-	C_Goods* goods = SR_dataCodeFind("1000");
+	//C_Goods* goods = SR_dataCodeFind("1000");
+	for (int i = 0; i < SR_dataCodeVector->_size; i++) {
+		printf("%s%s\n", ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, i))->sort, ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, i))->code);
+	}
 	SR_dataSave();
 }
 //#define _CRT_SECURE_NO_WARNINGS

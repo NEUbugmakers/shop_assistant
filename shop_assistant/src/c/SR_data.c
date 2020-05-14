@@ -247,7 +247,7 @@ C_goodsVector* SR_dataGetRot() {//查找过期商品
 	if (rotGoods->vector->_size == 0) {//如果无过期商品则释放空间，并返回NULL
 		B_vectorClear(rotGoods);
 		free(rotGoods);
-		rotGoods == 0;
+		rotGoods = 0;
 	}
 	return rotGoods;//返回过期商品的向量
 }
