@@ -59,21 +59,22 @@ void C_goodsRemoveStockInfoRank(C_Goods* goods, Rank r) {//删除库存中的某批商品
 	goods->C_stockTotal -= ((C_goodsInfo*)B_listGetRank(goods->C_stockInfo, r))->C_amount;
 	B_listRemoveRank(goods->C_stockInfo, r);
 }
-int C_goodsOutofStockRank(C_Goods* goods, Rank r, int amount) {//商品指定批次出库上架,返回1表示操作成功，0表示操作失败
+char C_goodsOutofStockRank(C_Goods* goods, Rank r, int amount) {//商品指定批次出库上架,返回批次编号，失败返回-1
 	C_goodsInfo* pos = (C_goodsInfo*)B_listGetRank(goods->C_stockInfo, 0);
 	if (pos->C_amount < amount)//当前批次货物不足，操作失败
-		return 0;
+		return -1;
 	pos->C_amount -= amount;
 	goods->C_stockTotal -= amount;
 	C_goodsInfo temp = *pos;
 	temp.C_amount = amount;
+	temp.batch = C_goodsSelectBatch(goods);
 	C_goodsShelfAdd(goods, &temp);
 	if (pos->C_amount == 0)
 		C_goodsRemoveStockInfoRank(goods, r);
-	return 1;
+	return temp.batch;
 }
-void C_goodsOutofStock(C_Goods* goods, int amount) {//商品出库上架，默认最先过期的批次
-	C_goodsOutofStockRank(goods, 0, amount);
+char C_goodsOutofStock(C_Goods* goods, int amount) {//商品出库上架，默认最先过期的批次
+	return C_goodsOutofStockRank(goods, 0, amount);
 }
 Rank C_goodsGetShelfBatch(C_Goods* goods, char batch) {//在shelfInfo下查找批次，成功返回秩，失败返回-1
 	B_listNode* x = B_listGetFirstNode(goods->C_shelfInfo);

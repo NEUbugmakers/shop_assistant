@@ -181,8 +181,7 @@ void SR_dataAddNewGoods(C_Goods* goods) {//添加新商品
 	C_goodsVectorInsert(pos->goodsVector, goods);
 }
 void SR_dataReplenishGoods(char code[], C_goodsInfo* info) {//补货
-	SR_dataBTNode* posNode = SR_dataGetSort(code);
-	C_Goods* pos = C_goodsVectorFind_P(posNode, code);
+	C_Goods* pos = SR_dataGet(code);
 	C_goodsStockAdd(pos, info);
 }
 C_goodsReturnPrice SR_dataSell(char code[], char batch, int amount) {//出售商品,返回商品标价
@@ -251,27 +250,20 @@ C_goodsVector* SR_dataGetRot() {//查找过期商品
 	}
 	return rotGoods;//返回过期商品的向量
 }
+char SR_dataOutOfStock(char code[], int amount) {//商品出库
+	C_Goods* pos = SR_dataGet(code);
+	return C_goodsOutofStock(pos, amount);
+}
 
 
 
 
-
-void SR_dataBTPreOrderFrom(SR_dataBTNode* pos, B_list* list, char sortName[]) {//从某一位置开始遍历(未完成）
+void SR_dataBTPreOrderFrom(SR_dataBTNode* pos, char sortName[]) {//从某一位置开始遍历(未完成）
 	SR_dataPrint temp;
 	C_Goods* x;
 	int preLen;//当前分类的名称长度
 	for (int i = 0; i < pos->goodsVector->vector->_size; i++) {
-		x = (C_Goods*)B_vectorGet(pos->goodsVector->vector, i);
-		strcpy(temp.code, x->code);
-		strcpy(temp.name, x->name);
-		temp.C_out = x->C_out;
-		temp.C_shelfNum = x->C_shelfTotal;
-		temp.C_stockNum = x->C_stockTotal;
-		if (i != pos->goodsVector->vector->_size - 1)
-			temp.C_State = Default;
-		else
-			temp.C_State = -1;//这里明显没有写完
-		B_listPushBack(list, &temp);
+
 	}
 	for (int i = 0; i < pos->child->_size; i++) {
 

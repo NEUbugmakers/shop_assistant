@@ -58,3 +58,4 @@ void SR_dataCodeVectorBuildFrom(SR_dataBTNode* pos, B_vector* vector);//建立某一
 void SR_dataCodeNodeCmp(SR_dataCodeNode* node1, SR_dataCodeNode* node2);//通过数字编码比较codeNode大小
 void SR_dataCodeVectorBuild();//建立数字编码查找向量
 C_Goods* SR_dataCodeFind(char code[]);//通过数字编码查找商品
+char SR_dataOutOfStock(char code[], int amount);//商品出库

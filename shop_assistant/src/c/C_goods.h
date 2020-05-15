@@ -38,8 +38,8 @@ void C_goodsShelfAdd(C_Goods* goods, C_goodsInfo* info);//向goodsShelf中添加
 void C_goodsStockAdd(C_Goods* goods, C_goodsInfo* info);//向goodsStock中添加新批次货物
 void C_goodsRemoveShelfInfoRank(C_Goods* goods, Rank r);//删除货架上的某批商品
 void C_goodsRemoveStockInfoRank(C_Goods* goods, Rank r);//删除库存中的某批商品
-int C_goodsOutofStockRank(C_Goods* goods, Rank r, int amount);//商品指定批次出库上架,返回1表示操作成功，0表示操作失败
-void C_goodsOutofStock(C_Goods* goods, int amount);//商品出库上架，默认最先过期的批次
+char C_goodsOutofStockRank(C_Goods* goods, Rank r, int amount);//商品指定批次出库上架,返回批次编号，失败返回-1
+char C_goodsOutofStock(C_Goods* goods, int amount);//商品出库上架，默认最先过期的批次,返回批次编号
 Rank C_goodsGetShelfBatch(C_Goods* goods, char batch);//在shelfInfo下查找批次，成功返回秩，失败返回-1
 C_goodsReturnPrice C_goodsSell(C_Goods* goods, char batch, int amount);//商品出售,返回价格信息
 char C_goodsSelectBatch(C_Goods* goods);//为即将上架的商品挑选批次编码
