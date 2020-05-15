@@ -1,5 +1,6 @@
 
 #include"B_list.h"
+int (*B_listCmpTemp)(void*, void*);//临时保存排序函数
 B_list* B_listCreat(size_t esize) {//创建B_list，需指定元素内存大小
 	B_list* list = malloc(sizeof(B_list));
 	list->_esize = esize;

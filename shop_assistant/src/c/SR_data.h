@@ -37,8 +37,8 @@ typedef struct {
 	char code[C_CODE_LEN];//数字部分编码
 }SR_dataCodeNode;
 
-B_vector* SR_dataCodeVector;
-SR_dataBTNode SR_dataBTRoot;//根节点
+extern B_vector* SR_dataCodeVector;
+extern SR_dataBTNode SR_dataBTRoot;//根节点
 void SR_dataBTInit();//初始化B-树
 void SR_dataBTBuild(SR_dataBTNode* x, FILE* file,FILE* goodsFile);//根据文件建立B-树,先序遍历
 SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort);//在当前节点的子节点查找分类,失败返回NULL

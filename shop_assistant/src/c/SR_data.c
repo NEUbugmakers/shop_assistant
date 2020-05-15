@@ -2,6 +2,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define _CRT_NONSTDC_NO_DEPRECATE
 #include"SR_data.h"
+B_vector* SR_dataCodeVector;
+SR_dataBTNode SR_dataBTRoot;//根节点
 void SR_dataBTInit() {//初始化B-树
 	FILE* file = fopen("root", "rb");
 	FILE* goodsFile = fopen("goods", "rb");
@@ -86,7 +88,7 @@ SR_dataBTNode* SR_dataGetSortFromNode(SR_dataBTNode* pos, char sort[]) {//从某一
 		return pos;
 }
 SR_dataBTNode* SR_dataGetSort(char sort[]) {//从根节点开始查找分类
-	SR_dataGetSortFromNode(&SR_dataBTRoot, sort);
+	return SR_dataGetSortFromNode(&SR_dataBTRoot, sort);
 }
 C_Goods* SR_dataGet(char code[]) {//根据编码查找商品
 	SR_dataBTNode* pos = SR_dataGetSort(code);

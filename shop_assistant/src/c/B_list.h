@@ -24,7 +24,7 @@ typedef struct {//B_vector的基本数据
 	B_listNode* header;//头哨兵
 	B_listNode* trailer;//尾哨兵
 } B_list;
-int (*B_listCmpTemp)(void*, void*);//临时保存排序函数
+extern int (*B_listCmpTemp)(void*, void*);//临时保存排序函数
 //public
 B_list* B_listCreat(size_t esize);//创建B_list，需指定元素内存大小
 void B_listClear(B_list* list);//清空列表
@@ -42,7 +42,7 @@ B_listNode* B_listGetFirstNode(B_list* list);//获取首元素
 B_listNode* B_listNextNode(B_listNode* x);//获得当前节点的下一个节点，若为最后一个节点则返回NULL
 char* B_listGetFromNode(B_listNode* x);//获取当前节点的保存的数据
 void B_listInsertPre(B_list* list, const void* e, B_listNode* listNode);//插入元素到指定位置(需保证listNode为list下的节点）
-void B_listSort(B_list* list, int (*cmp)(void*, void*));//链表排序
+void B_listSort(B_list* list, int (*cmp)(const void*,const void*));//链表排序
 //private
 B_listNode* B_listGetNodeRank(B_list* list, Rank r);//得到指定位置的元素对应的节点，速度较慢
 int B_listCmp(B_listNode** node1, B_listNode** node2);//内部排序函数
