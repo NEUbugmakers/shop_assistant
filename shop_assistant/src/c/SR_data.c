@@ -57,7 +57,7 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file, FILE* goodsFile) {//¸ù¾ÝÎÄ¼þ½¨
 		x->child->_capicity = x->childNum;
 		x->child->_size = x->childNum;
 		for (int i = 0; i < x->childNum; i++) {
-			SR_dataBTNode* t = B_vectorGet(x->child, i);
+			SR_dataBTNode* t = (SR_dataBTNode*)B_vectorGet(x->child, i);
 			printf("%s:%d\n", "child", sizeof(SR_dataBTNode));
 			fread(t, sizeof(SR_dataBTNode), 1, file);
 			SR_dataBTBuild(t, file, goodsFile);
@@ -77,7 +77,7 @@ int SR_dataGetSortFromChildInterval(SR_dataBTNode* pos, char sort, int lo, int h
 SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort) {//ÔÚµ±Ç°½ÚµãµÄ×Ó½Úµã²éÕÒ·ÖÀà,Ê§°Ü·µ»ØNULL(ÓÐÎÊÌâ£©
 	Rank r = SR_dataGetSortFromChildInterval(pos, sort, 0, pos->childCode->_size);
 	if (*(char*)B_vectorGet(pos->childCode, r) == sort)//ÅÐ¶ÏÊÇ·ñÕÒµ½
-		return B_vectorGet(pos->child, r);
+		return (SR_dataBTNode*)B_vectorGet(pos->child, r);
 	else
 		return NULL;
 }
@@ -195,7 +195,7 @@ void SR_dataCodeVectorBuildFrom(SR_dataBTNode* pos, B_vector* vector) {//½¨Á¢Ä³Ò
 	SR_dataCodeNode node;
 	Rank firstNum;
 	for (int i = 0; i < pos->goodsVector->vector->_size; i++) {//·ÖÀë·ÖÀà±àÂëºÍÊý×Ö±àÂë
-		goods = B_vectorGet(pos->goodsVector->vector, i);
+		goods = (C_Goods*)B_vectorGet(pos->goodsVector->vector, i);
 		for (firstNum = 0; firstNum < 19 && isalpha(goods->code[firstNum]); firstNum++) {
 			node.sort[firstNum] = goods->code[firstNum];
 		}
@@ -204,15 +204,15 @@ void SR_dataCodeVectorBuildFrom(SR_dataBTNode* pos, B_vector* vector) {//½¨Á¢Ä³Ò
 		B_vectorPushBack(vector, &node);
 	}
 	for (int i = 0; i < pos->child->_size; i++)//¼ÌÐøÉîÈë
-		SR_dataCodeVectorBuildFrom(B_vectorGet(pos->child, i), vector);
+		SR_dataCodeVectorBuildFrom((SR_dataBTNode*)B_vectorGet(pos->child, i), vector);
 }
-void SR_dataCodeNodeCmp(SR_dataCodeNode* node1, SR_dataCodeNode* node2) {//Í¨¹ýÊý×Ö±àÂë±È½ÏcodeNode´óÐ¡
+int SR_dataCodeNodeCmp(SR_dataCodeNode* node1, SR_dataCodeNode* node2) {//Í¨¹ýÊý×Ö±àÂë±È½ÏcodeNode´óÐ¡
 	return strcmp(node1->code, node2->code);
 }
 void SR_dataCodeVectorBuild() {//½¨Á¢Êý×Ö±àÂë²éÕÒÏòÁ¿
 	SR_dataCodeVector = B_vectorCreat(sizeof(SR_dataCodeNode));
 	SR_dataCodeVectorBuildFrom(&SR_dataBTRoot, SR_dataCodeVector);
-	B_vectorSort(SR_dataCodeVector, SR_dataCodeNodeCmp);
+	B_vectorSort(SR_dataCodeVector, (int(*)(const void*,const void*))SR_dataCodeNodeCmp);
 }
 C_Goods* SR_dataCodeFind(char code[]) {//Í¨¹ýÊý×Ö±àÂë²éÕÒÉÌÆ·
 	int lo = 0, hi = SR_dataCodeVector->_size;
@@ -246,7 +246,7 @@ C_goodsVector* SR_dataGetRot() {//²éÕÒ¹ýÆÚÉÌÆ·
 			B_vectorPushBack(rotGoods->vector, &goods);
 	}
 	if (rotGoods->vector->_size == 0) {//Èç¹ûÎÞ¹ýÆÚÉÌÆ·ÔòÊÍ·Å¿Õ¼ä£¬²¢·µ»ØNULL
-		B_vectorClear(rotGoods);
+		C_goodsVectorClear(rotGoods);
 		free(rotGoods);
 		rotGoods = 0;
 	}
@@ -259,7 +259,7 @@ char SR_dataOutOfStock(char code[], int amount) {//ÉÌÆ·³ö¿â
 B_vector* SR_dataSortVectorFrom(SR_dataBTNode* node, char* sort, int len, B_vector* vector) {//»ñÈ¡´ÓÄ³Ò»½Úµã¿ªÊ¼µÄ·ÖÀà
 	if (node == &SR_dataBTRoot) {//¸ù½Úµã²»¼ÓÈë·ÖÀà
 		for (int i = 0; i < node->child->_size; i++) {
-			SR_dataSortVectorFrom(B_vectorGet(node->child, i), sort, len, vector);
+			SR_dataSortVectorFrom((SR_dataBTNode*)B_vectorGet(node->child, i), sort, len, vector);
 		}
 	}
 	else {
@@ -267,7 +267,7 @@ B_vector* SR_dataSortVectorFrom(SR_dataBTNode* node, char* sort, int len, B_vect
 		sort[len + 1] = 0;
 		B_vectorPushBack(vector, sort);
 		for (int i = 0; i < node->child->_size; i++) {
-			SR_dataSortVectorFrom(B_vectorGet(node->child, i), sort, len+1, vector);
+			SR_dataSortVectorFrom((SR_dataBTNode*)B_vectorGet(node->child, i), sort, len+1, vector);
 		}
 	}
 	return vector;

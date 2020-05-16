@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\</FILEPATH>
+      <FILENAME>C_goodsvector.c</FILENAME>
+      <LINE>5</LINE>
+      <COLUMN>21</COLUMN>
+    </SFA>
+    <DEFECTCODE>6011</DEFECTCODE>
+    <DESCRIPTION>取消对 NULL 指针“goodsVector”的引用。</DESCRIPTION>
+    <FUNCTION>C_goodsVectorCreat</FUNCTION>
+    <DECORATED>C_goodsVectorCreat</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\</FILEPATH>
+        <FILENAME>C_goodsvector.c</FILENAME>
+        <LINE>4</LINE>
+        <COLUMN>16</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>声明</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>“goodsVector”可能为 NULL</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\</FILEPATH>
+        <FILENAME>C_goodsvector.c</FILENAME>
+        <LINE>5</LINE>
+        <COLUMN>21</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>使用情况</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>已取消对“goodsVector”的引用，但可能仍为 NULL</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>

@@ -1,6 +1,6 @@
 
 #include"C_goods.h"
-C_Goods C_GoodsCreat(int out, char name[], char code[]) {//创建C_Goods
+C_Goods C_GoodsCreat(float out, char name[], char code[]) {//创建C_Goods
 	C_Goods newGoods;
 	newGoods.C_out = out;
 	newGoods.C_shelfKinds = 0;
@@ -90,7 +90,7 @@ Rank C_goodsGetShelfBatch(C_Goods* goods, char batch) {//在shelfInfo下查找批次，
 }
 C_goodsReturnPrice C_goodsSell(C_Goods* goods, char batch, int amount) {//商品出售
 	Rank r = C_goodsGetShelfBatch(goods, batch);
-	C_goodsInfo* pos = B_listGetRank(goods->C_shelfInfo, r);
+	C_goodsInfo* pos = (C_goodsInfo*)B_listGetRank(goods->C_shelfInfo, r);
 	C_goodsReturnPrice price;
 	price.C_in = pos->C_in;
 	price.C_out = goods->C_out;

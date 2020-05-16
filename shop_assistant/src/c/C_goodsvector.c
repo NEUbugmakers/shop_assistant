@@ -19,7 +19,7 @@ Rank C_goodsVectorFind(C_goodsVector* goodsVector, char code[]) {//∏˘æ›±‡¬Î≤È’“…
 	return C_goodsVectorFindInterval(goodsVector, code, 0, goodsVector->vector->_size);
 }
 C_Goods* C_goodsVectorFind_P(C_goodsVector* goodsVector, char code[]) {//∏˘æ›±‡¬Î≤È’“…Ã∆∑£¨≥…π¶‘Ú∑µªÿ…Ã∆∑÷∏’Î£¨ ß∞‹‘Ú∑µªÿ±‡∫≈≤ª¥Û”⁄codeµƒ◊Ó¥ÛŒª÷√
-	return B_vectorGet(goodsVector->vector, C_goodsVectorFindInterval(goodsVector, code, 0, goodsVector->vector->_size));
+	return (C_Goods*)B_vectorGet(goodsVector->vector, C_goodsVectorFindInterval(goodsVector, code, 0, goodsVector->vector->_size));
 }
 
 int C_goodsVectorInsert(C_goodsVector* goodsVector, C_Goods* e) {//≤Â»Î,≥…π¶∑µªÿ1£¨ ß∞‹∑µªÿ0

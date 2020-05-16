@@ -57,7 +57,7 @@ void SR_dataAddNewGoods(C_Goods* goods);//添加新商品
 void SR_dataReplenishGoods(char code[], C_goodsInfo* info);//补货
 C_goodsReturnPrice SR_dataSell(char code[], char batch, int amount);//出售商品,返回商品标价
 void SR_dataCodeVectorBuildFrom(SR_dataBTNode* pos, B_vector* vector);//建立某一分类下的商品数字编码查找向量(无序）
-void SR_dataCodeNodeCmp(SR_dataCodeNode* node1, SR_dataCodeNode* node2);//通过数字编码比较codeNode大小
+int SR_dataCodeNodeCmp(SR_dataCodeNode* node1, SR_dataCodeNode* node2);//通过数字编码比较codeNode大小
 void SR_dataCodeVectorBuild();//建立数字编码查找向量
 C_Goods* SR_dataCodeFind(char code[]);//通过数字编码查找商品
 char SR_dataOutOfStock(char code[], int amount);//商品出库
