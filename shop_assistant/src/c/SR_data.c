@@ -190,13 +190,13 @@ C_goodsReturnPrice SR_dataSell(char code[], char batch, int amount) {//出售商品,
 	C_Goods* pos = SR_dataGet(code);
 	return C_goodsSell(pos, batch, amount);
 }
-void SR_dataCodeVectorBuildFrom(SR_dataBTNode* pos,B_vector* vector) {//建立某一分类下的商品数字编码查找向量(无序）
+void SR_dataCodeVectorBuildFrom(SR_dataBTNode* pos, B_vector* vector) {//建立某一分类下的商品数字编码查找向量(无序）
 	C_Goods* goods;
 	SR_dataCodeNode node;
 	Rank firstNum;
 	for (int i = 0; i < pos->goodsVector->vector->_size; i++) {//分离分类编码和数字编码
 		goods = B_vectorGet(pos->goodsVector->vector, i);
-		for (firstNum = 0; firstNum < 19&&isalpha(goods->code[firstNum]); firstNum++) {
+		for (firstNum = 0; firstNum < 19 && isalpha(goods->code[firstNum]); firstNum++) {
 			node.sort[firstNum] = goods->code[firstNum];
 		}
 		node.sort[firstNum] = 0;
@@ -206,7 +206,7 @@ void SR_dataCodeVectorBuildFrom(SR_dataBTNode* pos,B_vector* vector) {//建立某一
 	for (int i = 0; i < pos->child->_size; i++)//继续深入
 		SR_dataCodeVectorBuildFrom(B_vectorGet(pos->child, i), vector);
 }
-void SR_dataCodeNodeCmp(SR_dataCodeNode* node1,SR_dataCodeNode* node2) {//通过数字编码比较codeNode大小
+void SR_dataCodeNodeCmp(SR_dataCodeNode* node1, SR_dataCodeNode* node2) {//通过数字编码比较codeNode大小
 	return strcmp(node1->code, node2->code);
 }
 void SR_dataCodeVectorBuild() {//建立数字编码查找向量
@@ -218,7 +218,7 @@ C_Goods* SR_dataCodeFind(char code[]) {//通过数字编码查找商品
 	int lo = 0, hi = SR_dataCodeVector->_size;
 	while (lo < hi) {
 		int mi = (lo + hi) >> 1;
-		if (strcmp(code, ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, mi))->code ) < 0)
+		if (strcmp(code, ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, mi))->code) < 0)
 			hi = mi;
 		else
 			lo = mi + 1;
@@ -256,21 +256,24 @@ char SR_dataOutOfStock(char code[], int amount) {//商品出库
 	C_Goods* pos = SR_dataGet(code);
 	return C_goodsOutofStock(pos, amount);
 }
-
-
-
-
-void SR_dataBTPreOrderFrom(SR_dataBTNode* pos, char sortName[]) {//从某一位置开始遍历(未完成）
-	SR_dataPrint temp;
-	C_Goods* x;
-	int preLen;//当前分类的名称长度
-	for (int i = 0; i < pos->goodsVector->vector->_size; i++) {
-
+B_vector* SR_dataSortVectorFrom(SR_dataBTNode* node, char* sort, int len, B_vector* vector) {//获取从某一节点开始的分类
+	if (node == &SR_dataBTRoot) {//根节点不加入分类
+		for (int i = 0; i < node->child->_size; i++) {
+			SR_dataSortVectorFrom(B_vectorGet(node->child, i), sort, len, vector);
+		}
 	}
-	for (int i = 0; i < pos->child->_size; i++) {
-
+	else {
+		sort[len] = node->sort;
+		sort[len + 1] = 0;
+		B_vectorPushBack(vector, sort);
+		for (int i = 0; i < node->child->_size; i++) {
+			SR_dataSortVectorFrom(B_vectorGet(node->child, i), sort, len+1, vector);
+		}
 	}
+	return vector;
 }
-void SR_dataBTPreOrder() {//先序遍历，用于输出商品列表（未完成）
-
+B_vector* SR_dataSortVector() {//获取全部分类
+	B_vector* vector = B_vectorCreat(sizeof(char[20]));
+	char sort[20] = { 0 };
+	return SR_dataSortVectorFrom(&SR_dataBTRoot, sort, 0, vector);
 }

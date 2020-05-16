@@ -36,7 +36,9 @@ typedef struct {
 	char sort[20];//分类
 	char code[C_CODE_LEN];//数字部分编码
 }SR_dataCodeNode;
-
+typedef struct {
+	char sort[20];
+}SR_dataSortDir;
 extern B_vector* SR_dataCodeVector;
 extern SR_dataBTNode SR_dataBTRoot;//根节点
 void SR_dataBTInit();//初始化B-树
@@ -59,3 +61,5 @@ void SR_dataCodeNodeCmp(SR_dataCodeNode* node1, SR_dataCodeNode* node2);//通过数
 void SR_dataCodeVectorBuild();//建立数字编码查找向量
 C_Goods* SR_dataCodeFind(char code[]);//通过数字编码查找商品
 char SR_dataOutOfStock(char code[], int amount);//商品出库
+B_vector* SR_dataSortVectorFrom(SR_dataBTNode* node, char* sort, int len, B_vector* vector);//获取从某一节点开始的分类
+B_vector* SR_dataSortVector();//获取全部分类

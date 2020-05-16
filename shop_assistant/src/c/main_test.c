@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include"C_goods.h"
 #include"SR_data.h"
 typedef struct {
@@ -68,8 +68,12 @@ int main() {
 	//		printf("%d\n", ((Test*)B_listGetRank(list, i))->num);
 	//	}
 	//C_Goods* goods = SR_dataCodeFind("1000");
-	for (int i = 0; i < SR_dataCodeVector->_size; i++) {
-		printf("%s%s\n", ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, i))->sort, ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, i))->code);
+	//for (int i = 0; i < SR_dataCodeVector->_size; i++) {
+	//	printf("%s%s\n", ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, i))->sort, ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, i))->code);
+	//}
+	B_vector* vector = SR_dataSortVector();
+	for (int i = 0; i < vector->_size; i++) {
+		printf("%s\n", B_vectorGet(vector, i));
 	}
 	SR_dataSave();
 }
