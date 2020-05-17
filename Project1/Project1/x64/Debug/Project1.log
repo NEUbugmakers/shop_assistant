@@ -60,36 +60,7 @@ C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(167,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 2 拥有了类型“size_t”
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(167,9): message : 请考虑在格式字符串中使用“%zd”
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(218,1): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-  正在编译...
   正在生成代码...
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_time.c(116): warning C4715: “B_DateIsSmall”: 不是所有的控件路径都返回值
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(120): warning C4715: “SR_dataSelectSort”: 不是所有的控件路径都返回值
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_time.c(116): warning C4715: “B_DateIsSmall”: 不是所有的控件路径都返回值
   Project1.vcxproj -> C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\Project1\x64\Debug\Project1.exe
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(6): warning C6011: 取消对 NULL 指针“list”的引用。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(14): warning C6011: 取消对 NULL 指针“list->trailer”的引用。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(13): warning C6011: 取消对 NULL 指针“list->header”的引用。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(25): warning C6001: 使用未初始化的内存“****list->trailer[BYTE:8][BYTE:16]”。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(26): warning C6001: 使用未初始化的内存“***list->trailer[BYTE:8]”。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(38): warning C6387: “x->_elem”可能是“0”: 这不符合函数“memcpy”的规范。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(37): warning C6011: 取消对 NULL 指针“x”的引用。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(48): warning C6011: 取消对 NULL 指针“x”的引用。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(49): warning C6387: “x->_elem”可能是“0”: 这不符合函数“memcpy”的规范。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(60): warning C6011: 取消对 NULL 指针“x”的引用。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(61): warning C6387: “x->_elem”可能是“0”: 这不符合函数“memcpy”的规范。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(116): warning C6001: 使用未初始化的内存“*x”。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(111): warning C26451: 算术溢出: 使用 4 字节值上的运算符 - ，然后将结果转换到 8 字节值。在调用运算符 - 之前将值强制转换为宽类型可避免溢出(io.2)。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(141): warning C6387: “x->_elem”可能是“0”: 这不符合函数“memcpy”的规范。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(140): warning C6011: 取消对 NULL 指针“x”的引用。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(172): warning C6011: 取消对 NULL 指针“travelsucc”的引用。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\C_goodsvector.c(5): warning C6011: 取消对 NULL 指针“goodsVector”的引用。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(11): warning C6328: 大小不匹配: 已将“unsigned __int64”作为 _Param_(3) 传递，但需要使用“int”来调用“printf”。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(29): warning C6328: 大小不匹配: 已将“unsigned __int64”作为 _Param_(3) 传递，但需要使用“int”来调用“printf”。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(36): warning C6328: 大小不匹配: 已将“unsigned __int64”作为 _Param_(3) 传递，但需要使用“int”来调用“printf”。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(41): warning C6328: 大小不匹配: 已将“unsigned __int64”作为 _Param_(3) 传递，但需要使用“int”来调用“printf”。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(52): warning C6328: 大小不匹配: 已将“unsigned __int64”作为 _Param_(3) 传递，但需要使用“int”来调用“printf”。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(61): warning C6328: 大小不匹配: 已将“unsigned __int64”作为 _Param_(3) 传递，但需要使用“int”来调用“printf”。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(53): warning C6387: “x->childCode->_elem”可能是“0”: 这不符合函数“fread”的规范。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(142): warning C6328: 大小不匹配: 已将“unsigned __int64”作为 _Param_(3) 传递，但需要使用“int”来调用“printf”。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(152): warning C6328: 大小不匹配: 已将“unsigned __int64”作为 _Param_(3) 传递，但需要使用“int”来调用“printf”。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(160): warning C6328: 大小不匹配: 已将“unsigned __int64”作为 _Param_(3) 传递，但需要使用“int”来调用“printf”。
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(167): warning C6328: 大小不匹配: 已将“unsigned __int64”作为 _Param_(3) 传递，但需要使用“int”来调用“printf”。

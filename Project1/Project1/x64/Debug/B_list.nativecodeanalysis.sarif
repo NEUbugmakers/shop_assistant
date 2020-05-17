@@ -259,165 +259,6 @@
         {
           "ruleId": "C6001",
           "message": {
-            "text": "使用未初始化的内存“****list->trailer[BYTE:8][BYTE:16]”。"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                },
-                "region": {
-                  "startLine": 25,
-                  "startColumn": 8,
-                  "endLine": 25,
-                  "endColumn": 17
-                }
-              }
-            }
-          ],
-          "codeFlows": [
-            {
-              "threadFlows": [
-                {
-                  "locations": [
-                    {
-                      "index": 0,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 23,
-                            "startColumn": 14
-                          }
-                        }
-                      },
-                      "importance": "unimportant"
-                    },
-                    {
-                      "index": 1,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 24,
-                            "startColumn": 11
-                          }
-                        }
-                      },
-                      "importance": "unimportant"
-                    },
-                    {
-                      "index": 2,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 25,
-                            "startColumn": 7
-                          }
-                        }
-                      },
-                      "importance": "unimportant"
-                    },
-                    {
-                      "index": 3,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 26,
-                            "startColumn": 7
-                          }
-                        }
-                      },
-                      "importance": "unimportant"
-                    },
-                    {
-                      "index": 4,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 24,
-                            "startColumn": 11
-                          }
-                        }
-                      },
-                      "importance": "unimportant"
-                    },
-                    {
-                      "index": 5,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 25,
-                            "startColumn": 7
-                          }
-                        },
-                        "message": {
-                          "text": "未初始化“****list->trailer[BYTE:8][BYTE:16]”"
-                        }
-                      },
-                      "kind": "声明",
-                      "importance": "essential"
-                    },
-                    {
-                      "index": 6,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 26,
-                            "startColumn": 7
-                          }
-                        }
-                      },
-                      "importance": "unimportant"
-                    },
-                    {
-                      "index": 7,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 25,
-                            "startColumn": 15
-                          }
-                        },
-                        "message": {
-                          "text": "已使用“****list->trailer[BYTE:8][BYTE:16]”，但可能尚未将其初始化"
-                        }
-                      },
-                      "kind": "使用情况",
-                      "importance": "essential"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "ruleId": "C6001",
-          "message": {
             "text": "使用未初始化的内存“***list->trailer[BYTE:8]”。"
           },
           "locations": [
@@ -563,6 +404,165 @@
                         },
                         "message": {
                           "text": "已使用“***list->trailer[BYTE:8]”，但可能尚未将其初始化"
+                        }
+                      },
+                      "kind": "使用情况",
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6001",
+          "message": {
+            "text": "使用未初始化的内存“****list->trailer[BYTE:8][BYTE:16]”。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                },
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 8,
+                  "endLine": 25,
+                  "endColumn": 17
+                }
+              }
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "index": 0,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 23,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "index": 1,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 24,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "index": 2,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 25,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "index": 3,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 26,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "index": 4,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 24,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "index": 5,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 25,
+                            "startColumn": 7
+                          }
+                        },
+                        "message": {
+                          "text": "未初始化“****list->trailer[BYTE:8][BYTE:16]”"
+                        }
+                      },
+                      "kind": "声明",
+                      "importance": "essential"
+                    },
+                    {
+                      "index": 6,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 26,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "index": 7,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 25,
+                            "startColumn": 15
+                          }
+                        },
+                        "message": {
+                          "text": "已使用“****list->trailer[BYTE:8][BYTE:16]”，但可能尚未将其初始化"
                         }
                       },
                       "kind": "使用情况",
@@ -941,90 +941,6 @@
           ]
         },
         {
-          "ruleId": "C6011",
-          "message": {
-            "text": "取消对 NULL 指针“x”的引用。"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                },
-                "region": {
-                  "startLine": 60,
-                  "startColumn": 2,
-                  "endLine": 60,
-                  "endColumn": 33
-                }
-              }
-            }
-          ],
-          "codeFlows": [
-            {
-              "threadFlows": [
-                {
-                  "locations": [
-                    {
-                      "index": 0,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 58,
-                            "startColumn": 14
-                          }
-                        },
-                        "message": {
-                          "text": "“x”可能为 NULL"
-                        }
-                      },
-                      "kind": "声明",
-                      "importance": "essential"
-                    },
-                    {
-                      "index": 1,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 59,
-                            "startColumn": 14
-                          }
-                        }
-                      },
-                      "importance": "unimportant"
-                    },
-                    {
-                      "index": 2,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 60,
-                            "startColumn": 11
-                          }
-                        },
-                        "message": {
-                          "text": "已取消对“x”的引用，但可能仍为 NULL"
-                        }
-                      },
-                      "kind": "使用情况",
-                      "importance": "essential"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
           "ruleId": "C6387",
           "message": {
             "text": "“x->_elem”可能是“0”: 这不符合函数“memcpy”的规范。"
@@ -1127,6 +1043,90 @@
                         },
                         "message": {
                           "text": "“x->_elem”不应为 NULL，因为这与“memcpy”上的 SAL 批注不一致"
+                        }
+                      },
+                      "kind": "使用情况",
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6011",
+          "message": {
+            "text": "取消对 NULL 指针“x”的引用。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                },
+                "region": {
+                  "startLine": 60,
+                  "startColumn": 2,
+                  "endLine": 60,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "index": 0,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 58,
+                            "startColumn": 14
+                          }
+                        },
+                        "message": {
+                          "text": "“x”可能为 NULL"
+                        }
+                      },
+                      "kind": "声明",
+                      "importance": "essential"
+                    },
+                    {
+                      "index": 1,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 59,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "index": 2,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 60,
+                            "startColumn": 11
+                          }
+                        },
+                        "message": {
+                          "text": "已取消对“x”的引用，但可能仍为 NULL"
                         }
                       },
                       "kind": "使用情况",
@@ -1379,6 +1379,90 @@
           ]
         },
         {
+          "ruleId": "C6011",
+          "message": {
+            "text": "取消对 NULL 指针“x”的引用。"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                },
+                "region": {
+                  "startLine": 140,
+                  "startColumn": 2,
+                  "endLine": 140,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "index": 0,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 138,
+                            "startColumn": 14
+                          }
+                        },
+                        "message": {
+                          "text": "“x”可能为 NULL"
+                        }
+                      },
+                      "kind": "声明",
+                      "importance": "essential"
+                    },
+                    {
+                      "index": 1,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 139,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "index": 2,
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
+                          },
+                          "region": {
+                            "startLine": 140,
+                            "startColumn": 11
+                          }
+                        },
+                        "message": {
+                          "text": "已取消对“x”的引用，但可能仍为 NULL"
+                        }
+                      },
+                      "kind": "使用情况",
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "ruleId": "C6387",
           "message": {
             "text": "“x->_elem”可能是“0”: 这不符合函数“memcpy”的规范。"
@@ -1481,90 +1565,6 @@
                         },
                         "message": {
                           "text": "“x->_elem”不应为 NULL，因为这与“memcpy”上的 SAL 批注不一致"
-                        }
-                      },
-                      "kind": "使用情况",
-                      "importance": "essential"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "ruleId": "C6011",
-          "message": {
-            "text": "取消对 NULL 指针“x”的引用。"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                },
-                "region": {
-                  "startLine": 140,
-                  "startColumn": 2,
-                  "endLine": 140,
-                  "endColumn": 33
-                }
-              }
-            }
-          ],
-          "codeFlows": [
-            {
-              "threadFlows": [
-                {
-                  "locations": [
-                    {
-                      "index": 0,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 138,
-                            "startColumn": 14
-                          }
-                        },
-                        "message": {
-                          "text": "“x”可能为 NULL"
-                        }
-                      },
-                      "kind": "声明",
-                      "importance": "essential"
-                    },
-                    {
-                      "index": 1,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 139,
-                            "startColumn": 14
-                          }
-                        }
-                      },
-                      "importance": "unimportant"
-                    },
-                    {
-                      "index": 2,
-                      "location": {
-                        "physicalLocation": {
-                          "artifactLocation": {
-                            "uri": "file:///C:/Users/利姆露/source/repos/NEUbugmakers/shop_assistant/shop_assistant/src/c/B_list.c"
-                          },
-                          "region": {
-                            "startLine": 140,
-                            "startColumn": 11
-                          }
-                        },
-                        "message": {
-                          "text": "已取消对“x”的引用，但可能仍为 NULL"
                         }
                       },
                       "kind": "使用情况",
@@ -1839,7 +1839,7 @@
       },
       "invocations": [
         {
-          "commandLine": "H:\\VS2019IDE\\VC\\Tools\\MSVC\\14.25.28610\\bin\\HostX86\\x64\\c1.dll -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x009E3190 -il C:\\Users\\利姆露\\AppData\\Local\\Temp\\_CL_92d4804aast -typedil -f ..\\..\\shop_assistant\\src\\c\\B_list.c -Ze -D_MSC_EXTENSIONS -Zp16 -pc \\:/ -D_MSC_VER=1925 -D_MSC_FULL_VER=192528614 -D_MSC_BUILD=0 -D_M_AMD64=100 -ZILP448 -D_M_X64=100 -D_WIN64 -D_WIN32 -nologo -W 3 -diagnostics:column -D_GUARDOVERFLOW_CRT_ALLOCATORS=1 -Ot -DCODE_ANALYSIS -D_DEBUG -D_CONSOLE -D_UNICODE -DUNICODE -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -D_DEBUG -D_MT -D_DLL -GS -D_M_FP_PRECISE -Fox64\\Debug\\B_list.obj -Fdx64\\Debug\\vc142.pdb -Gd -analyze:projectdirectory C:\\Users\\利姆露\\source\\repos\\NEUbugmakers\\shop_assistant\\Project1\\Project1\\ -analyze:rulesetdirectory ;H:\\VS2019IDE\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset H:\\VS2019IDE\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin H:\\VS2019IDE\\VC\\Tools\\MSVC\\14.25.28610\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I H:\\VS2019IDE\\VC\\Tools\\MSVC\\14.25.28610\\include -I H:\\VS2019IDE\\VC\\Tools\\MSVC\\14.25.28610\\atlmfc\\include -I H:\\VS2019IDE\\VC\\Auxiliary\\VS\\include -I H:\\Windows Kits\\10\\Include\\10.0.18362.0\\ucrt -I H:\\Windows Kits\\10\\Include\\10.0.18362.0\\um -I H:\\Windows Kits\\10\\Include\\10.0.18362.0\\shared -I H:\\Windows Kits\\10\\Include\\10.0.18362.0\\winrt -I H:\\Windows Kits\\10\\Include\\10.0.18362.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um",
+          "commandLine": "H:\\VS2019IDE\\VC\\Tools\\MSVC\\14.25.28610\\bin\\HostX86\\x64\\c1.dll -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x009E3190 -il C:\\Users\\利姆露\\AppData\\Local\\Temp\\_CL_f6230e2cast -typedil -f ..\\..\\shop_assistant\\src\\c\\B_list.c -Ze -D_MSC_EXTENSIONS -Zp16 -pc \\:/ -D_MSC_VER=1925 -D_MSC_FULL_VER=192528614 -D_MSC_BUILD=0 -D_M_AMD64=100 -ZILP448 -D_M_X64=100 -D_WIN64 -D_WIN32 -nologo -W 3 -diagnostics:column -D_GUARDOVERFLOW_CRT_ALLOCATORS=1 -Ot -DCODE_ANALYSIS -D_DEBUG -D_CONSOLE -D_UNICODE -DUNICODE -D__MSVC_RUNTIME_CHECKS -RTCs -RTCu -D_DEBUG -D_MT -D_DLL -GS -D_M_FP_PRECISE -Fox64\\Debug\\B_list.obj -Fdx64\\Debug\\vc142.pdb -Gd -analyze:projectdirectory C:\\Users\\利姆露\\source\\repos\\NEUbugmakers\\shop_assistant\\Project1\\Project1\\ -analyze:rulesetdirectory ;H:\\VS2019IDE\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset H:\\VS2019IDE\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin H:\\VS2019IDE\\VC\\Tools\\MSVC\\14.25.28610\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I H:\\VS2019IDE\\VC\\Tools\\MSVC\\14.25.28610\\include -I H:\\VS2019IDE\\VC\\Tools\\MSVC\\14.25.28610\\atlmfc\\include -I H:\\VS2019IDE\\VC\\Auxiliary\\VS\\include -I H:\\Windows Kits\\10\\Include\\10.0.18362.0\\ucrt -I H:\\Windows Kits\\10\\Include\\10.0.18362.0\\um -I H:\\Windows Kits\\10\\Include\\10.0.18362.0\\shared -I H:\\Windows Kits\\10\\Include\\10.0.18362.0\\winrt -I H:\\Windows Kits\\10\\Include\\10.0.18362.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um",
           "executionSuccessful": true,
           "ruleConfigurationOverrides": [
             {

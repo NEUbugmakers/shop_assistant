@@ -24,7 +24,7 @@ typedef struct {//B_vector的基本数据
 	B_listNode* header;//头哨兵
 	B_listNode* trailer;//尾哨兵
 } B_list;
-extern int (*B_listCmpTemp)(void*, void*);//临时保存排序函数
+extern int (*B_listCmpTemp)(const void*,const void*);//临时保存排序函数
 //public
 B_list* B_listCreat(size_t esize);//创建B_list，需指定元素内存大小
 void B_listClear(B_list* list);//清空列表

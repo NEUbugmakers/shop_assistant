@@ -25,7 +25,7 @@ void SR_dataBTBuild(SR_dataBTNode* x, FILE* file, FILE* goodsFile) {//根据文件建
 	x->goodsVector = C_goodsVectorCreat();
 	if (x->SR_dataBTNodeGoodsNum > 0) {//还原goodsVector
 		free(x->goodsVector->vector->_elem);
-		x->goodsVector->vector->_elem = malloc(sizeof(C_Goods) * x->SR_dataBTNodeGoodsNum);
+		x->goodsVector->vector->_elem = (char*)malloc(sizeof(C_Goods) * x->SR_dataBTNodeGoodsNum);
 		printf("%s:%d\n", "goodsVector", sizeof(C_Goods) * x->SR_dataBTNodeGoodsNum);
 		fread(x->goodsVector->vector->_elem, sizeof(C_Goods), x->SR_dataBTNodeGoodsNum, goodsFile);
 		x->goodsVector->vector->_capicity = x->goodsVector->vector->_size = x->SR_dataBTNodeGoodsNum;
@@ -147,8 +147,7 @@ void SR_dataSaveGoodsInfo(B_list* info, FILE* file) {//保存shelfInfo和stockInfo
 void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root, FILE* goodsFile) {//先序遍历保存节点（未完成）
 
 	x->childNum = x->childCode->_size;
-	if (x->goodsVector->vector->_size != 0)//添加含有goodsVector标记
-		x->SR_dataBTNodeGoodsNum = x->goodsVector->vector->_size;
+		x->SR_dataBTNodeGoodsNum = x->goodsVector->vector->_size;//更新商品数量
 	printf("%s:%d\n", "child", sizeof(SR_dataBTNode));
 	fwrite(x, sizeof(SR_dataBTNode), 1, root);//保存当前节点的数据
 	if (x->goodsVector->vector->_size != 0) {//商品信息和商品目录分别存储

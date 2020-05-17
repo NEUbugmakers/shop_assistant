@@ -1,15 +1,15 @@
 
 #include"B_list.h"
-int (*B_listCmpTemp)(void*, void*);//临时保存排序函数
+int (*B_listCmpTemp)(const void*, const void*);//临时保存排序函数
 B_list* B_listCreat(size_t esize) {//创建B_list，需指定元素内存大小
-	B_list* list = malloc(sizeof(B_list));
+	B_list* list = (B_list*)malloc(sizeof(B_list));
 	list->_esize = esize;
 	B_listInit(list);
 	return list;
 }
 void B_listInit(B_list* list) {//初始化B_list
-	list->header = malloc(sizeof(B_listNode));
-	list->trailer = malloc(sizeof(B_listNode));
+	list->header = (B_listNode*)malloc(sizeof(B_listNode));
+	list->trailer = (B_listNode*)malloc(sizeof(B_listNode));
 	list->header->_elem = NULL;
 	list->trailer->_elem = NULL;
 	list->header->pred = NULL;
@@ -17,7 +17,7 @@ void B_listInit(B_list* list) {//初始化B_list
 	list->trailer->pred = list->header;
 	list->trailer->succ = NULL;
 	list->_size = 0;
-	return ;
+	return;
 }
 void B_listClear(B_list* list) {//清空列表
 	B_listNode* x = list->trailer->pred->pred;
@@ -33,7 +33,7 @@ void B_listClear(B_list* list) {//清空列表
 void B_listPushBack(B_list* list, const void* ve) {//插入元素到列表尾部
 	if (list->header == NULL)//如果是清空过的列表则需要初始化
 		B_listInit(list);
-	B_listNode* x = malloc(sizeof(B_listNode));
+	B_listNode* x = (B_listNode*)malloc(sizeof(B_listNode));
 	x->_elem = (char*)malloc(list->_esize);
 	memcpy(x->_elem, ve, list->_esize);
 	x->pred = list->trailer->pred;
@@ -44,7 +44,7 @@ void B_listPushBack(B_list* list, const void* ve) {//插入元素到列表尾部
 	return;
 }
 void B_listPushFirst(B_list* list, const void* ve) {//插入元素到列表头部
-	B_listNode* x = malloc(sizeof(B_listNode));
+	B_listNode* x = (B_listNode*)malloc(sizeof(B_listNode));
 	x->_elem = (char*)malloc(list->_esize);
 	memcpy(x->_elem, ve, list->_esize);
 	x->pred = list->header;
@@ -55,7 +55,7 @@ void B_listPushFirst(B_list* list, const void* ve) {//插入元素到列表头�
 	return;
 }
 void B_listInsertRank(B_list* list, const void* e, Rank r) {//插入元素到指定位置
-	B_listNode* x = malloc(sizeof(B_listNode));
+	B_listNode* x = (B_listNode*)malloc(sizeof(B_listNode));
 	B_listNode* dst = B_listGetNodeRank(list, r);//获取插入位置
 	x->_elem = (char*)malloc(list->_esize);
 	memcpy(x->_elem, e, list->_esize);
@@ -135,7 +135,7 @@ B_listNode* B_listGetFirstNode(B_list* list) {//获取首元素
 		return NULL;
 }
 void B_listInsertPre(B_list* list, const void* e, B_listNode* listNode) {//插入元素到指定位置(需保证listNode为list下的节点）
-	B_listNode* x = malloc(sizeof(B_listNode));
+	B_listNode* x = (B_listNode*)malloc(sizeof(B_listNode));
 	B_listNode* dst = listNode;
 	x->_elem = (char*)malloc(list->_esize);
 	memcpy(x->_elem, e, list->_esize);
@@ -148,13 +148,13 @@ void B_listInsertPre(B_list* list, const void* e, B_listNode* listNode) {//插�
 int B_listCmp(B_listNode** node1, B_listNode** node2) {//内部排序函数
 	return B_listCmpTemp((*node1)->_elem, (*node2)->_elem);
 }
-void B_listSort(B_list* list, int (*cmp)(const void*,const void*)) {//链表排序
+void B_listSort(B_list* list, int (*cmp)(const void*, const void*)) {//链表排序
 	if (list->_size < 2)//数量小于2，无需排序
 		return;
-	B_listCmpTemp = cmp;
+	B_listCmpTemp = (int(*)(const void*, const void*))cmp;
 	B_vector* node_p = B_vectorCreat(sizeof(B_listNode*));
 	B_listNode* x = B_listGetFirstNode(list);
-	B_listNode** travelpre=NULL, ** travelsucc=NULL;
+	B_listNode** travelpre = NULL, ** travelsucc = NULL;
 	while (x != NULL) {
 		B_vectorPushBack(node_p, &x);
 		x = B_listNextNode(x);
