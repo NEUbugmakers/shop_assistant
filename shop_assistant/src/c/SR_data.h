@@ -13,53 +13,54 @@
 #include"C_goodsvector.h"
 enum SR_PrintState{Default,SubSortSucc,EndOfSort};
 typedef struct SR_dataBTNodeT  SR_dataBTNode;
-struct SR_dataBTNodeT {//B-Ê÷½Úµã
+struct SR_dataBTNodeT {//B-æ ‘èŠ‚ç‚¹
 	SR_dataBTNode* parent;
 	char name[SR_BTNODE_NAME_LEN];
-	char sort;//·ÖÀà±êÊ¶·û
-	int childNum;//×Ó½ÚµãµÄÊıÁ¿
+	char sort;//åˆ†ç±»æ ‡è¯†ç¬¦
+	int childNum;//å­èŠ‚ç‚¹çš„æ•°é‡
 	B_vector* child;
 	B_vector* childCode;
-	int SR_dataBTNodeGoodsNum;//µ±Ç°·ÖÀàÖ±½Ó°üº¬µÄÉÌÆ·¸öÊı,²»±ØÊ±Ê±Î¬»¤£¬½öÔÚ´ò¿ªÎÄ¼şºÍ±£´æÎÄ¼şµÄÊ±ºòÎ¬»¤¼´¿É
+	int SR_dataBTNodeGoodsNum;//å½“å‰åˆ†ç±»ç›´æ¥åŒ…å«çš„å•†å“ä¸ªæ•°,ä¸å¿…æ—¶æ—¶ç»´æŠ¤ï¼Œä»…åœ¨æ‰“å¼€æ–‡ä»¶å’Œä¿å­˜æ–‡ä»¶çš„æ—¶å€™ç»´æŠ¤å³å¯
 	C_goodsVector* goodsVector;
 };
 typedef struct {
-	float C_out;//±ê¼Û£¨·ÇÊµÊÛ¼Û£©
-	char name[C_NAME_LEN];//ÉÌÆ·Ãû
-	char code[C_CODE_LEN];//±àÂë
-	int C_shelfNum;//»õ¼ÜÉÏµÄÏÖ´æµÄÉÌÆ·×ÜÅú´Î,²»±ØÊ±Ê±Î¬»¤£¬½öÔÚ´ò¿ªÎÄ¼şºÍ±£´æÎÄ¼şµÄÊ±ºòÎ¬»¤¼´¿É
-	int C_stockNum;//¿â´æÖĞÏÖ´æµÄÉÌÆ·×ÜÅú´Î,²»±ØÊ±Ê±Î¬»¤£¬½öÔÚ´ò¿ªÎÄ¼şºÍ±£´æÎÄ¼şµÄÊ±ºòÎ¬»¤¼´¿É
-	enum SR_PrintState C_State;//µ±Ç°ÌõÄ¿µÄ×´Ì¬
+	float C_out;//æ ‡ä»·ï¼ˆéå®å”®ä»·ï¼‰
+	char name[C_NAME_LEN];//å•†å“å
+	char code[C_CODE_LEN];//ç¼–ç 
+	int C_shelfNum;//è´§æ¶ä¸Šçš„ç°å­˜çš„å•†å“æ€»æ‰¹æ¬¡,ä¸å¿…æ—¶æ—¶ç»´æŠ¤ï¼Œä»…åœ¨æ‰“å¼€æ–‡ä»¶å’Œä¿å­˜æ–‡ä»¶çš„æ—¶å€™ç»´æŠ¤å³å¯
+	int C_stockNum;//åº“å­˜ä¸­ç°å­˜çš„å•†å“æ€»æ‰¹æ¬¡,ä¸å¿…æ—¶æ—¶ç»´æŠ¤ï¼Œä»…åœ¨æ‰“å¼€æ–‡ä»¶å’Œä¿å­˜æ–‡ä»¶çš„æ—¶å€™ç»´æŠ¤å³å¯
+	enum SR_PrintState C_State;//å½“å‰æ¡ç›®çš„çŠ¶æ€
 	int SR_sortName;
 }SR_dataPrint;
 typedef struct {
-	char sort[20];//·ÖÀà
-	char code[C_CODE_LEN];//Êı×Ö²¿·Ö±àÂë
+	char sort[20];//åˆ†ç±»
+	char code[C_CODE_LEN];//æ•°å­—éƒ¨åˆ†ç¼–ç 
 }SR_dataCodeNode;
 typedef struct {
 	char sort[20];
 }SR_dataSortDir;
 extern B_vector* SR_dataCodeVector;
-extern SR_dataBTNode SR_dataBTRoot;//¸ù½Úµã
-void SR_dataBTInit();//³õÊ¼»¯B-Ê÷
-void SR_dataBTBuild(SR_dataBTNode* x, FILE* file,FILE* goodsFile);//¸ù¾İÎÄ¼ş½¨Á¢B-Ê÷,ÏÈĞò±éÀú
-SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort);//ÔÚµ±Ç°½ÚµãµÄ×Ó½Úµã²éÕÒ·ÖÀà,Ê§°Ü·µ»ØNULL
-SR_dataBTNode* SR_dataGetSortFromNode(SR_dataBTNode* pos, char sort[]);//´ÓÄ³Ò»½Úµã²éÕÒ·ÖÀà(µİ¹é)
-SR_dataBTNode* SR_dataGetSort(char sort[]);//´Ó¸ù½Úµã¿ªÊ¼²éÕÒ·ÖÀà
-C_Goods* SR_dataGet(char code[]);//¸ù¾İ±àÂë²éÕÒÉÌÆ·
-void SR_dataBTNodeInit(SR_dataBTNode* node);//¶Ô´´½¨µÄ½Úµã³õÊ¼»¯
-char SR_dataSelectSort(SR_dataBTNode* pos);//ÔÚµ±Ç°½ÚµãÌôÑ¡ĞÂÔö·ÖÀàµÄ·ÖÀà±êÊ¶·û
-void SR_dataInsertSort(char dir[], char name[]);//²åÈë·ÖÀà
-void SR_dataSaveGoodsInfo(B_list* info, FILE* file);//±£´æshelfInfoºÍstockInfo
-void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root,FILE* goodsFile);//ÏÈĞò±éÀú±£´æ½Úµã£¨Î´Íê³É£©
-void SR_dataSave();//±£´æÊı¾İ
-void SR_dataAddNewGoods(C_Goods* goods);//Ìí¼ÓĞÂÉÌÆ·
-void SR_dataReplenishGoods(char code[], C_goodsInfo* info);//²¹»õ
-C_goodsReturnPrice SR_dataSell(char code[], char batch, int amount);//³öÊÛÉÌÆ·,·µ»ØÉÌÆ·±ê¼Û
-void SR_dataCodeVectorBuildFrom(SR_dataBTNode* pos, B_vector* vector);//½¨Á¢Ä³Ò»·ÖÀàÏÂµÄÉÌÆ·Êı×Ö±àÂë²éÕÒÏòÁ¿(ÎŞĞò£©
-int SR_dataCodeNodeCmp(SR_dataCodeNode* node1, SR_dataCodeNode* node2);//Í¨¹ıÊı×Ö±àÂë±È½ÏcodeNode´óĞ¡
-void SR_dataCodeVectorBuild();//½¨Á¢Êı×Ö±àÂë²éÕÒÏòÁ¿
-C_Goods* SR_dataCodeFind(char code[]);//Í¨¹ıÊı×Ö±àÂë²éÕÒÉÌÆ·
-char SR_dataOutOfStock(char code[], int amount);//ÉÌÆ·³ö¿â
-B_vector* SR_dataSortVectorFrom(SR_dataBTNode* node, char* sort, int len, B_vector* vector);//»ñÈ¡´ÓÄ³Ò»½Úµã¿ªÊ¼µÄ·ÖÀà
-B_vector* SR_dataSortVector();//»ñÈ¡È«²¿·ÖÀà
+extern SR_dataBTNode SR_dataBTRoot;//æ ¹èŠ‚ç‚¹
+void SR_dataBTInit();//åˆå§‹åŒ–B-æ ‘
+void SR_dataBTBuild(SR_dataBTNode* x, FILE* file,FILE* goodsFile);//æ ¹æ®æ–‡ä»¶å»ºç«‹B-æ ‘,å…ˆåºéå†
+SR_dataBTNode* SR_dataGetSortFromChild(SR_dataBTNode* pos, char sort);//åœ¨å½“å‰èŠ‚ç‚¹çš„å­èŠ‚ç‚¹æŸ¥æ‰¾åˆ†ç±»,å¤±è´¥è¿”å›NULL
+SR_dataBTNode* SR_dataGetSortFromNode(SR_dataBTNode* pos, char sort[]);//ä»æŸä¸€èŠ‚ç‚¹æŸ¥æ‰¾åˆ†ç±»(é€’å½’)
+SR_dataBTNode* SR_dataGetSort(char sort[]);//ä»æ ¹èŠ‚ç‚¹å¼€å§‹æŸ¥æ‰¾åˆ†ç±»
+C_Goods* SR_dataGet(char code[]);//æ ¹æ®ç¼–ç æŸ¥æ‰¾å•†å“
+void SR_dataBTNodeInit(SR_dataBTNode* node);//å¯¹åˆ›å»ºçš„èŠ‚ç‚¹åˆå§‹åŒ–
+char SR_dataSelectSort(SR_dataBTNode* pos);//åœ¨å½“å‰èŠ‚ç‚¹æŒ‘é€‰æ–°å¢åˆ†ç±»çš„åˆ†ç±»æ ‡è¯†ç¬¦
+void SR_dataInsertSort(char dir[], char name[]);//æ’å…¥åˆ†ç±»
+void SR_dataSaveGoodsInfo(B_list* info, FILE* file);//ä¿å­˜shelfInfoå’ŒstockInfo
+void SR_dataSavePreOrder(SR_dataBTNode* x, FILE* root,FILE* goodsFile);//å…ˆåºéå†ä¿å­˜èŠ‚ç‚¹ï¼ˆæœªå®Œæˆï¼‰
+void SR_dataSave();//ä¿å­˜æ•°æ®
+void SR_dataAddNewGoods(C_Goods* goods);//æ·»åŠ æ–°å•†å“
+void SR_dataReplenishGoods(char code[], C_goodsInfo* info);//è¡¥è´§
+C_goodsReturnPrice SR_dataSell(char code[], char batch, int amount);//å‡ºå”®å•†å“,è¿”å›å•†å“æ ‡ä»·
+void SR_dataCodeVectorBuildFrom(SR_dataBTNode* pos, B_vector* vector);//å»ºç«‹æŸä¸€åˆ†ç±»ä¸‹çš„å•†å“æ•°å­—ç¼–ç æŸ¥æ‰¾å‘é‡(æ— åºï¼‰
+int SR_dataCodeNodeCmp(SR_dataCodeNode* node1, SR_dataCodeNode* node2);//é€šè¿‡æ•°å­—ç¼–ç æ¯”è¾ƒcodeNodeå¤§å°
+void SR_dataCodeVectorBuild();//å»ºç«‹æ•°å­—ç¼–ç æŸ¥æ‰¾å‘é‡
+C_Goods* SR_dataCodeFind(char code[]);//é€šè¿‡æ•°å­—ç¼–ç æŸ¥æ‰¾å•†å“
+char SR_dataOutOfStock(char code[], int amount);//å•†å“å‡ºåº“
+B_vector* SR_dataSortVectorFrom(SR_dataBTNode* node, char* sort, int len, B_vector* vector);//è·å–ä»æŸä¸€èŠ‚ç‚¹å¼€å§‹çš„åˆ†ç±»
+B_vector* SR_dataSortVector();//è·å–å…¨éƒ¨åˆ†ç±»
+void SR_dataRemoveGoods(char code[]);//ç§»é™¤å•†å“

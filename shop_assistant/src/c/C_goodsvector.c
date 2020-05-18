@@ -1,11 +1,11 @@
 
 #include"C_goodsvector.h"
-C_goodsVector* C_goodsVectorCreat() {//´´½¨C_goodsVector
+C_goodsVector* C_goodsVectorCreat() {//åˆ›å»ºC_goodsVector
 	C_goodsVector* goodsVector = (C_goodsVector*)malloc(sizeof(C_goodsVector));
 	goodsVector->vector = B_vectorCreat(sizeof(C_Goods));
 	return goodsVector;
 }
-Rank C_goodsVectorFindInterval(C_goodsVector* goodsVector, char code[], Rank lo, Rank hi) {//ÔÚÇø¼ä[lo,hi)ÄÚ²éÕÒÉÌÆ·£¬³É¹¦Ôò·µ»ØÉÌÆ·ÖÈ£¬Ê§°ÜÔò·µ»Ø±àºÅ²»´óÓÚcodeµÄ×î´óÎ»ÖÃ
+Rank C_goodsVectorFindInterval(C_goodsVector* goodsVector, char code[], Rank lo, Rank hi) {//åœ¨åŒºé—´[lo,hi)å†…æŸ¥æ‰¾å•†å“ï¼ŒæˆåŠŸåˆ™è¿”å›å•†å“ç§©ï¼Œå¤±è´¥åˆ™è¿”å›ç¼–å·ä¸å¤§äºcodeçš„æœ€å¤§ä½ç½®
 	while (lo < hi) {
 		Rank mi = (lo + hi) >> 1;
 		if (strcmp(code, (*(C_Goods*)B_vectorGet(goodsVector->vector, mi)).code) < 0)
@@ -15,25 +15,25 @@ Rank C_goodsVectorFindInterval(C_goodsVector* goodsVector, char code[], Rank lo,
 	}
 	return --lo;
 }
-Rank C_goodsVectorFind(C_goodsVector* goodsVector, char code[]) {//¸ù¾İ±àÂë²éÕÒÉÌÆ·£¬³É¹¦Ôò·µ»ØÉÌÆ·ÖÈ£¬Ê§°ÜÔò·µ»Ø±àºÅ²»´óÓÚcodeµÄ×î´óÎ»ÖÃ
+Rank C_goodsVectorFind(C_goodsVector* goodsVector, char code[]) {//æ ¹æ®ç¼–ç æŸ¥æ‰¾å•†å“ï¼ŒæˆåŠŸåˆ™è¿”å›å•†å“ç§©ï¼Œå¤±è´¥åˆ™è¿”å›ç¼–å·ä¸å¤§äºcodeçš„æœ€å¤§ä½ç½®
 	return C_goodsVectorFindInterval(goodsVector, code, 0, goodsVector->vector->_size);
 }
-C_Goods* C_goodsVectorFind_P(C_goodsVector* goodsVector, char code[]) {//¸ù¾İ±àÂë²éÕÒÉÌÆ·£¬³É¹¦Ôò·µ»ØÉÌÆ·Ö¸Õë£¬Ê§°ÜÔò·µ»Ø±àºÅ²»´óÓÚcodeµÄ×î´óÎ»ÖÃ
+C_Goods* C_goodsVectorFind_P(C_goodsVector* goodsVector, char code[]) {//æ ¹æ®ç¼–ç æŸ¥æ‰¾å•†å“ï¼ŒæˆåŠŸåˆ™è¿”å›å•†å“æŒ‡é’ˆï¼Œå¤±è´¥åˆ™è¿”å›ç¼–å·ä¸å¤§äºcodeçš„æœ€å¤§ä½ç½®
 	return (C_Goods*)B_vectorGet(goodsVector->vector, C_goodsVectorFindInterval(goodsVector, code, 0, goodsVector->vector->_size));
 }
 
-int C_goodsVectorInsert(C_goodsVector* goodsVector, C_Goods* e) {//²åÈë,³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
+int C_goodsVectorInsert(C_goodsVector* goodsVector, C_Goods* e) {//æ’å…¥,æˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
 	Rank r = C_goodsVectorFind(goodsVector, e->code);
-	if (strcmp((*(C_Goods*)B_vectorGet(goodsVector->vector, r)).code, e->code) == 0)//ÉÌÆ·ÌõÄ¿ÒÑ¾­´æÔÚ£¬²åÈëÊ§°Ü
+	if (strcmp((*(C_Goods*)B_vectorGet(goodsVector->vector, r)).code, e->code) == 0)//å•†å“æ¡ç›®å·²ç»å­˜åœ¨ï¼Œæ’å…¥å¤±è´¥
 		return 0;
 	else {
 		B_vectorInsert(goodsVector->vector, e, r + 1);
 		return 1;
 	}
 }
-int C_goodsVectorRemove(C_goodsVector* goodsVector, char code[]) {//É¾³ıÉÌÆ·ÌõÄ¿,³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
+int C_goodsVectorRemove(C_goodsVector* goodsVector, char code[]) {//åˆ é™¤å•†å“æ¡ç›®,æˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
 	Rank r = C_goodsVectorFind(goodsVector, code);
-	if (strcmp((*(C_Goods*)B_vectorGet(goodsVector->vector, r)).code, code) != 0)//ÉÌÆ·ÌõÄ¿²»´æÔÚ£¬É¾³ıÊ§°Ü
+	if (strcmp((*(C_Goods*)B_vectorGet(goodsVector->vector, r)).code, code) != 0)//å•†å“æ¡ç›®ä¸å­˜åœ¨ï¼Œåˆ é™¤å¤±è´¥
 		return 0;
 	else {
 		C_goodsClear((C_Goods*)B_vectorGet(goodsVector->vector, r));
@@ -41,7 +41,7 @@ int C_goodsVectorRemove(C_goodsVector* goodsVector, char code[]) {//É¾³ıÉÌÆ·ÌõÄ¿
 		return 1;
 	}
 }
-void C_goodsVectorClear(C_goodsVector* goodsVector) {//ÊÍ·ÅgoodsVector
+void C_goodsVectorClear(C_goodsVector* goodsVector) {//é‡Šæ”¾goodsVector
 	for (int i = 0; i < goodsVector->vector->_size; i++) {
 		C_goodsClear((C_Goods*)B_vectorGet(goodsVector->vector, i));
 	}

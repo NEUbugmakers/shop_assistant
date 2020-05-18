@@ -4,10 +4,10 @@
 typedef struct {
 	B_vector* vector;
 }C_goodsVector;
-C_goodsVector* C_goodsVectorCreat();//´´½¨C_goodsVector
-Rank C_goodsVectorFindInterval(C_goodsVector* goodsVector, char code[], Rank lo, Rank hi);//ÔÚÇø¼ä[lo,hi)ÄÚ²éÕÒÉÌÆ·£¬³É¹¦Ôò·µ»ØÉÌÆ·ÖÈ£¬Ê§°ÜÔò·µ»Ø±àºÅ²»´óÓÚcodeµÄ×î´óÎ»ÖÃ
-Rank C_goodsVectorFind(C_goodsVector* goodsVector, char code[]);//¸ù¾İ±àÂë²éÕÒÉÌÆ·£¬³É¹¦Ôò·µ»ØÉÌÆ·ÖÈ£¬Ê§°ÜÔò·µ»Ø±àºÅ²»´óÓÚcodeµÄ×î´óÎ»ÖÃ
-C_Goods* C_goodsVectorFind_P(C_goodsVector* goodsVector, char code[]);//¸ù¾İ±àÂë²éÕÒÉÌÆ·£¬³É¹¦Ôò·µ»ØÉÌÆ·Ö¸Õë£¬Ê§°ÜÔò·µ»Ø±àºÅ²»´óÓÚcodeµÄ×î´óÎ»ÖÃ
-int C_goodsVectorInsert(C_goodsVector* goodsVector, C_Goods* e);//²åÈë,³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-int C_goodsVectorRemove(C_goodsVector* goodsVector, char code[]);//É¾³ıÉÌÆ·ÌõÄ¿,³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
-void C_goodsVectorClear(C_goodsVector* goodsVector);//ÊÍ·ÅgoodsVector
+C_goodsVector* C_goodsVectorCreat();//åˆ›å»ºC_goodsVector
+Rank C_goodsVectorFindInterval(C_goodsVector* goodsVector, char code[], Rank lo, Rank hi);//åœ¨åŒºé—´[lo,hi)å†…æŸ¥æ‰¾å•†å“ï¼ŒæˆåŠŸåˆ™è¿”å›å•†å“ç§©ï¼Œå¤±è´¥åˆ™è¿”å›ç¼–å·ä¸å¤§äºcodeçš„æœ€å¤§ä½ç½®
+Rank C_goodsVectorFind(C_goodsVector* goodsVector, char code[]);//æ ¹æ®ç¼–ç æŸ¥æ‰¾å•†å“ï¼ŒæˆåŠŸåˆ™è¿”å›å•†å“ç§©ï¼Œå¤±è´¥åˆ™è¿”å›ç¼–å·ä¸å¤§äºcodeçš„æœ€å¤§ä½ç½®
+C_Goods* C_goodsVectorFind_P(C_goodsVector* goodsVector, char code[]);//æ ¹æ®ç¼–ç æŸ¥æ‰¾å•†å“ï¼ŒæˆåŠŸåˆ™è¿”å›å•†å“æŒ‡é’ˆï¼Œå¤±è´¥åˆ™è¿”å›ç¼–å·ä¸å¤§äºcodeçš„æœ€å¤§ä½ç½®
+int C_goodsVectorInsert(C_goodsVector* goodsVector, C_Goods* e);//æ’å…¥,æˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
+int C_goodsVectorRemove(C_goodsVector* goodsVector, char code[]);//åˆ é™¤å•†å“æ¡ç›®,æˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
+void C_goodsVectorClear(C_goodsVector* goodsVector);//é‡Šæ”¾goodsVector

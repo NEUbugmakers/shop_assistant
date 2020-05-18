@@ -1,6 +1,6 @@
 
 #include"C_goods.h"
-C_Goods C_GoodsCreat(float out, char name[], char code[]) {//´´½¨C_Goods
+C_Goods C_GoodsCreat(float out, char name[], char code[]) {//åˆ›å»ºC_Goods
 	C_Goods newGoods;
 	newGoods.C_out = out;
 	newGoods.C_shelfKinds = 0;
@@ -13,55 +13,55 @@ C_Goods C_GoodsCreat(float out, char name[], char code[]) {//´´½¨C_Goods
 	newGoods.C_stockInfo = B_listCreat(sizeof(C_goodsInfo));
 	return newGoods;
 };
-int C_goodsShelfInfoNum(C_Goods* x) {//»ñÈ¡»õ¼ÜÉÌÆ·Åú´ÎÊýÁ¿
+int C_goodsShelfInfoNum(C_Goods* x) {//èŽ·å–è´§æž¶å•†å“æ‰¹æ¬¡æ•°é‡
 	return x->C_shelfKinds;
 }
-int C_goodsStockInfoNum(C_Goods* x) {//»ñÈ¡¿â´æÉÌÆ·Åú´ÎÊýÁ¿
+int C_goodsStockInfoNum(C_Goods* x) {//èŽ·å–åº“å­˜å•†å“æ‰¹æ¬¡æ•°é‡
 	return x->C_stockKinds;
 }
-void C_goodsListInit(C_Goods* goods) {//¿â´æ»õ¼ÜÁÐ±í³õÊ¼»¯
+void C_goodsListInit(C_Goods* goods) {//åº“å­˜è´§æž¶åˆ—è¡¨åˆå§‹åŒ–
 	goods->C_shelfInfo = B_listCreat(sizeof(C_goodsInfo));
 	goods->C_stockInfo = B_listCreat(sizeof(C_goodsInfo));
 }
-void C_goodsShelfAdd(C_Goods* goods, C_goodsInfo* info) {//ÏògoodsShelfÖÐÌí¼ÓÐÂÅú´Î»õÎï
-	B_listNode* x = B_listGetFirstNode(goods->C_shelfInfo);//Ö¸ÏògoodsShelfµÄµÚÒ»¸ö½Úµã
-	info->C_rotDate = B_DayLater(&info->C_producedDate, info->C_shelfDate);//¸üÐÂ¹ýÆÚÈÕÆÚ
-	info->batch = C_goodsSelectBatch(goods);//ÌôÑ¡ºÏÊÊµÄ±àºÅ
-	while (x != NULL && B_DateIsSmall(((C_goodsInfo*)x->_elem)->C_rotDate, info->C_rotDate))//ÕÒµ½²åÈëÎ»ÖÃ
+void C_goodsShelfAdd(C_Goods* goods, C_goodsInfo* info) {//å‘goodsShelfä¸­æ·»åŠ æ–°æ‰¹æ¬¡è´§ç‰©
+	B_listNode* x = B_listGetFirstNode(goods->C_shelfInfo);//æŒ‡å‘goodsShelfçš„ç¬¬ä¸€ä¸ªèŠ‚ç‚¹
+	info->C_rotDate = B_DayLater(&info->C_producedDate, info->C_shelfDate);//æ›´æ–°è¿‡æœŸæ—¥æœŸ
+	info->batch = C_goodsSelectBatch(goods);//æŒ‘é€‰åˆé€‚çš„ç¼–å·
+	while (x != NULL && B_DateIsSmall(((C_goodsInfo*)x->_elem)->C_rotDate, info->C_rotDate))//æ‰¾åˆ°æ’å…¥ä½ç½®
 		x = B_listNextNode(x);
-	if (x != NULL)//µ±Ç°ÉÌÆ·²»ÊÇ×îºó¹ýÆÚµÄ
-		B_listInsertPre(goods->C_shelfInfo, info, x);//²åÈë
-	else//µ±Ç°ÉÌÆ·ÊÇ×îºó¹ýÆÚµÄ
+	if (x != NULL)//å½“å‰å•†å“ä¸æ˜¯æœ€åŽè¿‡æœŸçš„
+		B_listInsertPre(goods->C_shelfInfo, info, x);//æ’å…¥
+	else//å½“å‰å•†å“æ˜¯æœ€åŽè¿‡æœŸçš„
 		B_listPushBack(goods->C_shelfInfo, info);
 	goods->C_shelfTotal += info->C_amount;
 }
-void C_goodsStockAdd(C_Goods* goods, C_goodsInfo* info) {//ÏògoodsStockÖÐÌí¼ÓÐÂÅú´Î»õÎï
-	B_listNode* x = B_listGetFirstNode(goods->C_stockInfo);//Ö¸ÏògoodsStockµÄµÚÒ»¸ö½Úµã
-	goods->C_shelfDate_Pre = info->C_shelfDate;//½«±¸·ÝµÄ±£ÖÊÆÚ±ä¸üÎªµ±Ç°±£ÖÊÆÚ
-	info->C_rotDate = B_DayLater(&info->C_producedDate, info->C_shelfDate);//¸üÐÂ¹ýÆÚÈÕÆÚ
+void C_goodsStockAdd(C_Goods* goods, C_goodsInfo* info) {//å‘goodsStockä¸­æ·»åŠ æ–°æ‰¹æ¬¡è´§ç‰©
+	B_listNode* x = B_listGetFirstNode(goods->C_stockInfo);//æŒ‡å‘goodsStockçš„ç¬¬ä¸€ä¸ªèŠ‚ç‚¹
+	goods->C_shelfDate_Pre = info->C_shelfDate;//å°†å¤‡ä»½çš„ä¿è´¨æœŸå˜æ›´ä¸ºå½“å‰ä¿è´¨æœŸ
+	info->C_rotDate = B_DayLater(&info->C_producedDate, info->C_shelfDate);//æ›´æ–°è¿‡æœŸæ—¥æœŸ
 	goods->C_stockTotal += info->C_amount;
-	if (x == NULL) {//ÎÞµÚÒ»¸ö½Úµã£¬¼´µÚÒ»´Î²åÈë
+	if (x == NULL) {//æ— ç¬¬ä¸€ä¸ªèŠ‚ç‚¹ï¼Œå³ç¬¬ä¸€æ¬¡æ’å…¥
 		B_listPushBack(goods->C_stockInfo, info);
 		return;
 	}
-	while (x != NULL && B_DateIsSmall(((C_goodsInfo*)x->_elem)->C_rotDate, info->C_rotDate))//ÕÒµ½²åÈëÎ»ÖÃ(¹ýÆÚÊ±¼äÏàÍ¬Ôò·ÅÔÚÍ¬Ê±¼äÅú´ÎµÄ×îºó¡°Í¬Ê±¼äÏÈ½øÏÈÂô¡±£©
+	while (x != NULL && B_DateIsSmall(((C_goodsInfo*)x->_elem)->C_rotDate, info->C_rotDate))//æ‰¾åˆ°æ’å…¥ä½ç½®(è¿‡æœŸæ—¶é—´ç›¸åŒåˆ™æ”¾åœ¨åŒæ—¶é—´æ‰¹æ¬¡çš„æœ€åŽâ€œåŒæ—¶é—´å…ˆè¿›å…ˆå–â€ï¼‰
 		x = B_listNextNode(x);
-	if (x != NULL)//µ±Ç°Åú´Î²»ÊÇ×îºó¹ýÆÚµÄ
-		B_listInsertPre(goods->C_stockInfo, info, x);//²åÈë
-	else//µ±Ç°ÉÌÆ·ÊÇ×îºó¹ýÆÚµÄ
+	if (x != NULL)//å½“å‰æ‰¹æ¬¡ä¸æ˜¯æœ€åŽè¿‡æœŸçš„
+		B_listInsertPre(goods->C_stockInfo, info, x);//æ’å…¥
+	else//å½“å‰å•†å“æ˜¯æœ€åŽè¿‡æœŸçš„
 		B_listPushBack(goods->C_stockInfo, info);
 }
-void C_goodsRemoveShelfInfoRank(C_Goods* goods, Rank r) {//É¾³ý»õ¼ÜÉÏµÄÄ³ÅúÉÌÆ·
+void C_goodsRemoveShelfInfoRank(C_Goods* goods, Rank r) {//åˆ é™¤è´§æž¶ä¸Šçš„æŸæ‰¹å•†å“
 	goods->C_shelfTotal -= ((C_goodsInfo*)B_listGetRank(goods->C_shelfInfo, r))->C_amount;
 	B_listRemoveRank(goods->C_shelfInfo, r);
 }
-void C_goodsRemoveStockInfoRank(C_Goods* goods, Rank r) {//É¾³ý¿â´æÖÐµÄÄ³ÅúÉÌÆ·
+void C_goodsRemoveStockInfoRank(C_Goods* goods, Rank r) {//åˆ é™¤åº“å­˜ä¸­çš„æŸæ‰¹å•†å“
 	goods->C_stockTotal -= ((C_goodsInfo*)B_listGetRank(goods->C_stockInfo, r))->C_amount;
 	B_listRemoveRank(goods->C_stockInfo, r);
 }
-char C_goodsOutofStockRank(C_Goods* goods, Rank r, int amount) {//ÉÌÆ·Ö¸¶¨Åú´Î³ö¿âÉÏ¼Ü,·µ»ØÅú´Î±àºÅ£¬Ê§°Ü·µ»Ø-1
+char C_goodsOutofStockRank(C_Goods* goods, Rank r, int amount) {//å•†å“æŒ‡å®šæ‰¹æ¬¡å‡ºåº“ä¸Šæž¶,è¿”å›žæ‰¹æ¬¡ç¼–å·ï¼Œå¤±è´¥è¿”å›ž-1
 	C_goodsInfo* pos = (C_goodsInfo*)B_listGetRank(goods->C_stockInfo, 0);
-	if (pos->C_amount < amount)//µ±Ç°Åú´Î»õÎï²»×ã£¬²Ù×÷Ê§°Ü
+	if (pos->C_amount < amount)//å½“å‰æ‰¹æ¬¡è´§ç‰©ä¸è¶³ï¼Œæ“ä½œå¤±è´¥
 		return -1;
 	pos->C_amount -= amount;
 	goods->C_stockTotal -= amount;
@@ -73,13 +73,13 @@ char C_goodsOutofStockRank(C_Goods* goods, Rank r, int amount) {//ÉÌÆ·Ö¸¶¨Åú´Î³ö
 		C_goodsRemoveStockInfoRank(goods, r);
 	return temp.batch;
 }
-char C_goodsOutofStock(C_Goods* goods, int amount) {//ÉÌÆ·³ö¿âÉÏ¼Ü£¬Ä¬ÈÏ×îÏÈ¹ýÆÚµÄÅú´Î
+char C_goodsOutofStock(C_Goods* goods, int amount) {//å•†å“å‡ºåº“ä¸Šæž¶ï¼Œé»˜è®¤æœ€å…ˆè¿‡æœŸçš„æ‰¹æ¬¡
 	return C_goodsOutofStockRank(goods, 0, amount);
 }
-Rank C_goodsGetShelfBatch(C_Goods* goods, char batch) {//ÔÚshelfInfoÏÂ²éÕÒÅú´Î£¬³É¹¦·µ»ØÖÈ£¬Ê§°Ü·µ»Ø-1
+Rank C_goodsGetShelfBatch(C_Goods* goods, char batch) {//åœ¨shelfInfoä¸‹æŸ¥æ‰¾æ‰¹æ¬¡ï¼ŒæˆåŠŸè¿”å›žç§©ï¼Œå¤±è´¥è¿”å›ž-1
 	B_listNode* x = B_listGetFirstNode(goods->C_shelfInfo);
 	Rank r = 0;
-	while (x!=NULL&&((C_goodsInfo*)x->_elem)->batch != batch) {//²éÕÒºÏÊÊµÄÅú´Î
+	while (x!=NULL&&((C_goodsInfo*)x->_elem)->batch != batch) {//æŸ¥æ‰¾åˆé€‚çš„æ‰¹æ¬¡
 		x = B_listNextNode(x);
 		r++;
 	}
@@ -88,7 +88,7 @@ Rank C_goodsGetShelfBatch(C_Goods* goods, char batch) {//ÔÚshelfInfoÏÂ²éÕÒÅú´Î£¬
 	else
 		return -1;
 }
-C_goodsReturnPrice C_goodsSell(C_Goods* goods, char batch, int amount) {//ÉÌÆ·³öÊÛ
+C_goodsReturnPrice C_goodsSell(C_Goods* goods, char batch, int amount) {//å•†å“å‡ºå”®
 	Rank r = C_goodsGetShelfBatch(goods, batch);
 	C_goodsInfo* pos = (C_goodsInfo*)B_listGetRank(goods->C_shelfInfo, r);
 	C_goodsReturnPrice price;
@@ -96,11 +96,11 @@ C_goodsReturnPrice C_goodsSell(C_Goods* goods, char batch, int amount) {//ÉÌÆ·³ö
 	price.C_out = goods->C_out;
 	pos->C_amount -= amount;
 	goods->C_shelfTotal -= amount;
-	if (pos->C_amount == 0)//¼ì²âµ±Ç°Åú´ÎÊÇ·ñÊÛ¿Õ£¬ÊÛ¿ÕÔòÉ¾³ýµ±Ç°Åú´Î
+	if (pos->C_amount == 0)//æ£€æµ‹å½“å‰æ‰¹æ¬¡æ˜¯å¦å”®ç©ºï¼Œå”®ç©ºåˆ™åˆ é™¤å½“å‰æ‰¹æ¬¡
 		B_listRemoveRank(goods->C_shelfInfo, r);
 	return price;
 }
-char C_goodsSelectBatch(C_Goods* goods) {//Îª¼´½«ÉÏ¼ÜµÄÉÌÆ·ÌôÑ¡Åú´Î±àÂë
+char C_goodsSelectBatch(C_Goods* goods) {//ä¸ºå³å°†ä¸Šæž¶çš„å•†å“æŒ‘é€‰æ‰¹æ¬¡ç¼–ç 
 	char allBatch[26] = {0};
 	B_listNode* x = B_listGetFirstNode(goods->C_shelfInfo);
 	while (x != NULL) {
@@ -112,7 +112,7 @@ char C_goodsSelectBatch(C_Goods* goods) {//Îª¼´½«ÉÏ¼ÜµÄÉÌÆ·ÌôÑ¡Åú´Î±àÂë
 			return 'A' + i;
 	return -1;
 }
-C_Goods C_goodsRotPreWarning(C_Goods* goods,int pre) {//ÌáÇ°preÌì½øÐÐ¹ýÆÚ±¨¾¯,Î´¹ýÆÚÔò·µ»Ø¿ÕÐÅÏ¢£¬¹ýÆÚÔò·µ»Ø½ö°üº¬¹ýÆÚÉÌÆ·µÄÁÐ±í
+C_Goods C_goodsRotPreWarning(C_Goods* goods,int pre) {//æå‰preå¤©è¿›è¡Œè¿‡æœŸæŠ¥è­¦,æœªè¿‡æœŸåˆ™è¿”å›žç©ºä¿¡æ¯ï¼Œè¿‡æœŸåˆ™è¿”å›žä»…åŒ…å«è¿‡æœŸå•†å“çš„åˆ—è¡¨
 	C_Goods rot = C_GoodsCreat(goods->C_out, goods->name, goods->code);
 	B_listNode* travel = B_listGetFirstNode(goods->C_shelfInfo);
 	while (travel != NULL) {
@@ -124,15 +124,15 @@ C_Goods C_goodsRotPreWarning(C_Goods* goods,int pre) {//ÌáÇ°preÌì½øÐÐ¹ýÆÚ±¨¾¯,Î´
 		if (B_DateIsSmall(B_Time_I(), B_DayLater(&((C_goodsInfo*)travel->_elem)->C_rotDate, pre)))
 			C_goodsStockAdd(&rot, (C_goodsInfo*)travel->_elem);
 	}
-	if (rot.C_shelfInfo->_size == 0 && rot.C_stockInfo->_size == 0) {//Èç¹ûÃ»ÓÐ¹ýÆÚÉÌÆ·ÔòÇå¿ÕrotÉÌÆ·ÐÅÏ¢strlen(code)==0
+	if (rot.C_shelfInfo->_size == 0 && rot.C_stockInfo->_size == 0) {//å¦‚æžœæ²¡æœ‰è¿‡æœŸå•†å“åˆ™æ¸…ç©ºrotå•†å“ä¿¡æ¯strlen(code)==0
 		C_goodsClear(&rot);
 	}
 	return rot;
 }
-C_Goods C_goodsGetRot(C_Goods* goods) {//»ñÈ¡¹ýÆÚÉÌÆ·
+C_Goods C_goodsGetRot(C_Goods* goods) {//èŽ·å–è¿‡æœŸå•†å“
 	return C_goodsRotPreWarning(goods, 0);
 }
-void C_goodsClear(C_Goods* goods) {//Çå¿ÕÉÌÆ·ÐÅÏ¢
+void C_goodsClear(C_Goods* goods) {//æ¸…ç©ºå•†å“ä¿¡æ¯
 	B_listClear(goods->C_shelfInfo);
 	B_listClear(goods->C_stockInfo);
 	free(goods->C_shelfInfo);

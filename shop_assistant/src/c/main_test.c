@@ -25,13 +25,13 @@ int main() {
 	//test = SR_dataGetSort("B");
 	//test = test;
 	//SR_dataBTNode* test = SR_dataGetSort("BA");
-	C_Goods goods;
-	goods = C_GoodsCreat(100, "A", "A1000");
-	SR_dataAddNewGoods(&goods);
-	goods = C_GoodsCreat(100, "AA", "AA1000");
-	SR_dataAddNewGoods(&goods);
-	goods = C_GoodsCreat(100, "BB", "BB1000");
-	SR_dataAddNewGoods(&goods);
+	//C_Goods goods;
+	//goods = C_GoodsCreat(100, "A", "A1000");
+	//SR_dataAddNewGoods(&goods);
+	//goods = C_GoodsCreat(100, "AA", "AA1000");
+	//SR_dataAddNewGoods(&goods);
+	//goods = C_GoodsCreat(100, "BB", "BB1000");
+	//SR_dataAddNewGoods(&goods);
 	//C_goodsInfo info;
 	//Date date;
 	//B_DateSet(&date, 2000, 6, 15);
@@ -71,6 +71,7 @@ int main() {
 	//for (int i = 0; i < SR_dataCodeVector->_size; i++) {
 	//	printf("%s%s\n", ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, i))->sort, ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, i))->code);
 	//}
+	SR_dataRemoveGoods("A1000");
 	B_vector* vector = SR_dataSortVector();
 	for (int i = 0; i < vector->_size; i++) {
 		printf("%s\n", B_vectorGet(vector, i));

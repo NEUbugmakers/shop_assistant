@@ -21,7 +21,7 @@ void B_listInit(B_list* list) {//初始化B_list
 }
 void B_listClear(B_list* list) {//清空列表
 	B_listNode* x = list->trailer->pred->pred;
-	while (x != list->header) {//从后向前释放所有元素
+	while (list->_size!=0&&x != list->header) {//从后向前释放所有元素
 		free(x->succ->_elem);
 		free(x->succ);
 	}
