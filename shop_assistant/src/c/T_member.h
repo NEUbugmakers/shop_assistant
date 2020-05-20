@@ -1,280 +1,85 @@
-#pragma once
+ï»¿#pragma once
 #include<stdio.h>
 #include <windows.h>
+#include<string.h>
+#include <QtDebug>
 #define M_NUM 11
 #define null NULL
-typedef struct T_date{
-    int T_Year;
-    int T_Months;
-    int T_Day;
+#define S_NUM 19
+typedef struct T_date {
+	int T_Year;
+	int T_Months;
+	int T_Day;
 }T_date;
-typedef struct Member{
-    char M_num[M_NUM];//¶ÔÓ¦µç»°ºÅÂëºó10Î»  
-    double M_money;//»áÔ±¹ºÂò½ğ¶î
-	char M_level;//»áÔ±µÈ¼¶ '0'-×¢²á '1'-Í­ '2'-Òø '3'-½ğ '4'-×ê
-	struct T_date M_date;//»áÔ±µ½ÆÚÊ±¼ä
-	struct Member *M_next;//ÏÂÒ»¸ö»áÔ±µÄÎ»ÖÃ 
-	struct M_trade* M_buy;//»áÔ±¹ºÂò¼ÇÂ¼Ö¸Õë 
-}member;
+typedef struct T_shopcart {
+    char T_num[S_NUM];
+    char T_batch;
+    int  T_amount;
+    float T_in;
+    float T_out;
+    struct T_shopcart* next;
+}T_shopcart;
+typedef struct Member {
+	char M_num[M_NUM];//å¯¹åº”ç”µè¯å·ç å10ä½  
+    char M_sex;
+	double M_money;//ä¼šå‘˜è´­ä¹°é‡‘é¢
+	char M_level;//ä¼šå‘˜ç­‰çº§ '0'-æ³¨å†Œ '1'-é“œ '2'-é“¶ '3'-é‡‘ '4'-é’»
+    char M_date[9];//ä¼šå‘˜åˆ°æœŸæ—¶é—´
+	struct Member* M_next;//ä¸‹ä¸€ä¸ªä¼šå‘˜çš„ä½ç½® 
+	struct M_trade* M_buy;//ä¼šå‘˜è´­ä¹°è®°å½•æŒ‡é’ˆ 
+}Member;
 struct C_price {
-	float C_in;//½ø»õ¼Û¸ñ
-	float C_out;//³ö»õ¼Û¸ñ
-}price={1.0,1.0};
-struct C_price* SR_datasell(char T_num[],char T_batch,int T_amount){
-	return &price;
-}
-typedef struct M_trade{
-     struct T_date T_date;
-     int line;
-	 struct M_trade* next; 
+	float C_in;//è¿›è´§ä»·æ ¼
+	float C_out;//å‡ºè´§ä»·æ ¼
+};
+struct C_price* SR_datasell(char T_num[], char T_batch, int T_amount);
+typedef struct M_trade {
+	char M_date[10];
+	int line;
+    float T_in;
+    float T_out;
+	struct M_trade* next;
 }M_trade;
-typedef struct Trade{
-	  struct T_date T_date;
-      char M_num[11];
-      struct T_goods* point; 
-      struct Trade* next;
-      float T_in;
-      float T_out;
+typedef struct Trade {
+    char date[9];
+	char M_num[11];
+	struct T_goods* point;
+	struct Trade* next;
+	float T_in;
+	float T_out;
 }Trade;
-typedef struct T_goods{
-      int T_amount;
-      char T_num[19];
-      float T_in;
-      float T_out;
-      struct T_goods* next; 
-}T_goods;
-typedef struct T_discount{
-      char num[19];
-      float discount;
-      struct T_discount* next; 
-}T_discount;
-struct T_discount T_discounthead;
-struct T_date* T_time(){//»ñÈ¡ÏµÍ³Ê±¼ä 
-	struct T_date* p=(struct T_date*)malloc(sizeof(struct T_date));
-	SYSTEMTIME sys;
-    GetLocalTime(&sys);
-    p->T_Day=sys.wDay;
-	p->T_Months=sys.wMonth;
-	p->T_Year=sys.wYear;
-	return p;
-}
-void T_cpytime(struct T_date *p,struct T_date* q){
-	p->T_Day=q->T_Day;
-	p->T_Months=q->T_Months;
-	p->T_Year=q->T_Year;
-}
-int T_comparetime(struct T_date p,struct T_date q){
-	if(p.T_Year==q.T_Year){
-		if(p.T_Months==q.T_Months){
-			return p.T_Day<q.T_Day;
-		}else return p.T_Months<q.T_Months;
-	}else return p.T_Year<q.T_Year;
-}//·µ»Ø1Ê± p±Èq´ó£» 
-struct Member* M_load(){
-	FILE* fp;
-	char M_first;
-	struct Member* M_head = (struct Member*)malloc(sizeof(struct Member));
-	struct Member* p;
-	struct Member* q;
-	p=M_head;
-	q=M_head;
-	fp = fopen("../../data/member/member.txt", "r");
-    if(fp==NULL) {
-        printf("´ò¿ªÎÄ¼şÊ§°Ü!");
-        return NULL; 
-    }
-    while(!feof(fp)){
-    	M_first=fgetc(fp);
-    	if(M_first=='#'){
-    		q=(struct Member*)malloc(sizeof(struct Member));
-            fread(q->M_num,sizeof(char),10,fp);
-            q->M_num[10]='\0';
-            fscanf(fp,"%lf",&q->M_money);
-            fgetc(fp);
-            fscanf(fp,"%c",&q->M_level);
-            fscanf(fp,"%d",&q->M_date.T_Day);
-            fscanf(fp,"%d",&q->M_date.T_Months);
-            fscanf(fp,"%d",&q->M_date.T_Year);
-            p->M_next=q;
-            p=q;
-    	}
-    }
-    p->M_next=NULL;
-    fclose(fp);
-    return M_head; 
-}
-void M_setlevel(struct Member* p,int mode){
-	int money=(int)p->M_money;
-	char level;
-	if(money==0)//printf("×¢²á»áÔ±");
-	    level='0';
-	else if(money<2000)//printf("ÇàÍ­»áÔ±");
-		level='1';
-	else if(money<10000)//printf("ÒøÅÆ»áÔ±");
-		level='2';
-	else if(money<30000)//printf("½ğÅÆ»áÔ±");
-		level='3';
-	else if(money>30000)//printf("×êÊ¯»áÔ±");
-		level='4';
-	else printf("¹ºÂò½ğ¶îÎŞĞ§£¡");
-	if((mode==0&&p->M_level!=level)||mode==1){
-		p->M_level=level;
-		T_cpytime(&p->M_date,T_time());
-	    p->M_date.T_Year+=1;
-	}
-}
-float M_level(struct Member* p){
-	int levelchange[5]={0,100,500,2500,7500};
-	if(T_comparetime(p->M_date,*T_time())){
-		printf("ÄúµÄ»áÔ±ĞÅÏ¢ÒÑ¹ıÆÚÒÑÎªÄú¸üĞÂ\n"); 
-		p->M_money-=levelchange[p->M_level-'0'];
-		if(p->M_money<0) p->M_money=0;
-		M_setlevel(p,1);
-	}
-	int money=(int)p->M_money;
-	if(money==0)//printf("×¢²á»áÔ±");
-	    return 1.0;
-	else if(money<2000)//printf("ÇàÍ­»áÔ±");
-		return 0.98;
-	else if(money<10000)//printf("ÒøÅÆ»áÔ±");
-		return 0.95;
-	else if(money<30000)//printf("½ğÅÆ»áÔ±");
-		return 0.90;
-	else if(money>30000)//printf("×êÊ¯»áÔ±");
-		return 0.85;
-	else printf("¹ºÂò½ğ¶îÎŞĞ§£¡");
-	return 1.0;
-}
-struct Member* M_search(char num[],struct Member* M_head){
-	struct Member* p=M_head;
-	struct Member* q;
-	int k;
-	while(p->M_next!=NULL){
-		q=p;
-		p=p->M_next;
-		k=strcmp(num,p->M_num);
-		if(k<0) return q;
-		else if(k==0) return p;
-	}
-	return p;
-}
-void M_display(struct Member* p){
-	printf("1%s ",p->M_num);
-	printf("%8.1lf ",p->M_money);
-	printf("%c ",p->M_level);
-	printf(" %02d\\%02d\\%02d\n",p->M_date.T_Day,p->M_date.T_Months,p->M_date.T_Year);
-}
-void M_add(char num[],struct Member* M_add,T_date* time){	
-	struct Member* buffer;
-	buffer=M_add->M_next;
-	struct Member* q=(struct Member*)malloc(sizeof(struct Member));
-	M_add->M_next=q;
-	q->M_next=buffer;
-	strcpy(q->M_num,num);
-	q->M_money=0.0;
-	q->M_level='0';
-	q->M_date.T_Day=time->T_Day;
-	q->M_date.T_Months=time->T_Months;
-	q->M_date.T_Year=time->T_Year+1;
-}
-void M_delete(int M_number,struct Member* M_head){
-	struct Member* p=M_head;
-	struct Member* q=M_head;
-	while(M_number--){
-		M_head=p;
-		p=p->M_next;
-	}
-	M_head->M_next=p->M_next;
-	free(p);
-}
-int M_save(struct Member* M_head){
-	FILE* fp;
-	struct Member* p=M_head;
-	fp = fopen("../../data/member/member.txt", "w");
-    if(fp==NULL) {
-        printf("´ò¿ªÎÄ¼şÊ§°Ü!");
-        return 1; 
-    }
-    while(p->M_next!=NULL){
-    	p=p->M_next;
-    	fputc('#',fp);
-    	fwrite(p->M_num,sizeof(char),10,fp);
-        fprintf(fp," %lf",p->M_money);
-        fprintf(fp," %c",p->M_level);
-        fprintf(fp," %d",p->M_date.T_Day);
-        fprintf(fp," %d",p->M_date.T_Months);
-        fprintf(fp," %d",p->M_date.T_Year);
-        fputc('\n',fp);
-    }
-    fclose(fp);
-    return 0;
-} 
-void T_disload(){
-	T_discounthead.next=NULL;
-}
-
-void T_display(struct Trade* trade){
-	printf("%dÄê%dÔÂ%dÈÕ »áÔ±±àÂë:1%s\n",trade->T_date.T_Year,trade->T_date.T_Months,trade->T_date.T_Day,trade->M_num);
-	int i=1;
-	struct T_goods* p=trade->point;
-	printf("ÉÌÆ·Çåµ¥£º\n"); 
-    while(p->next!=NULL){
-    	p=p->next;
-    	printf("%d:%s %d %.1f %.1f\n",i++,p->T_num,p->T_amount,p->T_in,p->T_out);
-    }
-    printf("½ø¼Û£º%.1lf\nÏû·Ñ½ğ¶î£º%.1lf\n",trade->T_in,trade->T_out); 
-}
-float T_discout(char num[]){
-     struct T_discount* p=&T_discounthead;
-	 while(p->next!=NULL){
-	 	p=p->next;
-	 	if(strcmp(num,p->num))return p->discount;
-	 }
-	 return 1.0;
-}
-int T_settle(struct Member* mp,struct Trade* T_head,float discount){
-	char T_num[19],T_batch;
+typedef struct T_goods {
 	int T_amount;
-	double T_money=0.0,T_cost=0.0,G_discount;
-	struct Trade* tp=(struct Trade*)malloc(sizeof(struct Trade));
-	struct T_goods* gp=(struct T_goods*)malloc(sizeof(struct T_goods));
-	struct T_goods* G_next;
-	struct C_price* pp;
-	T_head->next=tp;
-	tp->next=NULL;
-	tp->point=gp;
-	strcpy(tp->M_num,mp->M_num);
-	T_cpytime(&tp->T_date,T_time());
-	printf("%dÄê%dÔÂ%dÈÕ »áÔ±±àÂë:1%s\n",tp->T_date.T_Year,tp->T_date.T_Months,tp->T_date.T_Day,tp->M_num);
-	while(scanf("%s",T_num)!=EOF){
-		if(strcmp(T_num,"END")==0){
-			break;
-		}else{
-			scanf("%d",&T_batch);
-			scanf("%d",&T_amount);
-			pp=SR_datasell(T_num,T_batch,T_amount); 
-			if(pp==NULL){
-				printf("ÊäÈëµÄÉÌÆ·±àÂëÓĞÎó,ÇëÖØĞÂÊäÈë\n");
-			}else{
-				G_discount=T_discout(T_num)*discount;
-				G_next=(struct T_goods*)malloc(sizeof(struct T_goods));
-				strcpy(G_next->T_num,T_num);
-				G_next->T_amount=T_amount;
-				G_next->T_in=pp->C_in*T_amount;
-				G_next->T_out=pp->C_out*T_amount*G_discount;
-				gp->next=G_next;
-				gp=G_next;
-			}
-		}
-		printf("½ø¼Û£º%.1fÊÛ¼Û£º%.1f\n",gp->T_in,gp->T_out);
-		T_cost+=gp->T_in;
-		T_money+=gp->T_out;
-	}
-	gp->next=NULL;
-	mp->M_money+=T_money;
-	tp->T_in=T_cost;
-	tp->T_out=T_money;
-	M_setlevel(mp,0);
-
-	return 0;
-}
+	char T_num[19];
+	float T_in;
+	float T_out;
+	struct T_goods* next;
+}T_goods;
+typedef struct T_discount {
+	char num[19];
+	float discount;
+	struct T_discount* next;
+}T_discount;
+struct T_date* T_time();
+void T_cpytime(struct T_date* p, struct T_date* q);
+void intTochar(int n, char date[], int size);
+char* T_timechar();
+char* M_timechar();
+void T_datefile(char filename[], char* date);
+int T_comparetime(struct T_date p, struct T_date q);
+struct Member* M_load(struct Member* M_head, int* M_sum);
+void M_setlevel(struct Member* p, int mode);
+float M_level(struct Member* p);
+struct Member* M_search(char num[], struct Member* M_head);
+void M_display(struct Member* p);
+void M_add(char num[], struct Member* M_add, T_date* time,char M_sex);
+void M_delete(int M_number, struct Member* M_head);
+int M_save(struct Member* M_head);
+void T_disload();
+void T_display(struct Trade* trade);
+float T_discout(char num[]);
+void T_recordadd(struct M_trade* mp, int T_sum);
+int T_settle(struct Member* mp, struct Trade* T_head, float discount, int T_sum);
+struct Trade* T_load(struct Trade* T_head, int* T_sum);
+int T_save(struct Trade* M_head);
+void T_delete(int T_number, struct Trade* T_head);
