@@ -64,7 +64,7 @@ struct T_date* T_time();
 void T_cpytime(struct T_date* p, struct T_date* q);
 void intTochar(int n, char date[], int size);
 char* T_timechar();
-char* M_timechar();
+char* B_timechar();
 void T_datefile(char filename[], char* date);
 int T_comparetime(struct T_date p, struct T_date q);
 struct Member* M_load(struct Member* M_head, int* M_sum);

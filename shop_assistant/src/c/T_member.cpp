@@ -44,6 +44,26 @@ char* T_timechar() {
 	date[8] = '\0';
 	return date;
 }
+char* B_timechar() {
+    char* date = (char*)malloc(20 * sizeof(char));
+    int d, m, y;
+    SYSTEMTIME sys;
+    GetLocalTime(&sys);
+    d = sys.wDay;
+    m = sys.wMonth;
+    y = sys.wYear;
+    intTochar(y, date, 4);
+    date[4] = '\0';
+    strcat(date, "年");
+    intTochar(m, date + 7, 2);
+    date[9] = '\0';
+    strcat(date, "月");
+    intTochar(d, date + 12, 2);
+    date[14] = '\0';
+    strcat(date, "日");
+    date[17] = '\0';
+    return date;
+}
 char* M_timechar() {
     char* date = (char*)malloc(10 * sizeof(char));
     int d, m, y;
