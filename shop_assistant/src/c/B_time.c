@@ -170,3 +170,27 @@ Date B_DayLater(Date* date, int day) {
     }
     return rdate;
 }
+char* B_DateToStr(Date* date ,char c) {//Date转Str
+    int len;
+    if (c == 0)
+        len = 9;
+    else
+        len = 11;
+    char* str = malloc(sizeof(char) * len);
+    int pos = 0;
+    for (int i = 1000; i >0; i/=10) {
+        str[pos++] = date->B_Year / i % 10 + '0';
+    }
+    if (c != 0)
+        str[pos++] = c;
+    for (int i = 10; i > 0; i /= 10) {
+        str[pos++] = date->B_Months / i % 10 + '0';
+    }
+    if (c != 0)
+        str[pos++] = c;
+    for (int i = 10; i > 0; i /= 10) {
+        str[pos++] = date->B_Day / i % 10 + '0';
+    }
+    str[pos++] = 0;
+    return str;
+}

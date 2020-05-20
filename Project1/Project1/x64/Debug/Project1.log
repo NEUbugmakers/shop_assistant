@@ -1,6 +1,8 @@
-﻿  B_list.c
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+﻿  main_test.c
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\C_goods.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_time.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(100,26): warning C4267: “=”: 从“size_t”转换到“Rank”，可能丢失数据
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\C_goodsvector.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   Project1.vcxproj -> C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\Project1\x64\Debug\Project1.exe

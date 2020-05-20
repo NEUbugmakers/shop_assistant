@@ -9,7 +9,13 @@ int cmp(const Test* t1, const Test* t2) {
 	return t1->num - t2->num;
 }
 int main() {
-	SR_dataBTInit();
+	Date date;
+	date.B_Year = 2020;
+	date.B_Months = 5;
+	date.B_Day = 20;
+	char str[20];
+	printf("%s", B_DateToStr(&date, '$'));
+	//SR_dataBTInit();
 	//FILE* bug=NULL;
 	//fread(NULL, 1, 1, bug);
 	//SR_dataInsertSort("", "SortA");
@@ -20,7 +26,7 @@ int main() {
 	//SR_dataInsertSort("B", "SortBB");
 
 	//printf("%d", sizeof(SR_dataBTNode));
-	//SR_dataBTNode* test = SR_dataGetSort("A");
+	//SR_dataBTNode* test = SR_dataGetSort("AA");
 	//SR_dataInsertSort("A", "sortAA");
 	//test = SR_dataGetSort("B");
 	//test = test;
@@ -43,6 +49,7 @@ int main() {
 	//info.C_shelfDate = 30;
 	//printf("666");
 	//C_Goods* tgoods = SR_dataGet("BB1000");
+	//C_Goods goods = C_goodsCopy(tgoods);
 	//C_goodsOutofStock(tgoods,50);
 	//C_goodsSell(tgoods, 'C', 50);
 	//C_goodsInfo* testinfo = B_listGetRank(tgoods->C_stockInfo,0);
@@ -71,12 +78,12 @@ int main() {
 	//for (int i = 0; i < SR_dataCodeVector->_size; i++) {
 	//	printf("%s%s\n", ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, i))->sort, ((SR_dataCodeNode*)B_vectorGet(SR_dataCodeVector, i))->code);
 	//}
-	SR_dataRemoveGoods("A1000");
-	B_vector* vector = SR_dataSortVector();
-	for (int i = 0; i < vector->_size; i++) {
-		printf("%s\n", B_vectorGet(vector, i));
-	}
-	SR_dataSave();
+	//SR_dataRemoveGoods("A1000");
+	//B_vector* vector = SR_dataSortVector();
+	//for (int i = 0; i < vector->_size; i++) {
+	//	printf("%s\n", B_vectorGet(vector, i));
+	//}
+	//SR_dataSave();
 }
 //#define _CRT_SECURE_NO_WARNINGS
 //#include <stdlib.h>

@@ -1,28 +1,9 @@
-﻿  B_list.c
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(18,13): warning C4098: “B_listInit”:“void”函数返回值
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.c(88,8): warning C4018: “<=”: 有符号/无符号不匹配
-  B_vector.c
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.c(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.c(32,21): warning C4018: “<”: 有符号/无符号不匹配
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.c(61,20): warning C4018: “<”: 有符号/无符号不匹配
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.c(68,12): warning C4018: “<”: 有符号/无符号不匹配
-  C_goodsvector.c
-  SR_data.c
+﻿  main_test.c
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\C_goods.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_time.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_time.h(69,9): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_time.h(85,9): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_list.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_vector.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\B_getSrc.h(5,20): warning C4018: “<”: 有符号/无符号不匹配
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(3,15): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(30,11): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(44,45): warning C4133: “return”: 从“char *”到“SR_dataBTNode *”的类型不兼容
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(50,57): warning C4047: “函数”:“SR_dataBTNode *”与“char”的间接级别不同
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(50,57): warning C4024: “SR_dataGetSortFromChild”: 形参和实参 1 的类型不同
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(50,62): warning C4047: “函数”:“char”与“SR_dataBTNode *”的间接级别不同
-C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.c(50,62): warning C4024: “SR_dataGetSortFromChild”: 形参和实参 2 的类型不同
-  正在生成代码...
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\SR_data.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\C_goodsvector.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\shop_assistant\src\c\main_test.c(16,7): warning C4101: “str”: 未引用的局部变量
+  Project1.vcxproj -> C:\Users\利姆露\source\repos\NEUbugmakers\shop_assistant\Project1\Debug\Project1.exe

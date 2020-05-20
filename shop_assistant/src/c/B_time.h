@@ -37,5 +37,5 @@ int B_DayPassed(Date pre, Date lat);//计算两个日期间的天数，如有数
 ///////////////////
 void B_DateSet(Date* date, int y, int m, int d);//设定日期，个人新增
 Date B_DayLater(Date* date, int day);//几天后的日期
-
+char* B_DateToStr(Date* date, char c);//Date转Str
 #endif //B_TIME_B_TIME_H
