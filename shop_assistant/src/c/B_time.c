@@ -167,3 +167,27 @@ int B_WP_dayCompare(Date x,Date y) { //只比较年和月，相等返回1，x>y?
         return -2;
     }
 }
+char* B_DateToStr(Date* date ,char c) {//Date转Str
+    int len;
+    if (c == 0)
+        len = 9;
+    else
+        len = 11;
+    char* str = (char*)malloc(sizeof(char) * len);
+    int pos = 0;
+    for (int i = 1000; i >0; i/=10) {
+        str[pos++] = date->B_Year / i % 10 + '0';
+    }
+    if (c != 0)
+        str[pos++] = c;
+    for (int i = 10; i > 0; i /= 10) {
+        str[pos++] = date->B_Months / i % 10 + '0';
+    }
+    if (c != 0)
+        str[pos++] = c;
+    for (int i = 10; i > 0; i /= 10) {
+        str[pos++] = date->B_Day / i % 10 + '0';
+    }
+    str[pos++] = 0;
+    return str;
+}
