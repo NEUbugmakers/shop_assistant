@@ -53,7 +53,7 @@ int B_WP_dayCompare(Date x,Date y);//只比较年和月，相等返回1，x>y?-2
 ///////////////////
 void B_DateSet(Date* date, int y, int m, int d);//设定日期，个人新增
 Date B_DayLater(Date* date, int day);//几天后的日期
-
+char* B_DateToStr(Date* date, char c);//Date转Str
 
 
 
