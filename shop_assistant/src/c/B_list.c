@@ -24,6 +24,7 @@ void B_listClear(B_list* list) {//清空列表
 	while (list->_size!=0&&x != list->header) {//从后向前释放所有元素
 		free(x->succ->_elem);
 		free(x->succ);
+		x = x->pred;
 	}
 	free(list->header);
 	free(list->trailer);
