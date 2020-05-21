@@ -12,7 +12,7 @@
         </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="$USER_HOME$/Desktop/test/2021" />
+    <option name="cloneParentDir" value="$USER_HOME$/Desktop/qttest" />
   </component>
   <component name="Vcs.Log.App.Settings">
     <option name="COLUMN_ORDER">
