@@ -1,11 +1,30 @@
 //
 // Created by Charon on 2020/5/7.
 //
-
+#pragma once
 #define _CRT_SECURE_NO_WARNINGS
-#include "B_time.h"
+#include <stdio.h>
+#include <time.h>
+#include <math.h>
 #define isPrime(year) ((year%4==0&&year%100!=0)||(year%400==0))
 
+typedef struct {
+    char B_Day[4];
+    char B_Year[4];
+    char B_Months[4];
+    char B_Hour[4];
+    char B_Minute[4];
+    char B_Second[4];
+} Date_C;
+
+typedef struct {
+    int B_Day;
+    int B_Year;
+    int B_Months;
+    int B_Hour;
+    int B_Minute;
+    int B_Second;
+} Date;
 
 
 void IntToChar(int x, char* Str)//转换int到字符串
@@ -143,27 +162,39 @@ Date B_DayLater(Date* date, int day) {
         else {
             tempday -= dom;
             rdate.B_Months++;
+            if (tempday == 0) {//判断当前月是否是目标月，不是则月份加一，tempday减去当前月的天数
+                rdate.B_Day = 1;
+            }
         }
         if (rdate.B_Months > 12) {//月份进位
             rdate.B_Months = 1;
             rdate.B_Year++;
         }
     }
+    
     return rdate;
 }
-
-
-int B_WP_dayCompare(Date x,Date y) { //只比较年和月，相等返回1，x>y?-2:2  （数值大小）
-    if ((x.B_Year==y.B_Year)&&(x.B_Months==y.B_Months)){
-        return 1;
+char* B_DateToStr(Date* date ,char c) {//Date转Str
+    int len;
+    if (c == 0)
+        len = 9;
+    else
+        len = 11;
+    char* str = (char*)malloc(sizeof(char) * len);
+    int pos = 0;
+    for (int i = 1000; i >0; i/=10) {
+        str[pos++] = date->B_Year / i % 10 + '0';
     }
-    if (x.B_Year>y.B_Year){
-        return -2;
-    }else if ((x.B_Year==y.B_Year)&&(x.B_Months>y.B_Months)){
-        return -2;
-    }else if ((x.B_Year==y.B_Year)&&(x.B_Months<y.B_Months)){
-        return 2;
-    }else if (x.B_Year<y.B_Year){
-        return -2;
+    if (c != 0)
+        str[pos++] = c;
+    for (int i = 10; i > 0; i /= 10) {
+        str[pos++] = date->B_Months / i % 10 + '0';
     }
+    if (c != 0)
+        str[pos++] = c;
+    for (int i = 10; i > 0; i /= 10) {
+        str[pos++] = date->B_Day / i % 10 + '0';
+    }
+    str[pos++] = 0;
+    return str;
 }

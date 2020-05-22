@@ -77,7 +77,9 @@ int B_vectorRemoveRank(B_vector* vector, Rank r) {//删除秩为r的元素，成
 	return B_vectorRemoveInteral(vector, r, r + 1) != -1;//删除并返回删除结果
 }
 char* B_vectorGet(B_vector* vector, Rank r) {//得到指定位置的元素,支持对元素修改
-	return vector->_elem + r * vector->_esize;
+    	if(r<0||r>=vector->_size)
+        	return NULL;
+   	return vector->_elem + r * vector->_esize;
 }
 void B_vectorClear(B_vector* vector) {//清空数据
 	free(vector->_elem);
