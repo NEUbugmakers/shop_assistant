@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>shop_mainwindow</class>
+ <widget class="QMainWindow" name="shop_mainwindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>244</width>
+    <height>436</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>shop_mainwindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resource/shopicon.qrc">
+    <normaloff>:/shop.png</normaloff>:/shop.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QWidget" name="widget_2" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>97</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_back">
+         <property name="text">
+          <string>返回</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_member">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>会员管理系统</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resource/shopicon.qrc">
+        <normaloff>:/member.png</normaloff>:/member.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_trade">
+      <property name="text">
+       <string>收银系统</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resource/shopicon.qrc">
+        <normaloff>:/trade.png</normaloff>:/trade.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_people">
+      <property name="text">
+       <string>人事管理系统</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resource/shopicon.qrc">
+        <normaloff>:/people.png</normaloff>:/people.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_wage">
+      <property name="text">
+       <string>工资管理系统</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resource/shopicon.qrc">
+        <normaloff>:/wage.png</normaloff>:/wage.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_discount">
+      <property name="text">
+       <string>优惠管理系统</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resource/shopicon.qrc">
+        <normaloff>:/discount.png</normaloff>:/discount.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_shelf">
+      <property name="text">
+       <string>商品货架库存管理系统</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resource/shopicon.qrc">
+        <normaloff>:/shelf.png</normaloff>:/shelf.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_flow">
+      <property name="text">
+       <string>流水统计系统</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resource/shopicon.qrc">
+        <normaloff>:/flow.png</normaloff>:/flow.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="pushButton_backup">
+         <property name="text">
+          <string>备份</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_resume">
+         <property name="text">
+          <string>恢复</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>244</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="resource/shopicon.qrc"/>
+ </resources>
+ <connections/>
+</ui>
