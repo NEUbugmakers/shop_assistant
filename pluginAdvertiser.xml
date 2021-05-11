@@ -1491,22 +1491,22 @@
                 <map>
                   <entry key="CLionExternalRunConfiguration">
                     <value>
-                      <FeaturePluginData displayName="自定义构建应用程序" pluginName="CLion IDE" pluginId="com.intellij.clion" />
+                      <FeaturePluginData displayName="Custom Build Application" pluginName="CLion IDE" pluginId="com.intellij.clion" />
                     </value>
                   </entry>
                   <entry key="CLionNativeAppRunConfigurationType">
                     <value>
-                      <FeaturePluginData displayName="Makefile 应用程序" pluginName="Makefile" pluginId="com.intellij.clion-makefile" />
+                      <FeaturePluginData displayName="Makefile Application" pluginName="Makefile" pluginId="com.intellij.clion-makefile" />
                     </value>
                   </entry>
                   <entry key="CLion_CoreDump">
                     <value>
-                      <FeaturePluginData displayName="核心转储调试" pluginName="CLion IDE" pluginId="com.intellij.clion" />
+                      <FeaturePluginData displayName="Core Dump Debug" pluginName="CLion IDE" pluginId="com.intellij.clion" />
                     </value>
                   </entry>
                   <entry key="CLion_Remote">
                     <value>
-                      <FeaturePluginData displayName="GDB 远程调试" pluginName="CLion IDE" pluginId="com.intellij.clion" />
+                      <FeaturePluginData displayName="GDB Remote Debug" pluginName="CLion IDE" pluginId="com.intellij.clion" />
                     </value>
                   </entry>
                   <entry key="CMakeBoostTestRunConfigurationType">
@@ -1516,7 +1516,7 @@
                   </entry>
                   <entry key="CMakeCatchTestRunConfigurationType">
                     <value>
-                      <FeaturePluginData displayName="捕捉" pluginName="CLion Catch" pluginId="org.jetbrains.plugins.clion.test.catch" />
+                      <FeaturePluginData displayName="Catch" pluginName="CLion Catch" pluginId="org.jetbrains.plugins.clion.test.catch" />
                     </value>
                   </entry>
                   <entry key="CMakeDoctestTestRunConfigurationType">
@@ -1531,17 +1531,17 @@
                   </entry>
                   <entry key="CMakeRunConfiguration">
                     <value>
-                      <FeaturePluginData displayName="CMake 应用程序" pluginName="CLion IDE" pluginId="com.intellij.clion" />
+                      <FeaturePluginData displayName="CMake Application" pluginName="CLion IDE" pluginId="com.intellij.clion" />
                     </value>
                   </entry>
                   <entry key="CTestRunConfiguration">
                     <value>
-                      <FeaturePluginData displayName="CTest 应用程序" pluginName="CLion CTest" pluginId="org.jetbrains.plugins.clion.ctest" />
+                      <FeaturePluginData displayName="CTest Application" pluginName="CLion CTest" pluginId="org.jetbrains.plugins.clion.ctest" />
                     </value>
                   </entry>
                   <entry key="ChromiumRemoteDebugType">
                     <value>
-                      <FeaturePluginData displayName="附加到 Node.js/Chrome" pluginName="JavaScript Debugger" pluginId="JavaScriptDebugger" />
+                      <FeaturePluginData displayName="Attach to Node.js/Chrome" pluginName="JavaScript Debugger" pluginId="JavaScriptDebugger" />
                     </value>
                   </entry>
                   <entry key="CompoundRunConfigurationType">
@@ -1551,7 +1551,7 @@
                   </entry>
                   <entry key="DatabaseScript">
                     <value>
-                      <FeaturePluginData displayName="数据库脚本" pluginName="Database Tools and SQL" pluginId="com.intellij.database" />
+                      <FeaturePluginData displayName="Database Script" pluginName="Database Tools and SQL" pluginId="com.intellij.database" />
                     </value>
                   </entry>
                   <entry key="FirefoxRemoteDebugType">
@@ -1561,7 +1561,7 @@
                   </entry>
                   <entry key="GradleAppRunConfiguration">
                     <value>
-                      <FeaturePluginData displayName="Gradle 原生应用程序" pluginName="com.intellij.clion-gradle" pluginId="com.intellij.clion-gradle" />
+                      <FeaturePluginData displayName="Gradle Native Application" pluginName="com.intellij.clion-gradle" pluginId="com.intellij.clion-gradle" />
                     </value>
                   </entry>
                   <entry key="GradleRunConfiguration">
@@ -1571,7 +1571,7 @@
                   </entry>
                   <entry key="HttpClient.HttpRequestRunConfigurationType">
                     <value>
-                      <FeaturePluginData displayName="HTTP 请求" pluginName="HTTP Client" pluginId="com.jetbrains.restClient" />
+                      <FeaturePluginData displayName="HTTP Request" pluginName="HTTP Client" pluginId="com.jetbrains.restClient" />
                     </value>
                   </entry>
                   <entry key="JavaScriptTestRunnerJest">
@@ -1586,7 +1586,7 @@
                   </entry>
                   <entry key="JavascriptDebugType">
                     <value>
-                      <FeaturePluginData displayName="JavaScript 调试" pluginName="JavaScript Debugger" pluginId="JavaScriptDebugger" />
+                      <FeaturePluginData displayName="JavaScript Debug" pluginName="JavaScript Debugger" pluginId="JavaScriptDebugger" />
                     </value>
                   </entry>
                   <entry key="NodeWebKit">
@@ -1611,7 +1611,7 @@
                   </entry>
                   <entry key="TSqltConfigurationType">
                     <value>
-                      <FeaturePluginData displayName="tSQLt 测试" pluginName="Database Tools and SQL" pluginId="com.intellij.database" />
+                      <FeaturePluginData displayName="tSQLt Test" pluginName="Database Tools and SQL" pluginId="com.intellij.database" />
                     </value>
                   </entry>
                   <entry key="Tox">
@@ -1621,7 +1621,7 @@
                   </entry>
                   <entry key="UtPlSqlConfigurationType">
                     <value>
-                      <FeaturePluginData displayName="utPLSQL 测试" pluginName="Database Tools and SQL" pluginId="com.intellij.database" />
+                      <FeaturePluginData displayName="utPLSQL Test" pluginName="Database Tools and SQL" pluginId="com.intellij.database" />
                     </value>
                   </entry>
                   <entry key="XSLT">
@@ -1631,17 +1631,17 @@
                   </entry>
                   <entry key="com.jetbrains.cidr.embedded.customgdbserver.type">
                     <value>
-                      <FeaturePluginData displayName="嵌入式 GDB 服务器" pluginName="com.intellij.clion.embedded" pluginId="com.intellij.clion.embedded" />
+                      <FeaturePluginData displayName="Embedded GDB Server" pluginName="com.intellij.clion.embedded" pluginId="com.intellij.clion.embedded" />
                     </value>
                   </entry>
                   <entry key="com.jetbrains.cidr.embedded.openocd.conf.type">
                     <value>
-                      <FeaturePluginData displayName="OpenOCD 下载并运行" pluginName="com.intellij.clion.embedded" pluginId="com.intellij.clion.embedded" />
+                      <FeaturePluginData displayName="OpenOCD Download &amp; Run" pluginName="com.intellij.clion.embedded" pluginId="com.intellij.clion.embedded" />
                     </value>
                   </entry>
                   <entry key="com.jetbrains.cidr.remote.gdbserver.type">
                     <value>
-                      <FeaturePluginData displayName="远程 GDB 服务器" pluginName="CLion IDE" pluginId="com.intellij.clion" />
+                      <FeaturePluginData displayName="Remote GDB Server" pluginName="CLion IDE" pluginId="com.intellij.clion" />
                     </value>
                   </entry>
                   <entry key="js.build_tools.grunt">
@@ -1661,7 +1661,7 @@
                   </entry>
                   <entry key="tests">
                     <value>
-                      <FeaturePluginData displayName="Python 测试" pluginName="Python Community Edition" pluginId="PythonCore" />
+                      <FeaturePluginData displayName="Python tests" pluginName="Python Community Edition" pluginId="PythonCore" />
                     </value>
                   </entry>
                 </map>
@@ -1681,7 +1681,7 @@
                   </entry>
                   <entry key="buildout-python">
                     <value>
-                      <FeaturePluginData displayName="Buildout 支持" pluginName="Python Community Edition" pluginId="PythonCore" />
+                      <FeaturePluginData displayName="Buildout Support" pluginName="Python Community Edition" pluginId="PythonCore" />
                     </value>
                   </entry>
                 </map>
