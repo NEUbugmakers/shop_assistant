@@ -34,7 +34,7 @@
                   </entry>
                   <entry key="CMakeCatchTestRunConfigurationType">
                     <value>
-                      <FeaturePluginData displayName="捕捉" pluginName="CLion Catch" pluginId="org.jetbrains.plugins.clion.test.catch" bundled="true" />
+                      <FeaturePluginData displayName="Catch" pluginName="CLion Catch" pluginId="org.jetbrains.plugins.clion.test.catch" bundled="true" />
                     </value>
                   </entry>
                   <entry key="CMakeDoctestTestRunConfigurationType">
