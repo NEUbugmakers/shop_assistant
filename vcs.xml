@@ -42,6 +42,10 @@
           <option name="url" value="https://github.com/Charol-pluto/qqqqq.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/NoahCompiler/Algorithm.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="$USER_HOME$/Desktop/code/git" />
