@@ -3,6 +3,7 @@
     <extensionMap>
       <mapping pattern="UTM_0n1n" type="PLAIN_TEXT" />
       <mapping pattern="a" type="PLAIN_TEXT" />
+      <removed_mapping ext="ignore" approved="true" type="IgnoreLang file" />
     </extensionMap>
   </component>
 </application>
