@@ -46,9 +46,13 @@
           <option name="url" value="https://github.com/NoahCompiler/Algorithm.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/NoahCompiler/ArkCompiler.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="$USER_HOME$/Desktop/code/git" />
+    <option name="cloneParentDir" value="$USER_HOME$/github" />
   </component>
   <component name="Vcs.Log.App.Settings">
     <option name="COLUMN_ID_ORDER">
